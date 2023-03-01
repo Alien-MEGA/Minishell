@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 16:53:30 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/01 18:15:46 by ebennamr         ###   ########.fr       */
+/*   Created: 2023/03/01 17:10:48 by ebennamr          #+#    #+#             */
+/*   Updated: 2023/03/01 18:13:57 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	indexofchar(char *line, char c)
+
+
+
+
+char **def_env()
 {
-	int i;
 
-	i = 0;
-	if (line == 0)
-		return (-1);
-	while (line[i])
-	{
-		if (line[i] == c)
-			return (i);
-		i++;
-	}
+}
+load_env(char **env)
+{
+	char **new_env;
 
-	return (-1);
+	new_env = (char **) malloc()
+
 }
 
-ft_strlen2(char **arr)
+int main(char ac, char av, char **env)
 {
-	int len;
 
-	len = 0;
-	if (arr == 0)
-	return (0);
-	while (*arr[len])
-		len++;
-	return (0);
 }

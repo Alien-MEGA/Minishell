@@ -6,26 +6,13 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/02/28 19:38:14 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:12:44 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <readline/readline.h>
-#include "minishell.h"
-#include <signal.h>
-#include <sys/wait.h>
-#include <unistd.h>
-int pid;
-void sig(int num)
-{
-	if(num == SIGINT)
-	kill(pid,SIGINT);
-	signal(SIGINT,sig);
-	signal(SIGQUIT, sig);
 
-	num = 0;
-}
 
+t_data data;
 char *prompt()
 {
 	char	*line;
