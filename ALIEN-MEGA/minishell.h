@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 00:05:32 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:14:25 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_public
 {
 	int		pid;
 	int		exit_status;
+	char	**env;
 }			t_public;
 
 /* ==============> Tokenizer <============== */

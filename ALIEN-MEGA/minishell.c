@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 00:06:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:36:12 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,21 @@ void	sig(int num)
 	signal(SIGQUIT, sig);
 }
 
-char	*prompt(int fd)
+char	*get_prompt(void)
+{
+	int	i;
+
+	i = 0;
+	while (ft_strncmp(g_pub.env[i], "PWD=", 4) != 0)
+		i++;
+	if (ft_strrchr(g_pub.env[i], '/') != NULL)
+		return (ft_strjoin_gnl((ft_strjoin
+					(PROMPT_ONE, ft_strrchr(g_pub.env[i], '/')))
+				, PROMPT_TWO));
+	return (PROMPT);
+}
+
+char	*prompt(void)
 {
 	char	*line;
 	t_list	*ls;
@@ -31,7 +45,7 @@ char	*prompt(int fd)
 
 	ls = 0;
 	len = ft_lstsize(ls);
-	line = readline(PROMPT);
+	line = readline(get_prompt());
 	if (line != 0)
 		add_history(line);
 	printf("line : %s \n", line);
@@ -45,13 +59,11 @@ char	*prompt(int fd)
 	return (line);
 }
 
-int main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
-	(void)env;
-
-	int fd = open("text", O_RDWR | O_APPEND);
+	g_pub.env = ft_matrixdup(env);
 	while (1)
-		prompt(fd);
+		prompt();
 }
