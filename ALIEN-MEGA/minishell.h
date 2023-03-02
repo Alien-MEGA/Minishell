@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 19:09:57 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:39:16 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		indexofchar(char *line, char c);
 char	*get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
-t_list	*get_ls();
+t_list	*get_ls(void);
 
 /* ==============> /utils/env/ <============== */
 void	load_env(char **env);
@@ -89,10 +89,16 @@ char	*expand_env(char *key);
 /* ==============> /parser/ <============== */
 typedef struct s_tree
 {
-	t_token			node;
+	char			*value;
+	int				type;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
 
+t_tree	*ft_treenew(char *value, int type);
+t_tree	*ft_treelast(t_tree *tree, int option);
+void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
+void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
+void	ft_treeclear(t_tree **tree);
 
 #endif

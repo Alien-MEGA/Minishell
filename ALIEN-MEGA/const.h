@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/02 15:20:16 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:11:36 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@
 # define TRUE 1
 # define OPT_CREAT 0
 # define OPT_APPEND 1
+# define LEFT 0
+# define RIGHT 1
 
 #endif

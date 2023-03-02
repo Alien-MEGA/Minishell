@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/02 16:37:36 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/02 21:39:53 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRC = minishell.c \
 		./lexer/tokenizer.c \
 		./lexer/tokenizer_util.c \
 		./utils/pwd.c \
-		./utils/env.c
+		./utils/env.c \
+		./parser/parser.c \
+		./parser/tree_utils.c
 
 OBJ = $(SRC:.c=.o)
 
