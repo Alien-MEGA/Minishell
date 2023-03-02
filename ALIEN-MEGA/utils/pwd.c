@@ -6,16 +6,16 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/02 15:37:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:35:15 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*wildcard_exp(char *word)
-{
+// char	*wildcard_exp(char *word)
+// {
 	
-}
+// }
 
 char	*get_pwd(void)
 {

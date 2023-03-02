@@ -6,19 +6,16 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/02 15:25:00 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/02 16:37:36 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc
+CC = gcc -g
 
 FLAGS = #-Wall -Werror -Wextra
 
-RL_PATH=$(shell brew --prefix readline)
-
-LIB = -L $(RL_PATH)/lib -lreadline
 
 SRC = minishell.c \
 		string.c \
@@ -30,6 +27,10 @@ SRC = minishell.c \
 OBJ = $(SRC:.c=.o)
 
 LIBFT = ./libft/libft.a
+
+RL_PATH=$(shell brew --prefix readline)
+
+LIB = -L $(RL_PATH)/lib -lreadline
 
 all : $(NAME)
 
