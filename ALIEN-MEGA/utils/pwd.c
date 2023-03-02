@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/02 15:32:23 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:37:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,4 @@ char	*get_prompt(char *pwd)
 				, PROMPT_TWO));
 	return (PROMPT);
 }
+	
