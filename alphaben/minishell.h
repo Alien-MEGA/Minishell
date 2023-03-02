@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 15:33:24 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:34:41 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # include <limits.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <errno.h>
 # include "readline/readline.h"
+# include <dirent.h>
 
 # include "const.h"
 # include "libft/libft.h"
@@ -75,9 +77,10 @@ int		indexofchar(char *line, char c);
 char	*get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
+t_list	*get_ls();
 
-/* ==============> /utils/env/ <============== */
-void	load_env(char **env);
+	/* ==============> /utils/env/ <============== */
+	void load_env(char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);

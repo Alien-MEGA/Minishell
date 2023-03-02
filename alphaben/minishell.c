@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 15:02:10 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:57:10 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ char	*prompt(void)
 		printf("type %d , Value : %s \n", t->type, t->value);
 		ls = ls->next;
 	}
+	t_list *lis = get_ls();
+	if (lis == 0)
+		exit(0);
+		while (lis)
+		{
+			printf("name > %s\n",lis->data);
+			lis=lis->next;
+		}
+
 	return (line);
 }
 
