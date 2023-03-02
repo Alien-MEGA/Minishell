@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 15:38:28 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:09:57 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <limits.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <errno.h>
+# include <dirent.h>
 # include "readline/readline.h"
 
 # include "const.h"
@@ -75,11 +77,22 @@ int		indexofchar(char *line, char c);
 char	*get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
+t_list	*get_ls();
 
 /* ==============> /utils/env/ <============== */
 void	load_env(char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
+
+/* ==============> Parser <============== */
+/* ==============> /parser/ <============== */
+typedef struct s_tree
+{
+	t_token			node;
+	struct s_tree	*left;
+	struct s_tree	*right;
+}					t_tree;
+
 
 #endif
