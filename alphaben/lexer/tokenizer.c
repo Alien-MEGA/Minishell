@@ -3,36 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/02/28 18:42:30 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/01 23:27:59 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "minishell.h"
+#include "../minishell.h"
 
 void	add_token(t_list **list,int type,char *value)
 {
-	t_token *tk_new;
-	t_list *new_node;
+	t_token	*tk_new;
+	t_list	*new_node;
+	int		len;
+
 	tk_new = malloc(sizeof(t_token));
-	if (tk_new == 0)
-		write(2,"ERROR", 10);//replace
+	ft_error_str(tk_new, 1);
 	tk_new->type = type;
 	tk_new->value = ft_strdup(value);
-	if (tk_new->value == 0)
-		write(2, "ERROR", 10); // replace
 	new_node = ft_lstnew(tk_new);
-	if (new_node == 0)
-		write(1, "ERROR", 10);// replace
-		if(*list == 0)
-			*list = new_node;
-		else
+	if (*list == NULL)
+		(*list) = new_node;
+	else
 		ft_lstadd_back(list, new_node);
-
-		int len = ft_lstsize(*list);
+	len = ft_lstsize(*list);
 }
 
 static int check_teken1(char *line, int *i, t_list **list)
@@ -70,12 +65,14 @@ static int check_teken2(char *line, int i, t_list **list)
 	return (TRUE);
 }
 
-t_list	**create_token_list(t_list **head,char *line)
+t_list	**create_token_list(t_list **head, char *line)
 {
 	int		i;
 	int		len;
 	int		bool;
-t_list *lsit = 0 ;
+	t_list	*lsit;
+
+	lsit = 0;
 	len = ft_strlen(line);
 	i = 0;
 	while (i < len)
@@ -87,15 +84,15 @@ t_list *lsit = 0 ;
 		if (bool == FALSE)
 		{
 			if (line[i] == '"' || line[i] == '\'')
-				skip_quote(head,line, &i,line[i]);
+				skip_quote(head, line, &i, line[i]);
 			else if (line[i] == ' ' || line[i] == '\t')
 				skip_wt_sapce(head, line, &i);
 			else
 				skip_word(head, line, &i);
 		}
-	i++;
-	bool = FALSE;
+		i++;
+		bool = FALSE;
 	}
-	return(head);
+	return (head);
 }
 
