@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 00:36:12 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:02:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@ void	sig(int num)
 	signal(SIGQUIT, sig);
 }
 
-char	*get_prompt(void)
-{
-	int	i;
-
-	i = 0;
-	while (ft_strncmp(g_pub.env[i], "PWD=", 4) != 0)
-		i++;
-	if (ft_strrchr(g_pub.env[i], '/') != NULL)
-		return (ft_strjoin_gnl((ft_strjoin
-					(PROMPT_ONE, ft_strrchr(g_pub.env[i], '/')))
-				, PROMPT_TWO));
-	return (PROMPT);
-}
-
 char	*prompt(void)
 {
 	char	*line;
@@ -45,7 +31,7 @@ char	*prompt(void)
 
 	ls = 0;
 	len = ft_lstsize(ls);
-	line = readline(get_prompt());
+	line = readline(get_prompt(get_pwd()));
 	if (line != 0)
 		add_history(line);
 	printf("line : %s \n", line);

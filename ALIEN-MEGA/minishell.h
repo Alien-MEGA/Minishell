@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 00:14:25 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:33:24 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <limits.h>
 # include <signal.h>
 # include <sys/wait.h>
-# include <readline/readline.h>
+# include "readline/readline.h"
 
 # include "const.h"
 # include "libft/libft.h"
@@ -47,18 +47,18 @@ enum e_token
 
 typedef struct s_public
 {
-	int		pid;
-	int		exit_status;
-	char	**env;
+	int				pid;
+	unsigned int	exit_status;
+	char			**env;
 }			t_public;
 
 /* ==============> Tokenizer <============== */
+/* ==============> /lexer/ <============== */
 
 typedef struct s_token
 {
 	int		type;
 	char	*value;
-
 }			t_token;
 
 void	add_token(t_list **list, int type, char *value);
@@ -67,6 +67,19 @@ void	skip_quote(t_list **list, char *line, int *i, char qoute);
 void	skip_word(t_list **list, char *line, int *i);
 t_list	**create_token_list(t_list **head, char *line);
 
+
+/* ==============> /minishell/ <============== */
 int		indexofchar(char *line, char c);
+
+/* ==============> /utils/pwd <============== */
+char	*get_pwd(void);
+char	*get_prompt(char *pwd);
+char	*wildcard_exp(char *word);
+
+/* ==============> /utils/env/ <============== */
+void	load_env(char **env);
+void	export_to_env(char *key, char *value, int option);
+void	unset_var(char *key);
+char	*expand_env(char *key);
 
 #endif

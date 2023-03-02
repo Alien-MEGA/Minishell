@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/02 00:35:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:20:16 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@
 # define SP_CHAR "'\"<>()&| \t"
 # define CL_DEFAULT "\e[0m"
 # define PROMPT "\e[1;32m┌──(Minishell㉿Aliens)\n└─$ \e[0m"
-# define PROMPT_ONE "\e[1;32m┌──(Minishell㉿Aliens)-[~"
-# define PROMPT_TWO "]\n└─$ \e[0m"
-# define TRUE 1
+# define PROMPT_ONE "\e[1;32m┌──(Minishell㉿Aliens)-[ ./"
+# define PROMPT_TWO " ]\n└─$ \e[0m"
 # define FALSE 0
+# define TRUE 1
+# define OPT_CREAT 0
+# define OPT_APPEND 1
 
 #endif
