@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 21:48:42 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:38:48 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int	main(int argc, char **argv, char **env)
 	// load_env(argv[0], env);
 	// while (1)
 	// 	prompt();
-	parser();
+	test();
 }

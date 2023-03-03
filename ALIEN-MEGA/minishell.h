@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 21:53:16 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/03 23:06:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
 
-void	parser();
+void	parser(t_list *lst);
+void	test();
 
 #endif
