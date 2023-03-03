@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 17:34:41 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:05:34 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <errno.h>
-# include "readline/readline.h"
 # include <dirent.h>
+# include "readline/readline.h"
 
 # include "const.h"
 # include "libft/libft.h"
@@ -49,11 +49,14 @@ enum e_token
 
 typedef struct s_public
 {
-	int				pid;
+
 	unsigned int	exit_status;
 	char			**env;
+	char			**exp_list;
+	char			path;
+	int				isdef_env;
 }			t_public;
-
+t_public g_pub;
 /* ==============> Tokenizer <============== */
 /* ==============> /lexer/ <============== */
 
@@ -77,12 +80,28 @@ int		indexofchar(char *line, char c);
 char	*get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
-t_list	*get_ls();
+t_list	*get_ls(void);
 
-	/* ==============> /utils/env/ <============== */
-	void load_env(char **env);
+/* ==============> /utils/env/ <============== */
+void	load_env(char *_path, char **env) ;
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
+
+/* ==============> Parser <============== */
+/* ==============> /parser/ <============== */
+typedef struct s_tree
+{
+	char			*value;
+	int				type;
+	struct s_tree	*left;
+	struct s_tree	*right;
+}					t_tree;
+
+t_tree	*ft_treenew(char *value, int type);
+t_tree	*ft_treelast(t_tree *tree, int option);
+void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
+void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
+void	ft_treeclear(t_tree **tree);
 
 #endif
