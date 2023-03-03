@@ -1,0 +1,13 @@
+Makefile
+const.h
+lexer
+libft
+minishell
+minishell.c
+minishell.h
+minishell.o
+outfile
+parser
+string.c
+string.o
+utils

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 16:05:20 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:12:09 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*prompt(void)
 	char	*line;
 	t_list	*ls;
 	int		len;
-	t_token	*t;
 
 	ls = 0;
 	len = ft_lstsize(ls);
@@ -30,9 +29,6 @@ char	*prompt(void)
 		exit(0);
 	printf("line : %s \n", line);
 	create_token_list(&ls, line);
-
-
-
 	return (line);
 }
 
@@ -41,6 +37,9 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	load_env(argv[0] ,env);
+	export_to_env("PATH", ".", OPT_CREAT);
+	for (size_t i = 0; g_pub.env[i] != 0; i++)
+	printf("%s\n",g_pub.env[i]);
 
 	while (1)
 		prompt();

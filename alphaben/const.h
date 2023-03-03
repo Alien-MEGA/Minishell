@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/03 14:03:50 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:26:02 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@
 
 /* ==============> String  <============== */
 # define SHLVL "SHLVL=1"
-#define DEFAULT_PATH = "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."
+#define DEFAULT_PATH "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."
 
 #endif

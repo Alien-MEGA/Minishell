@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 16:05:34 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:12:12 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <errno.h>
 # include <dirent.h>
 # include "readline/readline.h"
+# include "readline/history.h"
 
 # include "const.h"
 # include "libft/libft.h"
@@ -53,7 +54,7 @@ typedef struct s_public
 	unsigned int	exit_status;
 	char			**env;
 	char			**exp_list;
-	char			path;
+	char			*path;
 	int				isdef_env;
 }			t_public;
 t_public g_pub;
@@ -83,14 +84,17 @@ char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
 
 /* ==============> /utils/env/ <============== */
+
 void	load_env(char *_path, char **env) ;
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
+/* ==============> /utils/env_util/ <============== */
+void	add_to_env(char *content);
 
-/* ==============> Parser <============== */
-/* ==============> /parser/ <============== */
-typedef struct s_tree
+	/* ==============> Parser <============== */
+	/* ==============> /parser/ <============== */
+	typedef struct s_tree
 {
 	char			*value;
 	int				type;

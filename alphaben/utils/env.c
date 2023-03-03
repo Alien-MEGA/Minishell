@@ -6,11 +6,29 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:16:59 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/03 16:08:30 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:13:26 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static int index_in_env(char *key)
+{
+	char *join;
+	int i;
+	int len;
+
+	i = 0;
+	join = ft_strjoin(key, "=");
+	len = ft_strlen(join);
+	while (g_pub.env[i])
+	{
+		if (ft_strncmp(g_pub.env[i], join, len) == FALSE)
+			return (free(join), i);
+			i++;
+	}
+	return (free(join), -1);
+}
 
 void load_env(char *_path, char **env)
 {
@@ -38,6 +56,20 @@ void load_env(char *_path, char **env)
 
 void export_to_env(char *key, char *value, int option)
 {
+	int		index;
+	char	*join;
+	char	*tmp;
+
+	tmp = NULL;
+	join = ft_strjoin(key, "=");
+	index = index_in_env(key);
+	if (index >= 0 && OPT_CREAT == option)
+		g_pub.env[index] = ft_strjoin_gnl(join, value);
+	else if (index >= 0 && OPT_APPEND == option)
+			g_pub.env[index] = ft_strjoin_gnl(g_pub.env[index], value);
+	else
+		add_to_env(ft_strjoin_gnl(join, value));
+	free(tmp);
 }
 
 void unset_var(char *key)
@@ -56,7 +88,7 @@ char *expand_env(char *key)
 	ft_error_str(join, 1);
 	while (g_pub.env[i])
 	{
-		if (ft_strncmp(g_pub.env[i], join, len) == 0)
+		if (ft_strncmp(g_pub.env[i], join, len) == FALSE)
 			return (free(join), ft_strdup(g_pub.env[i] + len));
 		i++;
 	}
