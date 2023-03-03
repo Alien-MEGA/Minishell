@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/02 21:39:16 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:41:41 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,15 @@ enum e_token
 
 typedef struct s_public
 {
-	int				pid;
+
 	unsigned int	exit_status;
 	char			**env;
-}			t_public;
+	char			**exp_list;
+	char			*path;
+	int				isdef_env;
+}					t_public;
 
+t_public g_pub;
 /* ==============> Tokenizer <============== */
 /* ==============> /lexer/ <============== */
 
@@ -80,7 +84,7 @@ char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
 
 /* ==============> /utils/env/ <============== */
-void	load_env(char **env);
+void	load_env(char *_path, char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
