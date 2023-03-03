@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 18:55:48 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/03 21:53:16 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ t_tree	*ft_treelast(t_tree *tree, int option);
 void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
+
+void	parser();
 
 #endif
