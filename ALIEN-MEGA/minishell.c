@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 23:51:33 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/03 23:55:28 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int	main(int argc, char **argv, char **env)
 //what is new?
 
 // Add member to t_list struct { name : level_tree, purpose : to know level of this node in tree}
+// Add member to t_list struct { name : level_prio, purpose : to know level of this node in right or left}
 
-// make type of  data to “t_token data”
+// change type of data to “t_token data”
