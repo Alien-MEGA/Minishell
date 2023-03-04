@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 19:38:59 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/04 22:05:41 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ enum e_token
 	TK_RD_OUTPUT_APPEND,
 	TK_AND,
 	TK_OR,
-	TOKEN_OPEN_BRACE,
+	TK_OPEN_BRACE,
 	TK_CLOSE_BRACE,
 	TK_WT_SPACE,
 	TK_OPEN_QUOTE
@@ -112,7 +112,7 @@ typedef struct s_tree
 	struct s_tree	*right;
 }					t_tree;
 
-t_tree	*ft_treenew(char *value, int type);
+t_tree	*ft_treenew(void *data);
 t_tree	*ft_treelast(t_tree *tree, int option);
 void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
