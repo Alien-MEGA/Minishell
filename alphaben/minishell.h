@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 15:23:59 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:43:18 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ enum e_token
 	TK_RD_OUTPUT_APPEND,
 	TK_AND,
 	TK_OR,
-	TOKEN_OPEN_BRACE,
+	TK_OPEN_BRACE,
 	TK_CLOSE_BRACE,
 	TK_WT_SPACE,
 	TK_OPEN_QUOTE
@@ -61,8 +61,10 @@ typedef struct s_public
 t_public g_pub;
 /* ==============> Tokenizer <============== */
 /* ==============> /lexer/ <============== */
+int	check_quote(t_list *tokens);
+int check_brace(t_list *tokens);
 
-typedef struct s_token
+	typedef struct s_token
 {
 	int		type;
 	char	*value;
@@ -101,6 +103,8 @@ void	set_shlvl();
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
+
+
 
 t_tree	*ft_treenew(char *value, int type);
 t_tree	*ft_treelast(t_tree *tree, int option);

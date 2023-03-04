@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 15:59:26 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:33:50 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ int	main(int argc, char **argv, char **env)
 	printf("===================\n");
 	printf("after :%s \n+++++\n", expand_env("SHLVL"));
 	//system("leaks minishell");
-	// while (1)
-	//	prompt();
+	//  while (1)
+	// 	prompt();
 }
+/*
+add file lexer
+		int	check_quote(t_list *tokens); check if exist open token
+		int check_brace(t_list *tokens) check if num of open brace diffrent num of colse brace exmp: ()) or (()
+		modifed : tokenizer.c  tokenizer_utlils.c minishell.h lexer.c
+
+*/
