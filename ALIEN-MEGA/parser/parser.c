@@ -6,20 +6,26 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/05 00:29:30 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/05 00:48:37 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	print_tree(t_tree *tree, int depth)
+void	print_tree(t_tree *tree, int depth, int option)
 {
 	if (tree == NULL)
 		return ;
 	print_tree(tree->right, depth + 4);
 	for (int i = 0; i < depth; i++)
 		printf(" ");
-	printf("%s\n", tree->data);
+	if (option == STRING)
+		printf("%s\n", (char *)tree->data);
+	if (option == MATRIX)
+		for (size_t i = 0; ((char **)tree->data)[i]; i++)
+			printf("%d :         %s\n", i, ((char **)tree->data)[i]);
+	if (option == TOKEN)
+		printf("Type %d :  %s\n", ((t_token *)tree->data)->type, ((t_token *)tree->data)->value);
 	print_tree(tree->left, depth + 4);
 }
 
