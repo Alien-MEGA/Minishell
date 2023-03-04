@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 16:09:02 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:38:59 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,21 @@ void    add_to_env(char *content);
 void    set_shlvl();
 /* ==============> Parser <============== */
 /* ==============> /parser/ <============== */
+
+typedef struct s_cmd
+{
+	char	*cmd;
+	char	**arg;
+}			t_cmd;
+
+typedef struct s_exp
+{
+	char	*exp;
+}				t_exp;
+
 typedef struct s_tree
 {
-	char			*value;
-	int				type;
+	void			*data;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;

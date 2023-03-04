@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 23:55:28 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:33:50 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
 
 char	*prompt(void)
 {
@@ -23,7 +25,7 @@ char	*prompt(void)
 	line = readline(get_prompt(get_pwd()));
 	if (line != 0)
 		add_history(line);
-	if (line == 0)
+	if(line == 0)
 		exit(0);
 	printf("line : %s \n", line);
 	create_token_list(&ls, line);
@@ -34,14 +36,24 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
-	// load_env(argv[0], env);
-	// while (1)
+	load_env(argv[0] ,env);
+	//export_to_env("PWD", ".", OPT_APPEND);
+	unset_var("_");
+	unset_var("PWD");
+	//unset_var("SHLVL");
+	printf("===================\n");
+	for (size_t i = 0; g_pub.env[i] != 0; i++)
+	printf("%s\n",g_pub.env[i]);
+	printf("===================\n");
+	printf("after :%s \n+++++\n", expand_env("SHLVL"));
+	//system("leaks minishell");
+	//  while (1)
 	// 	prompt();
-	test();
 }
-//what is new?
+/*
+add file lexer
+		int	check_quote(t_list *tokens); check if exist open token
+		int check_brace(t_list *tokens) check if num of open brace diffrent num of colse brace exmp: ()) or (()
+		modifed : tokenizer.c  tokenizer_utlils.c minishell.h lexer.c
 
-// Add member to t_list struct { name : level_tree, purpose : to know level of this node in tree}
-// Add member to t_list struct { name : level_prio, purpose : to know level of this node in right or left}
-
-// change type of data to “t_token data”
+*/

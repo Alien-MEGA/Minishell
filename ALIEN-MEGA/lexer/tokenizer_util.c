@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:29:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/01 23:27:53 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:55:40 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ while (line[*i] && indexofchar(SP_CHAR,line[*i]) == -1)
 	*i += 1;
 }
 	add_token(list, TK_WORD, ft_substr(line, *i - count, count));
+	*i -= 1;
 }

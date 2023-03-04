@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/01 23:27:59 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:43:52 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int check_teken2(char *line, int i, t_list **list)
 	else if (line[i] == '>')
 		add_token(list, TK_RD_OUTPUT, ">");
 	else if (line[i] == '(')
-		add_token(list, TOKEN_OPEN_BRACE, "(");
+		add_token(list, TK_OPEN_BRACE, "(");
 	else if (line[i] == ')')
 		add_token(list, TK_CLOSE_BRACE, ")");
 	else return (FALSE);

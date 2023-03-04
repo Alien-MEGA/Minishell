@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_matdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:22:41 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/01 21:48:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:46:55 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 
 size_t	ft_matlen(char **matrix)
 {
