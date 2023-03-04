@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/03 23:50:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:31:18 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,91 @@ void	print_lst(t_list *head)
 	printf("NULL ]\n\n");
 }
 
+void	parser(t_list *lst)
+{
+	
+
+
+
+
+	
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 void	def_pri(t_list *lst)
 {
 	int		prio;
 	int		switch_side;
-                                                              
+
+	lst->data->		   
+	                                   
 	switch_side = LEFT;
 	while (in(lst, i))
 	{
@@ -57,7 +131,7 @@ void	def_pri(t_list *lst)
 		}
 		else if (in(lst, i)->data->type == TK_PIPE)
 		{
-			in(lst, i)->level_tree = 2;
+			in(lst, i)->level_tree = level_tree;
 			in(lst, i)->level_side = switch_side;
 			level_tree++;
 		}
@@ -69,67 +143,35 @@ void	def_pri(t_list *lst)
 		}
 		i++;
 	}
-	// check all _ >
-	
 }
 
-void	parser(t_list *lst)
-{
-	/* && → || → | → Word */
+// void	parser(t_list *lst)
+// {
+// 	/* && → || → | → Word */
 
-	/* search for () */
-	/* else search for || or && */
-	/* else search for | */
-	def_pri();
-	
+// 	/* search for () */
+// 	/* else search for || or && */
+// 	/* else search for | */
+// 	// def_pri();
+// 	print_tree(tree, 10);
+// }
 
+// void	test()
+// {
+// 	t_list	*lst;
 
-
-
-
-
-
-
-
-
-
-
-	
-	print_tree(tree, 10);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void	test()
-{
-	t_list	*lst;
-
-	ft_lstadd_back(&lst, ft_lstnew("echo hoot"));
-	ft_lstadd_back(&lst, ft_lstnew("|"));
-	ft_lstadd_back(&lst, ft_lstnew("cat"));
-	ft_lstadd_back(&lst, ft_lstnew("&&"));
-	ft_lstadd_back(&lst, ft_lstnew("echo"));
-	ft_lstadd_back(&lst, ft_lstnew("gam"));
-	ft_lstadd_back(&lst, ft_lstnew("|"));
-	ft_lstadd_back(&lst, ft_lstnew("cat"));
-	print_lst(lst);
-	ft_indexing(lst);
-	parser(lst)
-}
-
+// 	ft_lstadd_back(&lst, ft_lstnew("echo hoot"));
+// 	ft_lstadd_back(&lst, ft_lstnew("|"));
+// 	ft_lstadd_back(&lst, ft_lstnew("cat"));
+// 	ft_lstadd_back(&lst, ft_lstnew("&&"));
+// 	ft_lstadd_back(&lst, ft_lstnew("echo"));
+// 	ft_lstadd_back(&lst, ft_lstnew("gam"));
+// 	ft_lstadd_back(&lst, ft_lstnew("|"));
+// 	ft_lstadd_back(&lst, ft_lstnew("cat"));
+// 	print_lst(lst);
+// 	ft_indexing(lst);
+// 	parser(lst);
+// }
 
 /* ====> Exemple : echo hoot | cat && echo gam | cat <====== */
 /* ==============> TEST <============== */

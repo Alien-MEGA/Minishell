@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 23:06:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:09:02 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void	load_env(char *_path, char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
-
+void    add_to_env(char *content);
+void    set_shlvl();
 /* ==============> Parser <============== */
 /* ==============> /parser/ <============== */
 typedef struct s_tree
