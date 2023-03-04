@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/04 23:09:24 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/05 00:29:30 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ void	print_tree(t_tree *tree, int depth)
 void	print_lst(t_list *head)
 {
 	printf("[ ");
-	for (int i = 0; head; i++)
-	{
-		printf("%s -> ", head->data);	
-		head = head->next;	
-	}
+	for (size_t i = 0; in(head, i); i++)
+		printf("%s --> ", (char *)(in(head, i)->data));
 	printf("NULL ]\n\n");
 }
 
@@ -50,49 +47,46 @@ int	check_type(t_list *lst, int type)
 	return (FALSE);
 }
 
-void	parser(t_list *lst)
+char	**make_cmd(t_list *lst, int start, int end)
 {
-	t_tree	*ast;
-	int		i;
-	int		j;
 	char	*cmd_str;
 	char	**cmd_mat;
 
 	cmd_str = NULL;
-	
+	while (start < end)
+	{
+		cmd_str = ft_strjoin_gnl(cmd_str, ((t_token *)in(lst, start)->data)->value);
+		cmd_str = ft_strjoin_gnl(cmd_str, " ");	
+		start++;
+	}
+	cmd_mat = ft_split(cmd_str, ' ');
+	printf("==============> Print Cmd <============== \n");
+	for (size_t i = 0; cmd_mat[i]; i++)
+		printf(" %d :         %s\n", (int)i, cmd_mat[i]);
+	return (cmd_mat);	
+}
+
+void	parser(t_list *lst)
+{
+	t_tree	*ast;
+	int		i;
+	char	**cmd_mat;
+
 	// i = -1;
 	// while (in(lst, ++i))
 	// 	printf("%s == %d\n", ((t_token *)in(lst, i)->data)->value, ((t_token *)in(lst, i)->data)->type);
 
+	ast = NULL;
 	i = 0;
 	while (((t_token *)in(lst, i)->data)->type == TK_WORD)
 		i++;
-	printf("%d\n", i);
-	/* ==============> make cmd_matrix <============== */
+	cmd_mat = make_cmd(lst, 0, i);
+	printf("\n%p\n", ast);
+	ft_treeadd_back(&ast, ft_treenew(cmd_mat), LEFT);
 
-	j = 0;
-	while (j < i)
-	{
-		cmd_str = ft_strjoin_gnl(cmd_str, ((t_token *)in(lst, j)->data)->value);
-		cmd_str = ft_strjoin_gnl(cmd_str, " ");	
-		j++;
-	}
-	printf("==> %s\n", cmd_str);
-	cmd_mat = ft_split(cmd_str, ' ');
-	printf("==>\n");
-	for (size_t i = 0; cmd_mat[i]; i++)
-		printf("%s\n", cmd_mat[i]);
+	// // ft_treeadd_front(&ast, ft_treenew(((t_token *)in(lst, i)->data)->value), LEFT);
 	
-
-	
-
-
-
-
-
-
-
-
+	print_tree(ast, 10);
 
 
 
@@ -154,8 +148,8 @@ void	test()
 	token_9.type = TK_WORD;
 	ft_lstadd_back(&lst, ft_lstnew(&token_9));
 
-	print_lst(lst);
 	ft_indexing(lst);
+	print_lst(lst);
 	parser(lst);
 }
 
