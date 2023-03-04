@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:20:26 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 19:16:37 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:37:08 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,33 @@ void	add_to_env(char *content)
 	g_pub.env[i + 1] = NULL;
 	free(tmp);
 }
+void	set_shlvl()
+{
+	char	*old_value;
+	char	*new_value;
+	int		value;
+
+	old_value = expand_env("SHLVL");
+	printf("%s\n",old_value);
+	new_value = 0;
+	if (ft_strlen(old_value) == 0)
+		export_to_env("SHLVL","1", OPT_CREAT);
+	else
+	{
+		value = ft_atoi(old_value);
+		if (value >= 999 || value <= 0)
+			export_to_env("SHLVL", "1", OPT_CREAT);
+		else
+		{
+
+			new_value = ft_itoa(value + 1);
+			printf("udpdting %s ----> %s\n\n",old_value, new_value);
+				ft_error_str(new_value, 1);
+
+			export_to_env("SHLVL", new_value, OPT_CREAT);
+		}
+	}
+	free(old_value);
+	free(new_value);
+}
+

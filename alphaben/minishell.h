@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/03 19:12:12 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:23:59 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef struct s_public
 	char			**exp_list;
 	char			*path;
 	int				isdef_env;
-}			t_public;
+}					t_public;
+
 t_public g_pub;
 /* ==============> Tokenizer <============== */
 /* ==============> /lexer/ <============== */
@@ -84,13 +85,12 @@ char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
 
 /* ==============> /utils/env/ <============== */
-
-void	load_env(char *_path, char **env) ;
+void	load_env(char *_path, char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
-/* ==============> /utils/env_util/ <============== */
 void	add_to_env(char *content);
+void	set_shlvl();
 
 	/* ==============> Parser <============== */
 	/* ==============> /parser/ <============== */
@@ -107,5 +107,8 @@ t_tree	*ft_treelast(t_tree *tree, int option);
 void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
+
+void	parser(t_list *lst);
+void	test();
 
 #endif
