@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 21:09:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 21:48:34 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ void	export();
 	struct s_tree	*right;
 }					t_tree;
 
-
-
 t_tree	*ft_treenew(char *value, int type);
 t_tree	*ft_treelast(t_tree *tree, int option);
 void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
@@ -121,5 +119,9 @@ void	ft_treeclear(t_tree **tree);
 
 void	parser(t_list *lst);
 void	test();
+
+t_tree	*create_command(t_list *lst, int *i);
+t_tree	*create_operator(t_list *lst, int *i);
+t_tree	*create_redirect(t_list *lst, int *i);
 
 #endif

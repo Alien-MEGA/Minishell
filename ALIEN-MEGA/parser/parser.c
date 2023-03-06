@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/06 20:24:16 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:05:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,6 @@ int	check_type(t_list *lst, int type)
 	return (FALSE);
 }
 
-char	**make_cmd(t_list *lst, int start, int end)
-{
-	char	*cmd;
-
-	cmd = NULL;
-	while (start < end)
-	{
-		cmd = ft_strjoin_gnl(cmd, ((t_token *)in(lst, start)->data)->value);
-		cmd = ft_strjoin_gnl(cmd, " ");	
-		start++;
-	}
-	printf("==============> Print Cmd <============== \n");
-		printf("%s\n", cmd);
-	return (cmd);	
-}
-
 void	parser(t_list *lst)
 {
 	t_tree	*tree;
@@ -71,21 +55,24 @@ void	parser(t_list *lst)
 	i = -1;
 	while (in(lst, ++i))
 	{
-		if (in(lst, i)->type == TK_RD_OUTPUT
+		if (in(lst, i)->type == TK_PIPE
+			|| in(lst, i)->type == TK_OR
+			|| in(lst, i)->type == TK_AND)
+		{
+			create_operator(lst, &i);
+		}
+		else if (in(lst, i)->type == TK_WORD)
+		{
+			create_command(lst, &i);
+		}
+		else if (in(lst, i)->type == TK_RD_OUTPUT
 			|| in(lst, i)->type == TK_RD_OUTPUT_APPEND
 			|| in(lst, i)->type == TK_RD_INPUT
 			|| in(lst, i)->type == TK_HERE_DOC)
-			create_redirect(lst, &i, in(lst, i)->type);
-		else if (in(lst, i)->type == TK_PIPE
-			|| in(lst, i)->type == TK_OR
-			|| in(lst, i)->type == TK_AND)
-			create_operator(lst, &i, in(lst, i)->type);
-		else if (in(lst, i)->type == TK_WORD)
-			create_command(lst, &i);
+		{
+			create_redirect(lst, &i);
+		}
 	}
-	
-	
-
 
 
 
