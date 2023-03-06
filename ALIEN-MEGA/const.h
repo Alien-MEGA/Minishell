@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/05 00:46:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:26:02 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@
 # define TRUE 1
 # define OPT_CREAT 0
 # define OPT_APPEND 1
-# define LEFT 0
-# define RIGHT 1
-# define STRING 0
-# define MATRIX 1
-# define TOKEN 3
+#define LEFT 0
+#define RIGHT 1
 
 /* ==============> String  <============== */
 # define SHLVL "SHLVL=1"

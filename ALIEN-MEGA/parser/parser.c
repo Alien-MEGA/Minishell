@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/06 17:39:58 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:55:26 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,56 +84,27 @@ void	test()
 {
 	t_list	*lst;
 
-	t_token token_1;
-	token_1.value = ft_strdup("echo");
-	token_1.type = TK_WORD;
-	ft_lstadd_back(&lst, ft_lstnew(&token_1));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("echo"), NULL));
 
-	t_token token_2;
-	token_2.value = ft_strdup("hoot");
-	token_2.type = TK_WORD;
-	ft_lstadd_back(&lst, ft_lstnew(&token_2));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("hoot"), NULL));
 
-	t_token token_3;
-	token_3.value = ft_strdup("|");
-	token_3.type = TK_PIPE;
-	ft_lstadd_back(&lst, ft_lstnew(&token_3));
+	ft_lstadd_back(&lst, ft_lstnew(TK_PIPE, ft_strdup("|"), NULL));
 
-	t_token token_4;
-	token_4.value = ft_strdup("cat");
-	token_4.type = TK_WORD;
-	ft_lstadd_back(&lst, ft_lstnew(&token_4));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("cat"), NULL));
 
-	t_token token_5;
-	token_5.value = ft_strdup("&&");
-	token_5.type = TK_PIPE;
-	ft_lstadd_back(&lst, ft_lstnew(&token_5));
+	ft_lstadd_back(&lst, ft_lstnew(TK_PIPE, ft_strdup("&&"), NULL));
 
-	t_token token_6;
-	token_6.value = ft_strdup("echo");
-	token_6.type = TK_WORD;
-	ft_lstadd_back(&lst, ft_lstnew(&token_6));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("echo"), NULL));
 
-	t_token token_7;
-	token_7.value = ft_strdup("gam");
-	token_7.type = TK_WORD;
-	ft_lstadd_back(&lst, ft_lstnew(&token_7));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("gam"), NULL));
 
-	t_token token_8;
-	token_8.value = ft_strdup("|");
-	token_8.type = TK_PIPE;
-	ft_lstadd_back(&lst, ft_lstnew(&token_8));
+	ft_lstadd_back(&lst, ft_lstnew(TK_PIPE, ft_strdup("|"), NULL));
 
-	t_token token_9;
-	token_9.value = ft_strdup("cat");
-	token_9.type = TK_WORD;
-	ft_lstadd_back(&lst, ft_lstnew(&token_9));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("cat"), NULL));
 
 	ft_indexing(lst);
 	print_lst(lst);
 	parser(lst);
-
-
 
 	// print_tree(tree, 10);
 }

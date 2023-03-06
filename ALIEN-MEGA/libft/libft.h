@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:34:12 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/06 17:45:46 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:44:28 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 
 typedef struct s_list
 {
+	void			*data;
 	int				type;
 	char			*value;
-	void			*data;
 	int				index;
 	struct s_list	*next;
 }					t_list;
@@ -70,7 +70,7 @@ void	ft_lstclear(t_list **lst);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(void *data);
+t_list	*ft_lstnew(int type, char *value, void *data);
 int		ft_lstsize(t_list *lst);
 
 # ifndef BUFFER_SIZE
