@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 21:48:34 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 23:38:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ void	set_shlvl();
 void	sort_mat(char **arr);
 void	export();
 /* ==============> /utils/export_utils <============== */
-	int		check_var(char *var);
-	/* ==============> Parser <============== */
-	/* ==============> /parser/ <============== */
-	typedef struct s_tree
+int		check_var(char *var);
+/* ==============> Parser <============== */
+/* ==============> /parser/ <============== */
+typedef struct s_tree
 {
 	char			*value;
 	int				type;
@@ -117,7 +117,7 @@ void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
 
-void	parser(t_list *lst);
+t_tree	*parser(t_list *lst);
 void	test();
 
 t_tree	*create_command(t_list *lst, int *i);

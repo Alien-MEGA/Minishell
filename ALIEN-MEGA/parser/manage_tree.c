@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/06 22:05:10 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 23:30:15 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_tree	*create_command(t_list *lst, int *i)
 
 	cmd = NULL;
 	start = (*i);
-	while (in(lst, (*i))->type == TK_WORD)
+	while (in(lst, (*i)) && in(lst, (*i))->type == TK_WORD)
 		(*i)++;
 	end = (*i);	
 	while (start < end)
