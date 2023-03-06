@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 17:32:23 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:47:20 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ t_list	**create_token_list(t_list **head, char *line);
 /* ==============> /minishell/ <============== */
 int		indexofchar(char *line, char c);
 char	**mat_join(char **s1, char **s2);
+int		ft_strcmp(char *str1, char *str2);
 
 	/* ==============> /utils/pwd <============== */
 	char *get_pwd(void);
@@ -95,6 +96,9 @@ char	*expand_env(char *key);
 void	add_to_env(char *content);
 void	set_shlvl();
 
+/* ==============> /utils/export <============== */
+void	sort_mat(char **arr);
+void	export();
 	/* ==============> Parser <============== */
 	/* ==============> /parser/ <============== */
 	typedef struct s_tree

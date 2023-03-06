@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 17:53:42 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:55:37 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,24 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
-	load_env(argv[0] ,env);
+	g_pub.env = NULL;
+	g_pub.exp_list = malloc(sizeof(char *));
+	g_pub.exp_list[0] = NULL;
+		load_env(argv[0], env);
+
 	//export_to_env("PWD", ".", OPT_APPEND);
 	unset_var("_");
 	unset_var("PWD");
 	//unset_var("SHLVL");
 	printf("===================\n");
-	char **join = mat_join(argv,argv);
-	for (size_t i = 0; join[i] != 0; i++)
-		printf("%s\n", join[i]);
+	// char **join = mat_join(argv,argv);
+	// sort_mat(join);
+	export();
+	// for (size_t i = 0; join[i] != 0; i++)
+	// 	printf("%s\n", join[i]);
 	printf("===================\n");
 
-	system("leaks minishell");
+	//system("leaks minishell");
 	//  while (1)
 	//  	prompt();
 }

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:53:30 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 17:52:34 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:24:55 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,24 @@ char	**mat_join(char **s1, char **s2)
 	printf("after copy and free \n");
 
 	return (res);
+}
+
+int	ft_strcmp( char *str1,  char *str2)
+{
+	size_t			i;
+	unsigned char	*s1x;
+	unsigned char	*s2x;
+
+	if (str1 == NULL || str2 == NULL)
+		return (-1);
+	s1x = (unsigned char *)str1;
+	s2x = (unsigned char *)str2;
+	i = 0;
+	while (s1x[i] != '\0' && s2x[i] != '\0')
+	{
+		if (s1x[i] != s2x[i])
+			return (s1x[i] - s2x[i]);
+		i++;
+	}
+	return (s1x[i] - s2x[i]);
 }
