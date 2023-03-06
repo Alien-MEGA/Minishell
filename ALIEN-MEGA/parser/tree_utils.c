@@ -6,19 +6,20 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/05 00:28:30 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:12:04 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_tree	*ft_treenew(void *data)
+t_tree	*ft_treenew(char *value, int type)
 {
 	t_tree	*new_node;
 
 	new_node = (t_tree *)malloc(sizeof(t_tree));
 	ft_error_str(new_node, 1);
-	new_node->data = data;
+	new_node->value = value;
+	new_node->type = type;
 	new_node->left = NULL;
 	new_node->right = NULL;
 	return (new_node);
