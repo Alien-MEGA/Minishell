@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 11:12:47 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 21:09:50 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ typedef struct s_public
 t_public g_pub;
 /* ==============> Tokenizer <============== */
 /* ==============> /lexer/ <============== */
+int	check_quote(t_list *tokens);
+int check_brace(t_list *tokens);
 
-typedef struct s_token
+	typedef struct s_token
 {
 	int		type;
 	char	*value;
@@ -77,9 +79,11 @@ t_list	**create_token_list(t_list **head, char *line);
 
 /* ==============> /minishell/ <============== */
 int		indexofchar(char *line, char c);
+char	**mat_join(char **s1, char **s2);
+int		ft_strcmp(char *str1, char *str2);
 
-/* ==============> /utils/pwd <============== */
-char	*get_pwd(void);
+	/* ==============> /utils/pwd <============== */
+	char *get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
@@ -89,18 +93,25 @@ void	load_env(char *_path, char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
-void    add_to_env(char *content);
-void    set_shlvl();
-/* ==============> Parser <============== */
-/* ==============> /parser/ <============== */
+void	add_to_env(char *content);
+void	set_shlvl();
 
-typedef struct s_tree
+/* ==============> /utils/export <============== */
+void	sort_mat(char **arr);
+void	export();
+/* ==============> /utils/export_utils <============== */
+	int		check_var(char *var);
+	/* ==============> Parser <============== */
+	/* ==============> /parser/ <============== */
+	typedef struct s_tree
 {
 	char			*value;
 	int				type;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
+
+
 
 t_tree	*ft_treenew(char *value, int type);
 t_tree	*ft_treelast(t_tree *tree, int option);
