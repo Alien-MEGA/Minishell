@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 22:05:41 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:12:47 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,15 @@ void    set_shlvl();
 /* ==============> Parser <============== */
 /* ==============> /parser/ <============== */
 
-typedef struct s_cmd
-{
-	char	*cmd;
-	char	**arg;
-}			t_cmd;
-
-typedef struct s_exp
-{
-	char	*exp;
-}				t_exp;
-
 typedef struct s_tree
 {
-	void			*data;
+	char			*value;
+	int				type;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
 
-t_tree	*ft_treenew(void *data);
+t_tree	*ft_treenew(char *value, int type);
 t_tree	*ft_treelast(t_tree *tree, int option);
 void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
