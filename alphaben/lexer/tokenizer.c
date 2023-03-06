@@ -6,28 +6,18 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 18:43:52 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:40:42 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	add_token(t_list **list,int type,char *value)
+void	add_token(t_list **list, int type, char *value)
 {
-	t_token	*tk_new;
 	t_list	*new_node;
-	int		len;
 
-	tk_new = malloc(sizeof(t_token));
-	ft_error_str(tk_new, 1);
-	tk_new->type = type;
-	tk_new->value = ft_strdup(value);
-	new_node = ft_lstnew(tk_new);
-	if (*list == NULL)
-		(*list) = new_node;
-	else
-		ft_lstadd_back(list, new_node);
-	len = ft_lstsize(*list);
+	new_node = ft_lstnew(type, ft_strdup(value), NULL);
+	ft_lstadd_back(list, new_node);
 }
 
 static int check_teken1(char *line, int *i, t_list **list)

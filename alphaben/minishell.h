@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 18:43:18 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:32:23 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ t_list	**create_token_list(t_list **head, char *line);
 
 /* ==============> /minishell/ <============== */
 int		indexofchar(char *line, char c);
+char	**mat_join(char **s1, char **s2);
 
-/* ==============> /utils/pwd <============== */
-char	*get_pwd(void);
+	/* ==============> /utils/pwd <============== */
+	char *get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
 t_list	*get_ls(void);

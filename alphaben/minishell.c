@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 19:33:50 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:53:42 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ char	*prompt(void)
 		exit(0);
 	printf("line : %s \n", line);
 	create_token_list(&ls, line);
+	// t_token *tk;
+	// tk = ls->data->
+	// while (ls)
+	// {
+	// 	tk = (t_token *)ls->data;
+	// 	printf("type : %d, value : %s\n",tk->type, tk->value);
+	// 	ls = ls->next;
+	// }
+
+	// int br = check_brace(ls);
+	// printf("%d \n",br);
 	return (line);
 }
 
@@ -42,13 +53,14 @@ int	main(int argc, char **argv, char **env)
 	unset_var("PWD");
 	//unset_var("SHLVL");
 	printf("===================\n");
-	for (size_t i = 0; g_pub.env[i] != 0; i++)
-	printf("%s\n",g_pub.env[i]);
+	char **join = mat_join(argv,argv);
+	for (size_t i = 0; join[i] != 0; i++)
+		printf("%s\n", join[i]);
 	printf("===================\n");
-	printf("after :%s \n+++++\n", expand_env("SHLVL"));
-	//system("leaks minishell");
+
+	system("leaks minishell");
 	//  while (1)
-	// 	prompt();
+	//  	prompt();
 }
 /*
 add file lexer
