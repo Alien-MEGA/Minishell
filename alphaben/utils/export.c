@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:31:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 18:57:05 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:48:22 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void export_args(char **args)
 
 }
 void export_to_explist(char *arg)
-{}
+{
+	
+}
 
 int valid_arg(char args)
 {

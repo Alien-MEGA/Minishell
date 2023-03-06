@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 18:47:20 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:34:16 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	set_shlvl();
 /* ==============> /utils/export <============== */
 void	sort_mat(char **arr);
 void	export();
+/* ==============> /utils/export_utils <============== */
+	int		check_var(char *var);
 	/* ==============> Parser <============== */
 	/* ==============> /parser/ <============== */
 	typedef struct s_tree

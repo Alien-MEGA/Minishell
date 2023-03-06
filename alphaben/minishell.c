@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 18:55:37 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:39:25 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	*prompt(void)
 
 	// int br = check_brace(ls);
 	// printf("%d \n",br);
+	int br = check_var(line);
+	 printf("line chack:%d \n",br);
 	return (line);
 }
 
@@ -53,20 +55,20 @@ int	main(int argc, char **argv, char **env)
 		load_env(argv[0], env);
 
 	//export_to_env("PWD", ".", OPT_APPEND);
-	unset_var("_");
-	unset_var("PWD");
+	//unset_var("_");
+	//unset_var("PWD");
 	//unset_var("SHLVL");
 	printf("===================\n");
-	// char **join = mat_join(argv,argv);
-	// sort_mat(join);
-	export();
-	// for (size_t i = 0; join[i] != 0; i++)
-	// 	printf("%s\n", join[i]);
+	// // char **join = mat_join(argv,argv);
+	// // sort_mat(join);
+	// export();
+	// // for (size_t i = 0; join[i] != 0; i++)
+	// // 	printf("%s\n", join[i]);
 	printf("===================\n");
 
 	//system("leaks minishell");
-	//  while (1)
-	//  	prompt();
+	 while (1)
+	 	prompt();
 }
 /*
 add file lexer
