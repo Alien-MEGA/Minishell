@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:53:30 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 18:24:55 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:00:23 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	mat_copy_free(char **res, char **s1,char **s2)
 	free(s1);
 	free(s2);
 }
+
 char	**mat_join(char **s1, char **s2)
 {
 	char	**pt2;

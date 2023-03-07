@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:29:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 18:55:40 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:24:22 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	skip_quote(t_list **list, char *line, int *i,char quote)
 	char pt_quote[2];
 
 	ind_of_quote = indexofchar(&line[*i + 1], quote);
-	//printf("index of first qute %d",*i);
-	//printf("index of end qute %d", inde);
 
 	pt_quote[0] = quote;
 	if (ind_of_quote < 0)

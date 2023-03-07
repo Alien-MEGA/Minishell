@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:31:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 20:48:22 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:03:12 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	export()
 	sort_mat(arr);
 	while (arr[i])
 	{
-		printf("%s%s\n",DECLARE_X, arr[i]);
+		print_export(arr[i]);
 		i++;
 	}
 	ft_free(arr);
@@ -31,17 +31,61 @@ void	export()
 
 void export_args(char **args)
 {
-
+	char	*key;
+	char	*value;
+	int		opt;
+	while(*args)
+	{
+		if(valid_arg(*args) == FALSE)
+			printf("minishell: export: '%s': not a valid identifier\n",*args);
+		else if (indexofchar(*args, '=') == -1)
+			export_to_explist(ft_strdup(*args));
+			else
+			{
+				fill_key_value_opt(*args, &key, &value, &opt);
+				export_to_env(key, value, opt);
+				free(key);
+				free(value);
+			}
+		args++;
+	}
 }
+
 void export_to_explist(char *arg)
 {
-	
+	int i;
+	i = 0;
+	while (g_pub.exp_list[i])
+	{
+			if (ft_strcmp(g_pub.exp_list[i], arg) == 0)
+				return ;
+				i++;
+	}
+	add_to_export(arg);
 }
 
-int valid_arg(char args)
+int	valid_arg(char *arg)
 {
+	int		index;
+	char	*sub;
+	int		bool;
+	index = indexofchar(arg, '=');
+	if (index < 0)
+		return (check_var(arg));
+	else if (index >= 1 && arg[index - 1] == '+')
+	{
+		sub = ft_substr(arg,0 , index - 1);
+		bool = check_var(sub);
 
+	}
+	else
+	{
+		sub = ft_substr(arg, 0, index );
+		bool = check_var(sub);
+	}
+	return (free(sub),(bool));
 }
+
 void	sort_mat(char **arr)
 {
 	int len;

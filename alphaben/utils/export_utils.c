@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:33:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 20:40:37 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:53:43 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,45 @@ int	check_var(char *var)
 	}
 	return (TRUE);
 }
+
+void	print_export(char *var)
+{
+	int	i;
+	int index;
+
+	index = indexofchar(var, '=');
+	i = 0;
+	printf("%s", DECLARE_X);
+	while (var[i])
+	{
+		printf("%c",var[i]);
+		if (i == index)
+		printf("\"");
+		i++;
+	}
+	if(index > 0)
+		printf("\"\n");
+	else
+		printf("\n");
+}
+void add_to_export(char *content)
+{
+	int len;
+	char **tmp;
+	int i;
+
+	tmp = g_pub.exp_list;
+	len = (int)ft_matlen(g_pub.exp_list);
+	g_pub.exp_list = malloc(sizeof(char *) * (len + 2));
+	ft_error_str(g_pub.exp_list, 1);
+	while (i < len)
+	{
+		g_pub.exp_list[i] = tmp[i];
+		i++;
+	}
+	g_pub.exp_list[i] = content;
+	g_pub.exp_list[i + 1] = NULL;
+	free(tmp);
+}
+
 

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:16:59 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/04 15:52:41 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:58:03 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void export_to_env(char *key, char *value, int option)
 	else if (index >= 0 && OPT_APPEND == option)
 			g_pub.env[index] = ft_strjoin_gnl(g_pub.env[index], value);
 	else
-		add_to_env(ft_strjoin_gnl(join, value));
+			add_to_env(ft_strjoin_gnl(join, value));
 	free(tmp);
 }
 
