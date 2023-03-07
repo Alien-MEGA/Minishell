@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 23:38:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:42:40 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
 
 	/* ==============> /utils/pwd <============== */
-	char *get_pwd(void);
+char *get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
@@ -93,23 +93,31 @@ void	load_env(char *_path, char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
-void	add_to_env(char *content);
+void	add_to_env(char *content) ;
 void	set_shlvl();
+void	fill_key_value_opt(char *arg, char **key, char **value, int *opt);
+void export_args(char **args);
+void	export_to_explist(char *arg);
+void	add_to_export(char *content);
 
-/* ==============> /utils/export <============== */
-void	sort_mat(char **arr);
+	/* ==============> /utils/export <============== */
+	void sort_mat(char **arr);
 void	export();
-/* ==============> /utils/export_utils <============== */
-int		check_var(char *var);
-/* ==============> Parser <============== */
-/* ==============> /parser/ <============== */
-typedef struct s_tree
-{
+int		valid_arg(char *arg);
+	/* ==============> /utils/export_utils <============== */
+	int check_var(char *var);
+	void print_export(char *var);
+	/* ==============> Parser <============== */
+	/* ==============> /parser/ <============== */
+	typedef struct s_tree
+	{
 	char			*value;
 	int				type;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
+
+
 
 t_tree	*ft_treenew(char *value, int type);
 t_tree	*ft_treelast(t_tree *tree, int option);
@@ -117,11 +125,7 @@ void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
 
-t_tree	*parser(t_list *lst);
+void	parser(t_list *lst);
 void	test();
-
-t_tree	*create_command(t_list *lst, int *i);
-t_tree	*create_operator(t_list *lst, int *i);
-t_tree	*create_redirect(t_list *lst, int *i);
 
 #endif

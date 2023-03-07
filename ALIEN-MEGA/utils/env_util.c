@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:20:26 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 17:37:08 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:42:49 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,21 @@ void	set_shlvl()
 	free(new_value);
 }
 
+void	fill_key_value_opt(char *arg,char **key,char **value,int *opt)
+{
+	int	index;
+
+	index = indexofchar(arg, '=');
+	if (index >= 1 && arg[index - 1] == '+')
+	{
+		*key = ft_substr(arg, 0, index - 1);
+		*value = ft_substr(arg, index + 1, ft_strlen(&arg[index + 1]));
+		*opt = OPT_APPEND;
+	}
+	else
+	{
+		*key = ft_substr(arg, 0, index);
+		*value = ft_substr(arg, index + 1, ft_strlen(&arg[index + 1]));
+		*opt = OPT_APPEND;
+	}
+}

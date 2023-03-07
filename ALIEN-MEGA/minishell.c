@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/04 22:10:14 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:51:01 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,43 @@ char	*prompt(void)
 		exit(0);
 	printf("line : %s \n", line);
 	create_token_list(&ls, line);
+	while (ls)
+	{
+		printf("type : %d <> value %s \n", ls->type, ls->value);
+		ls = ls->next;
+	}
+	free(line);
 	return (line);
 }
-
+void at()
+{
+	system("leaks minishell");
+}
 int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
-	test();
+	g_pub.env = NULL;
+	g_pub.exp_list = malloc(sizeof(char *));
+	g_pub.exp_list[0] = NULL;
+		load_env(argv[0], env);
+		export_args(argv);
+	//export_to_env("PWD", ".", OPT_APPEND);
+	//unset_var("_");
+	//unset_var("PWD");
+	//unset_var("SHLVL");
+	printf("===================\n");
+	// // char **join = mat_join(argv,argv);
+	// // sort_mat(join);
+	export();
+	// // for (size_t i = 0; join[i] != 0; i++)
+	// // 	printf("%s\n", join[i]);
+	printf("===================\n");
+
+
+	atexit(at);
+	 while (1)
+	 	prompt();
 }
 /*
 add file lexer

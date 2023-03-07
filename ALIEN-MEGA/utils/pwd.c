@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/06 14:47:18 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:50:42 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,19 @@ t_list *get_ls()
 	}
 	free(path);
 	return (list);
+}
+
+int	check_match(char	*word,char	*name)
+{
+	int j;
+	int i;
+	int start;
+	int end;
+
+while (name[i])
+{
+
+}
+
+
 }

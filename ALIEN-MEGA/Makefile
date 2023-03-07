@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
+#    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/06 21:23:25 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/06 18:35:19 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,10 @@ SRC = minishell.c \
 		./utils/pwd.c \
 		./utils/env.c \
 		./parser/parser.c \
-		./parser/tree_utils.c \
-		./parser/manage_tree.c \
-		./utils/env_util.c \
-		./utils/export.c \
-		./utils/export_utils.c \
+		./parser/tree_utils.c\
+		./utils/env_util.c\
+		./utils/export.c\
+		./utils/export_utils.c\
 		./lexer/lexer.c
 
 OBJ = $(SRC:.c=.o)
