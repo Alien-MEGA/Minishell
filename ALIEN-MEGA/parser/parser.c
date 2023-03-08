@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/08 16:37:18 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:09:07 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,23 +100,30 @@ void	test()
 	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("cat"), NULL));
 	ft_indexing(lst);
 	print_lst(lst);
+	printf("\n\n");
 
-	int i = 0;
-	t_tree *test = create_command(lst, &i);
-	printf("%d :  %s\n", i, test->lst->data);
-	printf("%d :  %s\n", i, test->lst->next->data);
-	printf("%d :  %s\n", i, test->lst->next->next->data);
-	printf("%d :  %s\n", i, test->lst->next->next->next->data);
-
-	// t_tree *tree = parser(lst);
-
-	// for (int i = 0; tree; tree = tree->left)
-	// {
-	// 	print_lst(tree->lst);
-	// }
+	t_tree *tree = parser(lst);
+	t_list *tmp;
+	int i;
+	while (tree)
+	{
+		i = -1;
+		tmp = tree->lst;
+		while (tmp)
+		{
+			printf("%d : %s -> ", tmp->type, tmp->value);
+			tmp = tmp->next;
+		}
+		printf("NULL \n");
+		tree = tree->left;
+	}
+	// print_lst(tree->lst);
 	// printf("%d : %s\n", in(tree->lst, i)->type, in(tree->lst, i)->value);
 	// print_tree(tree, 10);
 }
+
+
+
 
 /* ====> Exemple : echo hoot | cat && echo gam | cat <====== */
 /* ==============> TEST <============== */
