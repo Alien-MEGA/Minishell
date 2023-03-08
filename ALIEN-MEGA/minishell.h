@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 20:13:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:24:25 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ void	fill_key_value_opt(char *arg, char **key, char **value, int *opt);
 void export_args(char **args);
 void	export_to_explist(char *arg);
 void	add_to_export(char *content);
-
+void	unset_from_exp(char *key);
+/* ==============> /utils/unset <============== */
+void unset_cmd(char **args);
 /* ==============> /utils/export <============== */
 void	sort_mat(char **arr);
 void	export();
