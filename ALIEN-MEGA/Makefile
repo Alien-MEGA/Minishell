@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/08 14:44:35 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/08 17:34:36 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,12 @@ SRC = minishell.c \
 		./utils/env.c \
 		./parser/parser.c \
 		./parser/manage_tree.c \
-		./parser/tree_utils.c\
-		./utils/env_util.c\
-		./utils/export.c\
-		./utils/export_utils.c\
+		./parser/tree_utils.c \
+		./built-in/echo.c \
+		./built-in/exit.c \
+		./utils/env_util.c \
+		./utils/export.c \
+		./utils/export_utils.c \
 		./lexer/lexer.c
 
 OBJ = $(SRC:.c=.o)
