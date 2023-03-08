@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:55 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/08 17:33:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:32:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void	exit_b(char *command_line)
 	char	*parameter;
 
 	str = ft_split(command_line, ' ');
+	if (str[1] == NULL)
+		return (ft_printf(2, "exit\n"),
+				exit(0));
 	if (str[2] != NULL)
 		return (ft_free(str), ft_printf(2,
-				"Minishell : exit: too many arguments\n"), exit(1));
+				"exit\nMinishell : exit: too many arguments\n"), exit(1));
 	parameter = ft_strdup(str[1]);
-	ft_free(str);
-	if (parameter == NULL)
-		exit(0);
-	exit(ft_atoi(parameter));
+	return (ft_free(str), ft_printf(2, "exit\n"),
+			exit(ft_atoi(parameter)));
 }

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 14:49:21 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:20:55 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int	main(int argc, char **argv, char **env)
 
 /* ==============> Test Alien-Mega <============== */
 
-	test();
-
+	// test();
+	exit_b("exit");
 }
 /*
 add file lexer
