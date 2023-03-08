@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/07 19:42:40 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:17:56 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,13 @@ char	*expand_env(char *key);
 void	add_to_env(char *content) ;
 void	set_shlvl();
 void	fill_key_value_opt(char *arg, char **key, char **value, int *opt);
-void export_args(char **args);
+void	export_args(char **args);
 void	export_to_explist(char *arg);
 void	add_to_export(char *content);
+void	unset_from_exp(char *key);
 
+	/* ==============> /utils/unset <============== */
+	void	unset_cmd(char **args);
 	/* ==============> /utils/export <============== */
 	void sort_mat(char **arr);
 void	export();
@@ -111,21 +114,22 @@ int		valid_arg(char *arg);
 	/* ==============> /parser/ <============== */
 	typedef struct s_tree
 	{
-	char			*value;
-	int				type;
-	struct s_tree	*left;
-	struct s_tree	*right;
-}					t_tree;
+	t_list *lst;
+	struct s_tree *left;
+	struct s_tree *right;
+	} t_tree;
 
+	t_tree *ft_treenew(t_list *lst);
+	t_tree *ft_treelast(t_tree *tree, int option);
+	void ft_treeadd_back(t_tree **tree, t_tree *new, int option);
+	void ft_treeadd_front(t_tree **tree, t_tree *new, int option);
+	void ft_treeclear(t_tree **tree);
 
+	t_tree *parser(t_list *lst);
+	void test();
 
-t_tree	*ft_treenew(char *value, int type);
-t_tree	*ft_treelast(t_tree *tree, int option);
-void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
-void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
-void	ft_treeclear(t_tree **tree);
-
-void	parser(t_list *lst);
-void	test();
+	t_tree *create_command(t_list *lst, int *i);
+	t_tree *create_operator(t_list *lst, int *i);
+	t_tree *create_redirect(t_list *lst, int *i);
 
 #endif

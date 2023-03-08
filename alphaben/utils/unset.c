@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/03 16:23:17 by ebennamr         ###   ########.fr       */
+/*   Created: 2023/03/08 18:16:07 by ebennamr          #+#    #+#             */
+/*   Updated: 2023/03/08 19:24:24 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-/* && → || → | → Word */
-
-void	Def_pri(void)
+void unset_cmd(char **args)
 {
-
-}
-
-void	parser()
-{
-	Def_pri();
+	g_pub.exit_status = 0;
+	if (*args == NULL)
+		exit(0);
+		while (*args)
+		{
+			if (check_var(*args) != TRUE)
+				g_pub.exit_status = 1;
+			else
+			{
+				unset_var(*args);
+				unset_from_exp(*args);
+			}
+			printf("args: %s",*args);
+			args++;
+		}
+	//	exit(g_pub.exit_status);
 }
