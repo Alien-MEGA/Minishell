@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 00:17:02 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:15:59 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ int		valid_arg(char *arg);
 int		check_var(char *var);
 void	print_export(char *var);
 
+/* ==============> built-in <============== */
+/* ==============> /built-in/ <============== */
+void	echo_b(char *command_line);
+void	exit_b(char *parameter);
 /* ==============> Parser <============== */
 /* ==============> /parser/ <============== */
 typedef struct s_tree

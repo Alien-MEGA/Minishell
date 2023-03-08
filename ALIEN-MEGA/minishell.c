@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/07 19:51:01 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:49:21 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,43 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
-	g_pub.env = NULL;
-	g_pub.exp_list = malloc(sizeof(char *));
-	g_pub.exp_list[0] = NULL;
-		load_env(argv[0], env);
-		export_args(argv);
-	//export_to_env("PWD", ".", OPT_APPEND);
-	//unset_var("_");
-	//unset_var("PWD");
-	//unset_var("SHLVL");
-	printf("===================\n");
-	// // char **join = mat_join(argv,argv);
-	// // sort_mat(join);
-	export();
-	// // for (size_t i = 0; join[i] != 0; i++)
-	// // 	printf("%s\n", join[i]);
-	printf("===================\n");
+	// g_pub.env = NULL;
+	// g_pub.exp_list = malloc(sizeof(char *));
+	// g_pub.exp_list[0] = NULL;
+	// 	load_env(argv[0], env);
+	// 	export_args(argv);
+	// //export_to_env("PWD", ".", OPT_APPEND);
+	// //unset_var("_");
+	// //unset_var("PWD");
+	// //unset_var("SHLVL");
+	// printf("===================\n");
+	// // // char **join = mat_join(argv,argv);
+	// // // sort_mat(join);
+	// export();
+	// // // for (size_t i = 0; join[i] != 0; i++)
+	// // // 	printf("%s\n", join[i]);
+	// printf("===================\n");
 
 
-	atexit(at);
-	 while (1)
-	 	prompt();
+	// atexit(at);
+	//  while (1)
+	//  	prompt();
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==============> Test Alien-Mega <============== */
+
+	test();
+
 }
 /*
 add file lexer

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/07 21:11:12 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:37:18 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,19 @@ void	test()
 	ft_indexing(lst);
 	print_lst(lst);
 
-	t_tree *tree = parser(lst);
+	int i = 0;
+	t_tree *test = create_command(lst, &i);
+	printf("%d :  %s\n", i, test->lst->data);
+	printf("%d :  %s\n", i, test->lst->next->data);
+	printf("%d :  %s\n", i, test->lst->next->next->data);
+	printf("%d :  %s\n", i, test->lst->next->next->next->data);
 
-	for (int i = 0; tree; tree = tree->left)
-	{
-		print_lst(tree->lst);
-	}
+	// t_tree *tree = parser(lst);
+
+	// for (int i = 0; tree; tree = tree->left)
+	// {
+	// 	print_lst(tree->lst);
+	// }
 	// printf("%d : %s\n", in(tree->lst, i)->type, in(tree->lst, i)->value);
 	// print_tree(tree, 10);
 }
