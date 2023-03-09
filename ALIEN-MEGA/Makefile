@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/09 13:51:33 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/09 17:01:28 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,4 +64,3 @@ fclean : clean
 re : fclean all
 
 .PHONY : all clean fclean re
-

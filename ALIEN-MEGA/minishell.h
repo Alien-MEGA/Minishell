@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/09 16:07:56 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:23:33 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	exit_b(char *command_line);
 typedef struct s_tree
 {
 	t_list			*lst;
+	t_list			*redirect_mode;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }					t_tree;
@@ -142,6 +143,6 @@ void	test();
 
 t_tree	*create_command(t_list *lst, int *i);
 t_tree	*create_operator(t_list *lst, int *i);
-t_tree	*create_redirect(t_list *lst, int *i);
+t_list	*create_redirect(t_list *lst, int *i);
 
 #endif

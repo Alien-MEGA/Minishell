@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/08 20:45:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:11:20 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,11 @@ void	print_lst(t_list *head)
 int	check_type(t_list *lst, int type)
 {
 	int	i;
-	t_token *tk;
 
 	i = 0;
 	while (in(lst, i))
 	{
-		tk = (t_token *)in(lst, i)->data;
-		if (type == tk->type)
+		if (type == lst->type)
 			return (TRUE);
 		i++;	
 	}
@@ -63,18 +61,14 @@ t_tree	*parser(t_list *lst)
 		{
 			new_node = create_operator(lst, &i);
 		}
-		else if (in(lst, i)->type == TK_WORD)
-		{
-			new_node = create_command(lst, &i);
-		}
-		else if (in(lst, i)->type == TK_RD_OUTPUT
+		else if (in(lst, i)->type == TK_WORD
+			|| in(lst, i)->type == TK_RD_OUTPUT
 			|| in(lst, i)->type == TK_RD_OUTPUT_APPEND
 			|| in(lst, i)->type == TK_RD_INPUT
 			|| in(lst, i)->type == TK_HERE_DOC)
 		{
-			new_node = create_redirect(lst, &i);
+			new_node = create_command(lst, &i);
 		}
-
 		if (!tree)
 			tree = new_node;
 		else
@@ -108,37 +102,24 @@ void	test()
 	t_tree *tree = parser(lst);
 	t_list *tmp;
 	int i;
+	tmp = tree->lst;
 	while (tree)
 	{
-		i = -1;
-		tmp = tree->lst;
 		while (tmp)
 		{
-			printf("%d : %s -> ", tmp->type, tmp->value);
+			printf("%s -> ", tmp->value);
 			tmp = tmp->next;
 		}
-		printf("NULL \n");
-		tree = tree->left;
+		if (tree->redirect_mode != NULL)
+		{
+			printf("++> redirect_mode : ");
+			tmp = tree->redirect_mode;
+			while (tmp)
+			{
+				printf("%s -> ", tmp->value);
+				tmp = tmp->next;
+			}
+		}
+		printf("\n");
 	}
-	// print_lst(tree->lst);
-	// printf("%d : %s\n", in(tree->lst, i)->type, in(tree->lst, i)->value);
-	// print_tree(tree, 10);
 }
-
-
-
-
-/* ====> Exemple : echo hoot | cat && echo gam | cat <====== */
-/* ==============> TEST <============== */
-	// t_tree	*tree;
-
-	// tree = ft_treenew("&&", TK_AND);
-
-	// ft_treeadd_back(&tree, ft_treenew("|", TK_PIPE), RIGHT);
-	// ft_treeadd_back(&tree, ft_treenew("|", TK_PIPE), LEFT);
-
-	// ft_treeadd_back(&tree->left, ft_treenew("cat", TK_WORD), RIGHT);
-	// ft_treeadd_back(&tree->left, ft_treenew("ls", TK_WORD), LEFT);
-
-	// ft_treeadd_back(&tree->right, ft_treenew("cat", TK_WORD), LEFT);
-	// ft_treeadd_back(&tree->right, ft_treenew("ls", TK_WORD), RIGHT);
