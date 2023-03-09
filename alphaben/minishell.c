@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 19:21:11 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:36:33 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,10 @@ int	main(int argc, char **argv, char **env)
 	g_pub.exp_list = malloc(sizeof(char *));
 	g_pub.exp_list[0] = NULL;
 		load_env(argv[0], env);
-		export_args(argv);
-		export();
 		printf("===================\n");
+		for (int i = 0; g_pub.env[i]; i++)
+			printf("%d: %s\n", i, g_pub.env[i]);
 		printf("===================\n");
-		unset_cmd(argv);
-		export();
 		atexit(at);
 		while (1)
 	 	prompt();

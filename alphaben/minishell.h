@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 20:23:30 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:46:06 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <errno.h>
 # include <dirent.h>
 # include "readline/readline.h"
@@ -30,23 +31,22 @@
 # include "const.h"
 # include "libft/libft.h"
 
-enum e_token
-{
-	TK_WORD,
-	TK_SINGLE_QUOTE,
-	TK_DOUBLE_QUOTE,
-	TK_PIPE,
-	TK_HERE_DOC,
-	TK_RD_INPUT,
-	TK_RD_OUTPUT,
-	TK_RD_OUTPUT_APPEND,
-	TK_AND,
-	TK_OR,
-	TK_OPEN_BRACE,
-	TK_CLOSE_BRACE,
-	TK_WT_SPACE,
-	TK_OPEN_QUOTE
-};
+		enum e_token {
+			TK_WORD,
+			TK_SINGLE_QUOTE,
+			TK_DOUBLE_QUOTE,
+			TK_PIPE,
+			TK_HERE_DOC,
+			TK_RD_INPUT,
+			TK_RD_OUTPUT,
+			TK_RD_OUTPUT_APPEND,
+			TK_AND,
+			TK_OR,
+			TK_OPEN_BRACE,
+			TK_CLOSE_BRACE,
+			TK_WT_SPACE,
+			TK_OPEN_QUOTE
+		};
 
 typedef struct s_public
 {
