@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/07 18:17:44 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:06:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	ft_treeadd_back(t_tree **tree, t_tree *new, int option)
 		*tree = new;
 		return ;
 	}
-	last = ft_treelast(*tree, option);
+	// last = ft_treelast(*tree, option);
 	if (option == LEFT)
-		last->left = new;
+		(*tree)->left = new;
 	if (option == RIGHT)
-		last->right = new;
+		(*tree)->right = new;
 }
 
-void	ft_treeadd_front(t_tree **tree, t_tree *new, int option)
+void	ft_treeswap_root(t_tree **tree, t_tree *new, int option)
 {
 	if (*tree && option == LEFT)
 		new->left = *tree;

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/09 13:44:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:07:56 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ typedef struct s_tree
 t_tree	*ft_treenew(t_list *lst);
 t_tree	*ft_treelast(t_tree *tree, int option);
 void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
-void	ft_treeadd_front(t_tree **tree, t_tree *new, int option);
+void	ft_treeswap_root(t_tree **current_root, t_tree *new_root, int option);
 void	ft_treeclear(t_tree **tree);
 
 t_tree	*parser(t_list *lst);
