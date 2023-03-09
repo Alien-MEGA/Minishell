@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/09 20:11:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:15:55 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	test()
 	t_list	*lst;
 
 	lst = NULL;
+	ft_lstadd_back(&lst, ft_lstnew(TK_RD_INPUT, ft_strdup("<"), NULL));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("infile"), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("echo"), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("-n"), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("hoot"), NULL));
@@ -101,10 +103,9 @@ void	test()
 
 	t_tree *tree = parser(lst);
 	t_list *tmp;
-	int i;
-	tmp = tree->lst;
-	while (tree)
+	for (size_t i = 0; tree != NULL ; i++)
 	{
+		tmp = tree->lst;
 		while (tmp)
 		{
 			printf("%s -> ", tmp->value);
@@ -121,5 +122,6 @@ void	test()
 			}
 		}
 		printf("\n");
+		tree = tree->left;
 	}
 }
