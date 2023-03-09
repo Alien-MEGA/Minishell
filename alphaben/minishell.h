@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/09 12:46:06 by ebennamr         ###   ########.fr       */
+/*   Created: 2023/03/09 17:18:01 by ebennamr          #+#    #+#             */
+/*   Updated: 2023/03/09 18:37:44 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ typedef struct s_public
 }					t_public;
 
 t_public g_pub;
+
+typedef struct s_struct
+{
+	int		i;
+	int		j;
+}			t_loc;
+
+t_loc	ini_loc();
 /* ==============> Tokenizer <============== */
 /* ==============> /lexer/ <============== */
 int	check_quote(t_list *tokens);
@@ -83,7 +91,7 @@ char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
 
 	/* ==============> /utils/pwd <============== */
-char *get_pwd(void);
+char	*get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
@@ -104,7 +112,7 @@ void	unset_from_exp(char *key);
 	/* ==============> /utils/unset <============== */
 	void	unset_cmd(char **args);
 	/* ==============> /utils/export <============== */
-	void sort_mat(char **arr);
+void	sort_mat(char **arr);
 void	export();
 int		valid_arg(char *arg);
 	/* ==============> /utils/export_utils <============== */
@@ -112,11 +120,13 @@ int		valid_arg(char *arg);
 	void print_export(char *var);
 /* ==============> built-in <============== */
 /* ==============> /built-in/ <============== */
-void echo_b(char *command_line);
-void exit_b(char *command_line);
-/* ==============> Parser <============== */
-/* ==============> /parser/ <============== */
-typedef struct s_tree
+void	echo_b(char *command_line);
+void	exit_b(char *command_line);
+void	cd_cmd(char *path);
+
+	/* ==============> Parser <============== */
+	/* ==============> /parser/ <============== */
+	typedef struct s_tree
 {
 t_list *lst;
 struct s_tree *left;

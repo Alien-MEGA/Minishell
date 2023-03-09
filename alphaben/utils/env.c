@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:16:59 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/09 14:54:47 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:47:20 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char *expand_env(char *key)
 	join = ft_strjoin(key, "=");
 	len = ft_strlen(join);
 	ft_error_str(join, 1);
+	unset_from_exp(key);
 	while (g_pub.env[i])
 	{
 		if (ft_strncmp(g_pub.env[i], join, len) == FALSE)

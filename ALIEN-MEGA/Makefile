@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
+#    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/08 20:26:27 by ebennamr         ###   ########.fr        #
+#    Updated: 2023/03/09 13:51:33 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC = minishell.c \
 		./utils/export.c \
 		./utils/export_utils.c \
 		./lexer/lexer.c \
-		./utils/unset.c
+		./utils/unset.c \
+		./utils/helper.c
 
 OBJ = $(SRC:.c=.o)
 

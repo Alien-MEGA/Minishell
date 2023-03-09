@@ -6,7 +6,7 @@
 #    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/08 20:25:28 by ebennamr         ###   ########.fr        #
+#    Updated: 2023/03/09 18:38:11 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,12 @@ SRC = minishell.c \
 		./parser/tree_utils.c \
 		./built-in/echo.c \
 		./built-in/exit.c \
+		./built-in/cd.c \
 		./utils/env_util.c\
 		./utils/export.c\
 		./utils/export_utils.c\
 		./utils/unset.c\
+		./utils/helper.c\
 		./lexer/lexer.c
 
 OBJ = $(SRC:.c=.o)

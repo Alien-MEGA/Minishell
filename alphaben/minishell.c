@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/09 14:36:33 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:48:53 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*prompt(void)
 	t_list	*ls;
 	int		len;
 
-	ls = 0;
+	ls = NULL;
 	len = ft_lstsize(ls);
 	line = readline(get_prompt(get_pwd()));
 	if (line != 0)
@@ -28,7 +28,10 @@ char	*prompt(void)
 	if(line == 0)
 		exit(0);
 	printf("line : %s \n", line);
-	create_token_list(&ls, line);
+	cd_cmd(line);
+	printf("old : %s\n",expand_env("OLDPWD"));
+	printf("pwd : %s\n", expand_env("PWD"));
+	//create_token_list(&ls, line);
 	while (ls)
 	{
 		printf("type : %d <> value %s \n", ls->type, ls->value);
