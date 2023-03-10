@@ -6,21 +6,29 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/10 14:09:22 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:54:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	print_tree(t_tree *tree, int depth)
+void print_tree(t_tree *tree)
 {
 	if (tree == NULL)
-		return ;
-	print_tree(tree->right, depth + 4);
-	for (int i = 0; i < depth; i++)
-		printf(" ");
-	printf("%s\n", tree->lst->data);
-	print_tree(tree->left, depth + 4);
+		return;
+
+	printf("						%s								\n", tree->lst->value);
+
+	if (tree->left != NULL && tree->right != NULL) {
+		printf("		  %s							%s				\n", tree->left->lst->value, tree->right->lst->value);
+		if (tree->left->left != NULL && tree->left->right != NULL && tree->right->left != NULL && tree->right->right != NULL) {
+			printf("%s					%s			%s				%s		\n", tree->left->left->lst->value, tree->left->right->lst->value, tree->right->left->lst->value, tree->right->right->lst->value);
+		}
+	}
+
+	// recursively print left and right subtrees
+	print_tree(tree->left);
+	print_tree(tree->right);
 }
 
 void	print_lst(t_list *head)
@@ -45,7 +53,7 @@ int	check_type(t_list *lst, int type)
 	return (FALSE);
 }
 
-t_tree	*parser(t_list *lst)
+t_tree	*mk_tree(t_list *lst)
 {
 	t_tree	*tree;
 	t_tree	*new_node;
@@ -103,27 +111,31 @@ void	test()
 	print_lst(lst);
 	printf("\n\n");
 
-	t_tree *tree = parser(lst);
-	t_list *tmp;
-	for (size_t i = 0; tree != NULL ; i++)
-	{
-		tmp = tree->lst;
-		while (tmp)
-		{
-			printf("%s -> ", tmp->value);
-			tmp = tmp->next;
-		}
-		if (tree->redirect_mode != NULL)
-		{
-			printf("++> redirect_mode : ");
-			tmp = tree->redirect_mode;
-			while (tmp)
-			{
-				printf("%s -> ", tmp->value);
-				tmp = tmp->next;
-			}
-		}
-		printf("\n");
-		tree = tree->left;
-	}
+
+	mk_tree(lst);
+	
 }
+/* ==============> Test <============== */
+	// t_tree *tree = mk_tree(lst);
+	// t_list *tmp;
+	// for (size_t i = 0; tree != NULL ; i++)
+	// {
+	// 	tmp = tree->lst;
+	// 	while (tmp)
+	// 	{
+	// 		printf("%s -> ", tmp->value);
+	// 		tmp = tmp->next;
+	// 	}
+	// 	if (tree->redirect_mode != NULL)
+	// 	{
+	// 		printf("++> redirect_mode : ");
+	// 		tmp = tree->redirect_mode;
+	// 		while (tmp)
+	// 		{
+	// 			printf("%s -> ", tmp->value);
+	// 			tmp = tmp->next;
+	// 		}
+	// 	}
+	// 	printf("\n");
+	// 	tree = tree->left;
+	// }
