@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/09 18:48:53 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:54:38 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,18 @@ char	*prompt(void)
 	if(line == 0)
 		exit(0);
 	printf("line : %s \n", line);
-	cd_cmd(line);
-	printf("old : %s\n",expand_env("OLDPWD"));
-	printf("pwd : %s\n", expand_env("PWD"));
+	int b = check_syntax(ls);
+	printf("styntax>> %d\n",b);
+	// cd_cmd(line);
+	// printf("old : %s\n",expand_env("OLDPWD"));
+	// printf("pwd : %s\n", expand_env("PWD"));
 	//create_token_list(&ls, line);
-	while (ls)
-	{
-		printf("type : %d <> value %s \n", ls->type, ls->value);
-		ls = ls->next;
-	}
+	// while (ls)
+	// {
+	// 	printf("type : %d <> value %s \n", ls->type, ls->value);
+	// 	ls = ls->next;
+	// }
+
 	free(line);
 	return (line);
 }
