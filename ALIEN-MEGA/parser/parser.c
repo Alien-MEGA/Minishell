@@ -6,83 +6,50 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/10 16:54:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:43:08 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void print_tree(t_tree *tree)
+// in(lst, (*index));
+// < infile echo -n hoot | cat | ls -l -a || cat > outfile > of;
+
+t_tree	*pipeline(t_list *lst, int *index)
 {
-	if (tree == NULL)
-		return;
+	t_tree	*tree;
 
-	printf("						%s								\n", tree->lst->value);
-
-	if (tree->left != NULL && tree->right != NULL) {
-		printf("		  %s							%s				\n", tree->left->lst->value, tree->right->lst->value);
-		if (tree->left->left != NULL && tree->left->right != NULL && tree->right->left != NULL && tree->right->right != NULL) {
-			printf("%s					%s			%s				%s		\n", tree->left->left->lst->value, tree->left->right->lst->value, tree->right->left->lst->value, tree->right->right->lst->value);
-		}
-	}
-
-	// recursively print left and right subtrees
-	print_tree(tree->left);
-	print_tree(tree->right);
-}
-
-void	print_lst(t_list *head)
-{
-	printf("==============> Print lst <==============\n\n");
-	for (size_t i = 0; in(head, i); i++)
-		printf("%s --> ", (in(head, i)->value));
-	printf("NULL \n");
-}
-
-int	check_type(t_list *lst, int type)
-{
-	int	i;
-
-	i = 0;
-	while (in(lst, i))
+	tree = create_command(lst, index);
+	while (in(lst, (*index))->type == TK_PIPE)
 	{
-		if (type == lst->type)
-			return (TRUE);
-		i++;	
+		ft_treeswap_root(&tree, create_operator(lst, index), LEFT);
+		tree->right = create_command(lst, index);
 	}
-	return (FALSE);
+	return (tree);
+}
+
+t_tree	*or_and(t_list *lst, int *index)
+{
+	t_tree	*tree;
+
+	tree = pipeline(lst, index);
+	while (in(lst, (*index))->type == TK_OR
+			|| in(lst, (*index))->type == TK_AND)
+	{
+		ft_treeswap_root(&tree, create_operator(lst, index), LEFT);
+		tree->right = pipeline(lst, index);
+	}
+	return (tree);
 }
 
 t_tree	*mk_tree(t_list *lst)
 {
 	t_tree	*tree;
-	t_tree	*new_node;
-	int		i;
+	int		index;
 
-	i = 0;
 	tree = NULL;
-	while (in(lst, i))
-	{
-		if (in(lst, i)->type == TK_PIPE
-			|| in(lst, i)->type == TK_OR
-			|| in(lst, i)->type == TK_AND)
-		{
-			new_node = create_operator(lst, &i);
-		}
-		else if (in(lst, i)->type == TK_WORD
-			|| in(lst, i)->type == TK_RD_OUTPUT
-			|| in(lst, i)->type == TK_RD_OUTPUT_APPEND
-			|| in(lst, i)->type == TK_RD_INPUT
-			|| in(lst, i)->type == TK_HERE_DOC)
-		{
-			new_node = create_command(lst, &i);
-		}
-		if (!tree)
-			tree = new_node;
-		else
-			ft_treelast(tree, LEFT)->left = new_node;
-	}
-	return (tree);
+	index = 0;
+	return (or_and(lst, &index));
 }
 
 void	test()
@@ -112,9 +79,25 @@ void	test()
 	printf("\n\n");
 
 
-	mk_tree(lst);
+	t_tree *tree = mk_tree(lst);
+
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	ft_lstclear(&lst);
 }
+
 /* ==============> Test <============== */
 	// t_tree *tree = mk_tree(lst);
 	// t_list *tmp;
