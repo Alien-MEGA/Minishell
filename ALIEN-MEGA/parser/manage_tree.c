@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/09 19:57:42 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:08:30 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ t_tree	*create_command(t_list *lst, int *i)
 			&& in(lst, (*i))->type <= TK_RD_OUTPUT_APPEND)
 		ft_lstadd_back(&new_rd, create_redirect(lst, i));
 	while (in(lst, (*i))
-		&& (in(lst, (*i))->type != TK_PIPE
-		&& in(lst, (*i))->type != TK_OR)
-		&& in(lst, (*i))->type != TK_OR)
+		&& !(in(lst, (*i))->type >= TK_PIPE && in(lst, (*i))->type <= TK_OR))
 	{
 		ft_lstadd_back(&new_lst,
 			ft_lstnew(in(lst, (*i))->type, in(lst, (*i))->value, NULL));

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/09 22:15:55 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:09:22 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	test()
 	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("cat"), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_RD_OUTPUT, ft_strdup(">"), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("outfile"), NULL));
+	ft_lstadd_back(&lst, ft_lstnew(TK_RD_OUTPUT, ft_strdup(">"), NULL));
+	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("of"), NULL));
 	ft_indexing(lst);
 	print_lst(lst);
 	printf("\n\n");
