@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 19:08:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/11 21:55:03 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,16 @@ t_tree	*create_command(t_list *lst, int *i)
 	skip_space(lst, i);
 	search_rd(&new_rd, lst, i);
 	while (in(lst, (*i))
-		&& !(in(lst, (*i))->type >= TK_PIPE && in(lst, (*i))->type <= TK_OR))
+		&& !(in(lst, (*i))->type >= TK_PIPE
+		&& in(lst, (*i))->type <= TK_OR))
 	{
 		ft_lstadd_back(&new_lst,
 			ft_lstnew(in(lst, (*i))->type, in(lst, (*i))->value, NULL));
 		(*i)++;
+		if (in(lst, (*i)) && in(lst, (*i) + 1)
+			&& in(lst, (*i) + 1)->type >= TK_PIPE
+			&& in(lst, (*i) + 1)->type <= TK_OR)
+			skip_space(lst, i);	
 	}
 	search_rd(&new_rd, lst, i);
 	new_tree = ft_treenew(new_lst);
