@@ -6,19 +6,11 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 17:53:06 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 21:49:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/11 22:19:42 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	print_lst(t_list *head)
-{
-	printf("==============> Print lst <==============\n\n");
-	for (size_t i = 0; in(head, i); i++)
-		printf("%s --> ", (in(head, i)->value));
-	printf("NULL \n");
-}
 
 int	check_type(t_list *lst, int type)
 {
@@ -34,27 +26,30 @@ int	check_type(t_list *lst, int type)
 	return (FALSE);
 }
 
-void print_tree(t_tree *root) 
+void printList(t_list *lst, t_list *rd) 
 {
-    printf("		   %s\n", root->lst->value);
-    printf("  	%s		  	%s\n", root->left->lst->value, root->right->lst->value);
-    printf("%s	    %s		%s	  %s\n", root->left->left->lst->value, root->left->right->lst->value, root->right->left->lst->value, root->right->right->lst->value);
-}
-
-
-void printList(t_list *lst) 
-{
-    if (lst == NULL) {
-        printf("Empty list\n");
+    if (lst == NULL && rd == NULL) {
+        printf("Empty lists\n");
         return;
     }
 
-    printf("List: ");
-    while (lst != NULL) {
-        printf("%s ", lst->value);
-        lst = lst->next;
+    if (lst != NULL) {
+        printf("List 1: ");
+        while (lst != NULL) {
+            printf("%s ", lst->value);
+            lst = lst->next;
+        }
+        // printf("\n");
     }
-    printf("\n");
+
+    if (rd != NULL) {
+        printf("  List 2: ");
+        while (rd != NULL) {
+            printf("%s ", rd->value);
+            rd = rd->next;
+        }
+    }
+	printf("\n");
 }
 
 void printTree(t_tree *tree) 
@@ -65,7 +60,7 @@ void printTree(t_tree *tree)
     }
 
     printf("Node: ");
-    printList(tree->lst);
+    printList(tree->lst, tree->redirect_mode);
 
     printf("Left child: ");
     printTree(tree->left);

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 21:52:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/11 22:10:40 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_tree	*mk_tree(t_list *lst)
 	index = 0;
 	return (or_and(lst, &index));
 }
+
+/* ==============> Test <============== */
 
 void	test()
 {
@@ -111,7 +113,7 @@ void	test()
 	ft_lstadd_back(&lst, ft_lstnew(TK_WT_SPACE, ft_strdup("^^^^"), NULL));
 
 	ft_indexing(lst);
-	print_lst(lst);
+	printList(lst, NULL);
 	printf("\n\n");
 
 
@@ -131,9 +133,13 @@ void	test()
 	//		> -->   --> outfile -->   --> > -->   --> of -->   --> NULL
 
 
+	printf("\n\n");
+	printf("%s\n", tree->left->lst->value);
+	printf("%p\n", tree->left->redirect_mode);
+	// printf("%p\n", tree->left->redirect_mode->next->value);
 
 
-
+	
 
 
 
@@ -141,27 +147,26 @@ void	test()
 	ft_lstclear(&lst);
 }
 
-/* ==============> Test <============== */
-	// t_tree *tree = mk_tree(lst);
-	// t_list *tmp;
-	// for (size_t i = 0; tree != NULL ; i++)
-	// {
-	// 	tmp = tree->lst;
-	// 	while (tmp)
-	// 	{
-	// 		printf("%s -> ", tmp->value);
-	// 		tmp = tmp->next;
-	// 	}
-	// 	if (tree->redirect_mode != NULL)
-	// 	{
-	// 		printf("++> redirect_mode : ");
-	// 		tmp = tree->redirect_mode;
-	// 		while (tmp)
-	// 		{
-	// 			printf("%s -> ", tmp->value);
-	// 			tmp = tmp->next;
-	// 		}
-	// 	}
-	// 	printf("\n");
-	// 	tree = tree->left;
-	// }
+// t_tree *tree = mk_tree(lst);
+// t_list *tmp;
+// for (size_t i = 0; tree != NULL ; i++)
+// {
+// 	tmp = tree->lst;
+// 	while (tmp)
+// 	{
+// 		printf("%s -> ", tmp->value);
+// 		tmp = tmp->next;
+// 	}
+// 	if (tree->redirect_mode != NULL)
+// 	{
+// 		printf("++> redirect_mode : ");
+// 		tmp = tree->redirect_mode;
+// 		while (tmp)
+// 		{
+// 			printf("%s -> ", tmp->value);
+// 			tmp = tmp->next;
+// 		}
+// 	}
+// 	printf("\n");
+// 	tree = tree->left;
+// }
