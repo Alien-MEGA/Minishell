@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/10 21:43:08 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:54:07 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_tree	*pipeline(t_list *lst, int *index)
 	t_tree	*tree;
 
 	tree = create_command(lst, index);
-	while (in(lst, (*index))->type == TK_PIPE)
+	while (in(lst, (*index))
+			&& in(lst, (*index))->type == TK_PIPE)
 	{
 		ft_treeswap_root(&tree, create_operator(lst, index), LEFT);
 		tree->right = create_command(lst, index);
@@ -33,8 +34,9 @@ t_tree	*or_and(t_list *lst, int *index)
 	t_tree	*tree;
 
 	tree = pipeline(lst, index);
-	while (in(lst, (*index))->type == TK_OR
-			|| in(lst, (*index))->type == TK_AND)
+	while (in(lst, (*index)) &&
+			(in(lst, (*index))->type == TK_OR
+			|| in(lst, (*index))->type == TK_AND))
 	{
 		ft_treeswap_root(&tree, create_operator(lst, index), LEFT);
 		tree->right = pipeline(lst, index);
@@ -81,7 +83,7 @@ void	test()
 
 	t_tree *tree = mk_tree(lst);
 
-	
+	print_tree(tree);
 
 
 
