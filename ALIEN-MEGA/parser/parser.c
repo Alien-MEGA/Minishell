@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 22:34:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/11 22:43:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,6 @@ void	test()
 	//		-->		--> | -->   --> cat -->   --> || -->   --> ls -->   --> -l 
 	//		-->   --> -a -->   --> | -->   --> cat -->   -->
 	//		> -->   --> outfile -->   --> > -->   --> of -->   --> NULL
-
-
-	printf("\n\n");
-	printf("%s\n", tree->left->lst->value);
-	printf("%p\n", tree->left->redirect_mode);
-	// printf("%p\n", tree->left->redirect_mode->next->value);
-
-
 	
 
 

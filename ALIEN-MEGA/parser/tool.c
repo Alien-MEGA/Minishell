@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 17:53:06 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 22:19:42 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/11 22:43:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void printTree(t_tree *tree)
 {
     if (tree == NULL) 
 	{
-        return;
+        return ((void)printf("Empty\n"));
     }
 
     printf("Node: ");
