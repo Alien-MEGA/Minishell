@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:18:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/09 18:37:44 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:23:02 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,13 @@ typedef struct s_struct
 
 t_loc	ini_loc();
 /* ==============> Tokenizer <============== */
-/* ==============> /lexer/ <============== */
 int	check_quote(t_list *tokens);
-int check_brace(t_list *tokens);
+int	check_brace(t_list *tokens);
+/* ==============> /lexer_util/ <============== */
+int	istype(int t, int type);
+int	check_op_syntax(t_list *prev, t_list *nxt);
+int check_rd_syntax(t_list *nxt);
+int check_syntax(t_list *tokens);
 
 	typedef struct s_token
 {
@@ -126,12 +130,13 @@ void	cd_cmd(char *path);
 
 	/* ==============> Parser <============== */
 	/* ==============> /parser/ <============== */
-	typedef struct s_tree
+typedef struct s_tree
 {
-t_list *lst;
-struct s_tree *left;
-struct s_tree *right;
-} t_tree;
+	t_list			*lst;
+	t_list			*redirect_mode;
+	struct s_tree	*left;
+	struct s_tree	*right;
+}					t_tree;
 
 t_tree *ft_treenew(t_list *lst);
 t_tree *ft_treelast(t_tree *tree, int option);
@@ -139,10 +144,10 @@ void ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void ft_treeadd_front(t_tree **tree, t_tree *new, int option);
 void ft_treeclear(t_tree **tree);
 
-t_tree *parser(t_list *lst);
-void test();
+t_tree	*mk_tree(t_list *lst);
+void	test();
 
-t_tree *create_command(t_list *lst, int *i);
+t_tree	*create_command(t_list *lst, int *i);
 t_tree *create_operator(t_list *lst, int *i);
 t_tree *create_redirect(t_list *lst, int *i);
 
