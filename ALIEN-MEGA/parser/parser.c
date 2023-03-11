@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 22:43:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/11 23:58:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 // in(lst, (*index));
 // < infile echo -n hoot | cat | ls -l -a || cat > outfile > of;
+
+t_tree	*bracket_handle(t_list *lst, int *index)
+{
+	(*index)++;
+	return (or_and(lst, index));
+}
 
 t_tree	*pipeline(t_list *lst, int *index)
 {
@@ -139,26 +145,7 @@ void	test()
 	ft_lstclear(&lst);
 }
 
-// t_tree *tree = mk_tree(lst);
-// t_list *tmp;
-// for (size_t i = 0; tree != NULL ; i++)
-// {
-// 	tmp = tree->lst;
-// 	while (tmp)
-// 	{
-// 		printf("%s -> ", tmp->value);
-// 		tmp = tmp->next;
-// 	}
-// 	if (tree->redirect_mode != NULL)
-// 	{
-// 		printf("++> redirect_mode : ");
-// 		tmp = tree->redirect_mode;
-// 		while (tmp)
-// 		{
-// 			printf("%s -> ", tmp->value);
-// 			tmp = tmp->next;
-// 		}
-// 	}
-// 	printf("\n");
-// 	tree = tree->left;
-// }
+/* ==============> Idea about <============== 
+	Check every time if there is a TK_OPEN_BRACE
+	change ini of tree to swap_to_tree
+*/
