@@ -5,12 +5,17 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "lldb",
+			"name": "(lldb) Launch",
+			"type": "cppdbg",
 			"request": "launch",
-			"name": "Debug",
 			"program": "/Users/reben-ha/Documents/42Cursus/Minishell/ALIEN-MEGA/minishell",
 			"args": [],
-			"cwd": "${workspaceFolder}"
+			"stopAtEntry": false,
+			"cwd": "/Users/reben-ha/Documents/42Cursus/Minishell/ALIEN-MEGA",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
+
 	]
 }

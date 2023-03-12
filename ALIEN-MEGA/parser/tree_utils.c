@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/09 17:05:09 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:22:22 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,3 @@ void	ft_treeclear(t_tree **tree)
 		ft_treeclear(&(*tree)->right);
 	free(*tree);
 }
- 
