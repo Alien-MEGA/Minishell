@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/12 00:00:01 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/12 23:24:15 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <errno.h>
 # include <dirent.h>
 # include "readline/readline.h"
@@ -50,7 +51,6 @@ enum e_token
 
 typedef struct s_public
 {
-
 	unsigned int	exit_status;
 	char			**env;
 	char			**exp_list;
@@ -58,7 +58,7 @@ typedef struct s_public
 	int				isdef_env;
 }					t_public;
 
-t_public g_pub;
+t_public	g_pub;
 
 typedef struct s_struct
 {
@@ -66,13 +66,17 @@ typedef struct s_struct
 	int		j;
 }			t_loc;
 
-t_loc	ini_loc();
+t_loc	ini_loc(int i, int j);
 /* ==============> Tokenizer <============== */
-/* ==============> /lexer/ <============== */
-int	check_quote(t_list *tokens);
-int check_brace(t_list *tokens);
-
-	typedef struct s_token
+int		check_quote(t_list *tokens);
+int		check_brace(t_list *tokens);
+/* 	=============> /lexer_util/ <============== */
+int		istype(int t, int type);
+int		check_op_syntax(t_list *prev, t_list *nxt);
+int		check_rd_syntax(t_list *nxt);
+int		check_syntax(t_list *tokens);
+int		check_tokens(t_list *tk);
+typedef struct s_token
 {
 	int		type;
 	char	*value;
@@ -84,14 +88,13 @@ void	skip_quote(t_list **list, char *line, int *i, char qoute);
 void	skip_word(t_list **list, char *line, int *i);
 t_list	**create_token_list(t_list **head, char *line);
 
-
 /* ==============> /minishell/ <============== */
 int		indexofchar(char *line, char c);
 char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
 
 	/* ==============> /utils/pwd <============== */
-char *get_pwd(void);
+char	*get_pwd(void);
 char	*get_prompt(char *pwd);
 char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
@@ -101,27 +104,30 @@ void	load_env(char *_path, char **env);
 void	export_to_env(char *key, char *value, int option);
 void	unset_var(char *key);
 char	*expand_env(char *key);
-void	add_to_env(char *content) ;
-void	set_shlvl();
+void	add_to_env(char *content);
+void	set_shlvl(void);
 void	fill_key_value_opt(char *arg, char **key, char **value, int *opt);
-void export_args(char **args);
+void	export_args(char **args);
 void	export_to_explist(char *arg);
 void	add_to_export(char *content);
 void	unset_from_exp(char *key);
-/* ==============> /utils/unset <============== */
-void unset_cmd(char **args);
+
+/* ==============> /utils/signal/ <============== */
+void	sig_inint(void);
+	/* ==============> /utils/unset <============== */
+void	unset_cmd(char **args);
 /* ==============> /utils/export <============== */
 void	sort_mat(char **arr);
-void	export();
+void	export(void);
 int		valid_arg(char *arg);
-/* ==============> /utils/export_utils <============== */
+	/* ==============> /utils/export_utils <============== */
 int		check_var(char *var);
 void	print_export(char *var);
-
 /* ==============> built-in <============== */
 /* ==============> /built-in/ <============== */
 void	echo_b(char *command_line);
 void	exit_b(char *command_line);
+void	cd_cmd(char *path);
 /* ==============> Parser <============== */
 /* ==============> /parser/ <============== */
 typedef struct s_tree
@@ -139,7 +145,7 @@ void	ft_treeswap_root(t_tree **current_root, t_tree *new_root, int option);
 void	ft_treeclear(t_tree **tree);
 
 t_tree	*mk_tree(t_list *lst);
-void	test();
+void	test(void);
 
 t_tree	*create_command(t_list *lst, int *i);
 t_tree	*create_operator(t_list *lst, int *i);
@@ -150,6 +156,7 @@ t_tree	*pipeline(t_list *lst, int *index);
 t_tree	*or_and(t_list *lst, int *index);
 t_tree	*mk_tree(t_list *lst);
 
-void	printList(t_list *lst, t_list *rd); 
+void	printList(t_list *lst, t_list *rd);
 void	printTree(t_tree *tree);
+
 #endif

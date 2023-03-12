@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 13:46:50 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/12 23:23:58 by reben-ha         ###   ########.fr       */
+/*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
+/*   Updated: 2023/03/12 23:19:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_loc	ini_loc(int i, int j)
+void	sigint_handler(int sig)
 {
-	t_loc	loc;
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	ft_printf(2, PROMPT_1);
+	rl_redisplay();
+	g_pub.exit_status = sig;
+}
 
-	loc.i = i;
-	loc.j = j;
-	return (loc);
+void	sigquit_handler(int sig)
+{
+}
+
+void	sig_inint(void)
+{
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
 }

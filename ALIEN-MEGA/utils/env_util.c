@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   env_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:20:26 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/07 19:42:49 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/12 23:17:14 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -32,29 +31,28 @@ void	add_to_env(char *content)
 	g_pub.env[i + 1] = NULL;
 	free(tmp);
 }
-void	set_shlvl()
+
+void	set_shlvl(void)
 {
 	char	*old_value;
 	char	*new_value;
 	int		value;
 
 	old_value = expand_env("SHLVL");
-	printf("%s\n",old_value);
-	new_value = 0;
-	if (ft_strlen(old_value) == 0)
-		export_to_env("SHLVL","1", OPT_CREAT);
+	new_value = NULL;
+	if (old_value == NULL)
+		export_to_env("SHLVL", "1", OPT_CREAT);
 	else
 	{
 		value = ft_atoi(old_value);
-		if (value >= 999 || value <= 0)
+		if (value >= 999)
 			export_to_env("SHLVL", "1", OPT_CREAT);
+		else if (value < 0)
+			export_to_env("SHLVL", "0", OPT_CREAT);
 		else
 		{
-
 			new_value = ft_itoa(value + 1);
-			printf("udpdting %s ----> %s\n\n",old_value, new_value);
-				ft_error_str(new_value, 1);
-
+			ft_error_str(new_value, 1);
 			export_to_env("SHLVL", new_value, OPT_CREAT);
 		}
 	}

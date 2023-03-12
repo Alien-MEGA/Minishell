@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/10 21:44:20 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/12 23:23:34 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,12 @@ CC = gcc -g
 
 FLAGS = #-Wall -Werror -Wextra
 
-
 SRC = minishell.c \
 		string.c \
 		./lexer/tokenizer.c \
 		./lexer/tokenizer_util.c \
 		./lexer/lexer.c \
+		./lexer/lexer_util.c \
 		./utils/pwd.c \
 		./utils/env.c \
 		./utils/env_util.c \
@@ -29,8 +29,10 @@ SRC = minishell.c \
 		./utils/export_utils.c \
 		./utils/unset.c \
 		./utils/helper.c \
+		./utils/signal.c \
 		./built-in/echo.c \
 		./built-in/exit.c \
+		./built-in/cd.c \
 		./parser/parser.c \
 		./parser/manage_tree.c \
 		./parser/tree_utils.c \
