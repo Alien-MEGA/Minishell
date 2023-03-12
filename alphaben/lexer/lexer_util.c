@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:08:11 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/10 19:57:52 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/11 13:11:51 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int check_op_syntax(t_list *prev, t_list *nxt)
 		nxt = nxt->next;
 	if (nxt == NULL || prev == NULL)
 		return (FALSE);
-	if (istype(prev->type, TP_WORD) == FALSE && prev->type != TK_CLOSE_BRACE | prev->type != TK_WT_SPACE)
+	if (istype(prev->type, TP_OPER) == TRUE || prev->type == TK_OPEN_BRACE)
 		return (FALSE);
-	if (istype(nxt->type, TP_WORD) == FALSE && nxt->type != TK_OPEN_BRACE)
+	if (istype(nxt->type, TP_OPER) == TRUE ||  nxt->type == TK_CLOSE_BRACE)
 		return (FALSE);
 	return (TRUE);
 }

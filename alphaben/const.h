@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/10 16:24:30 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:04:23 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@
 # define RESET   "\033[0m"
 
 /* ==============> Tools <============== */
-# define SP_CHAR "'\"<>()&| \t"
+# define SP_CHAR "'\"<>()| \t"
 # define CL_DEFAULT "\e[0m"
 # define PROMPT "\e[1;32m┌──(Minishell㉿Aliens)\n└─$ \e[0m"
+#define PROMPT_1 "\e[1;32m┌──(Minishell㉿Aliens)\n"
+#define PROMPT_2 "\e[1;32m└─$ \e[0m"
 # define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[ ./"
 # define PROMPT_TWO " ]\n└─$ \e[0m"
 //====== boolean ========

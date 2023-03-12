@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:18:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/10 21:23:02 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:08:00 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ int	check_brace(t_list *tokens);
 /* ==============> /lexer_util/ <============== */
 int	istype(int t, int type);
 int	check_op_syntax(t_list *prev, t_list *nxt);
-int check_rd_syntax(t_list *nxt);
-int check_syntax(t_list *tokens);
+int	check_rd_syntax(t_list *nxt);
+int	check_syntax(t_list *tokens);
+int	check_tokens(t_list *tk);
 
 	typedef struct s_token
 {
@@ -113,9 +114,11 @@ void	export_to_explist(char *arg);
 void	add_to_export(char *content);
 void	unset_from_exp(char *key);
 
+/* ==============> /utils/signal/ <============== */
+void	sig_inint();
 	/* ==============> /utils/unset <============== */
-	void	unset_cmd(char **args);
-	/* ==============> /utils/export <============== */
+	void unset_cmd(char **args);
+/* ==============> /utils/export <============== */
 void	sort_mat(char **arr);
 void	export();
 int		valid_arg(char *arg);

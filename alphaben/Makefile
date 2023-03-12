@@ -6,7 +6,7 @@
 #    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/10 19:55:16 by ebennamr         ###   ########.fr        #
+#    Updated: 2023/03/11 16:33:03 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC = minishell.c \
 		./utils/export_utils.c\
 		./utils/unset.c\
 		./utils/helper.c\
+		./utils/signal.c\
 		./lexer/lexer.c\
 		./lexer/lexer_util.c
 
