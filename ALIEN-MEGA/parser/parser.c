@@ -6,46 +6,46 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 23:58:10 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:30:12 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// in(lst, (*index));
+// lst;
 // < infile echo -n hoot | cat | ls -l -a || cat > outfile > of;
 
-t_tree	*bracket_handle(t_list *lst, int *index)
+t_tree	*bracket_handle(t_list **lst)
 {
-	(*index)++;
-	return (or_and(lst, index));
+	(*lst) = (*lst)->next;
+	return (or_and(lst));
 }
 
-t_tree	*pipeline(t_list *lst, int *index)
+t_tree	*pipeline(t_list **lst)
 {
 	t_tree	*tree;
 
-	tree = create_command(lst, index);
-	while (in(lst, (*index))
-			&& in(lst, (*index))->type == TK_PIPE)
+	tree = create_command(lst);
+	while (*lst
+			&& (*lst)->type == TK_PIPE)
 	{
-		ft_treeswap_root(&tree, create_operator(lst, index), LEFT);
-		tree->right = create_command(lst, index);
+		ft_treeswap_root(&tree, create_operator(lst), LEFT);
+		tree->right = create_command(lst);
 	}
 	return (tree);
 }
 
-t_tree	*or_and(t_list *lst, int *index)
+t_tree	*or_and(t_list **lst)
 {
 	t_tree	*tree;
 
-	tree = pipeline(lst, index);
-	while (in(lst, (*index))
-			&& (in(lst, (*index))->type == TK_OR
-			|| in(lst, (*index))->type == TK_AND))
+	tree = pipeline(lst);
+	while ((*lst)
+			&& ((*lst)->type == TK_OR
+			|| (*lst)->type == TK_AND))
 	{
-		ft_treeswap_root(&tree, create_operator(lst, index), LEFT);
-		tree->right = pipeline(lst, index);
+		ft_treeswap_root(&tree, create_operator(lst), LEFT);
+		tree->right = pipeline(lst);
 	}
 	return (tree);
 }
@@ -53,11 +53,9 @@ t_tree	*or_and(t_list *lst, int *index)
 t_tree	*mk_tree(t_list *lst)
 {
 	t_tree	*tree;
-	int		index;
 
 	tree = NULL;
-	index = 0;
-	return (or_and(lst, &index));
+	return (or_and(&lst));
 }
 
 /* ==============> Test <============== */
