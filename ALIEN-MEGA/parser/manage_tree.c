@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 21:55:03 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:03:32 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	skip_space(t_list *lst, int *i)
 void	search_rd(t_list **new_rd, t_list *lst, int *i)
 {
 	while (in(lst, (*i)) && in(lst, (*i))->type >= TK_RD_INPUT
-			&& in(lst, (*i))->type <= TK_RD_OUTPUT_APPEND)
+		&& in(lst, (*i))->type <= TK_RD_OUTPUT_APPEND)
 	{
 		ft_lstadd_back(new_rd, create_redirect(lst, i));
 		skip_space(lst, i);
