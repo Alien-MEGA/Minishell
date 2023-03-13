@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:57:50 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/12 23:15:17 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:00:41 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	check_brace(t_list *tokens)
 			return (FALSE);
 		tokens = tokens->next;
 	}
-	printf("num O %d C %d\n", num_open_brace, num_close_brace);
 	if (num_close_brace == num_open_brace)
 		return (TRUE);
 	return (FALSE);
