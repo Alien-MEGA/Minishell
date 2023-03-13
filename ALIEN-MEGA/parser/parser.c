@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/13 01:39:33 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 01:59:04 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 // lst;
 // (< infile echo -n hoot) | cat | ls -l -a || cat > outfile > of;
+
+void	syntax_error(char *token)
+{
+	return (ft_printf(2,
+		"%sMinishell : syntax error near unexpected `%s'%s\n",
+		RED, token, RESET),
+		exit(258));
+}
 
 t_tree	*bracket_handle(t_list **lst)
 {
