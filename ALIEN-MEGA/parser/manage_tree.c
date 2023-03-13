@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/13 00:36:18 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 01:08:00 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	skip_space(t_list **lst)
 void	search_rd(t_list **new_rd, t_list **lst)
 {
 	while ((*lst) && (*lst)->type >= TK_RD_INPUT
-		&& (*lst)->type <= TK_RD_OUTPUT_APPEND)
+		&& (*lst)->type <= TK_RD_OUTPUT_APPEND
+		&& (*lst)->type != TK_CLOSE_BRACE)
 	{
 		ft_lstadd_back(new_rd, create_redirect(lst));
 		skip_space(lst);
@@ -37,20 +38,29 @@ t_tree	*create_command(t_list **lst)
 	new_lst = NULL;
 	new_rd = NULL;
 	skip_space(lst);
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
 	search_rd(&new_rd, lst);
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
 	while ((*lst)
 		&& !((*lst)->type >= TK_PIPE
-		&& (*lst)->type <= TK_OR))
+		&& (*lst)->type <= TK_OR)
+		&& (*lst)->type != TK_CLOSE_BRACE)
 	{
 		ft_lstadd_back(&new_lst,
 			ft_lstnew((*lst)->type, (*lst)->value, NULL));
 			(*lst) = (*lst)->next;
-		if ((*lst) && (*lst)->next
-			&& (*lst)->next->type >= TK_PIPE
-			&& (*lst)->next->type <= TK_OR)
+		if ((*lst) && (*lst)->next 
+				&& (((*lst)->next->type >= TK_PIPE && (*lst)->next->type <= TK_OR)
+				|| (*lst)->next->type == TK_CLOSE_BRACE))
 			skip_space(lst);	
 	}
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
 	search_rd(&new_rd, lst);
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
 	new_tree = ft_treenew(new_lst);
 	new_tree->redirect_mode = new_rd;
 	return (new_tree);

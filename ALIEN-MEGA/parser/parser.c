@@ -6,19 +6,24 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/13 00:30:12 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 01:30:55 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 // lst;
-// < infile echo -n hoot | cat | ls -l -a || cat > outfile > of;
+// (< infile echo -n hoot) | cat | ls -l -a || cat > outfile > of;
 
 t_tree	*bracket_handle(t_list **lst)
 {
+	t_tree	*tree;
+
 	(*lst) = (*lst)->next;
-	return (or_and(lst));
+	tree = or_and(lst);
+	(*lst) = (*lst)->next;
+	skip_space(lst);
+	return (tree);
 }
 
 t_tree	*pipeline(t_list **lst)
@@ -65,6 +70,7 @@ void	test()
 	t_list	*lst;
 
 	lst = NULL;
+	ft_lstadd_back(&lst, ft_lstnew(TK_OPEN_BRACE, ft_strdup("("), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_RD_INPUT, ft_strdup("<"), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_WT_SPACE, ft_strdup("^^^^"), NULL));
 
@@ -84,7 +90,11 @@ void	test()
 	ft_lstadd_back(&lst, ft_lstnew(TK_WT_SPACE, ft_strdup("^^^^"), NULL));
 
 	ft_lstadd_back(&lst, ft_lstnew(TK_WORD, ft_strdup("cat"), NULL));
+
 	ft_lstadd_back(&lst, ft_lstnew(TK_WT_SPACE, ft_strdup("^^^^"), NULL));
+	ft_lstadd_back(&lst, ft_lstnew(TK_CLOSE_BRACE, ft_strdup(")"), NULL));
+
+
 
 	ft_lstadd_back(&lst, ft_lstnew(TK_OR, ft_strdup("||"), NULL));
 	ft_lstadd_back(&lst, ft_lstnew(TK_WT_SPACE, ft_strdup("^^^^"), NULL));
@@ -143,7 +153,7 @@ void	test()
 	ft_lstclear(&lst);
 }
 
-/* ==============> Idea about <============== 
+/*
+	==============> Idea about <============== 
 	Check every time if there is a TK_OPEN_BRACE
-	change ini of tree to swap_to_tree
 */

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/13 00:35:17 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 01:30:37 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ t_tree	*create_command(t_list **lst);
 t_tree	*create_operator(t_list **lst);
 t_list	*create_redirect(t_list **lst);
 
+void	skip_space(t_list **lst);
 t_tree	*bracket_handle(t_list **lst);
 t_tree	*pipeline(t_list **lst);
 t_tree	*or_and(t_list **lst);
