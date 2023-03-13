@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/06 14:40:42 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:38:25 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	add_token(t_list **list, int type, char *value)
 
 	new_node = ft_lstnew(type, ft_strdup(value), NULL);
 	ft_lstadd_back(list, new_node);
+	if (istype(type, TP_WORD))
+		free(value);
 }
 
 static int check_teken1(char *line, int *i, t_list **list)
@@ -85,4 +87,3 @@ t_list	**create_token_list(t_list **head, char *line)
 	}
 	return (head);
 }
-

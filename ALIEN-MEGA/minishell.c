@@ -6,66 +6,42 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 18:32:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:48:41 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-
-char	*prompt(void)
+void	prompt(t_list **lst)
 {
 	char	*line;
-	t_list	*ls;
-	int		len;
 
-	ls = 0;
-	len = ft_lstsize(ls);
 	line = readline(get_prompt(get_pwd()));
-	if (line != 0)
+	if (line != NULL)
 		add_history(line);
-	if(line == 0)
-		exit(0);
-	printf("line : %s \n", line);
-	create_token_list(&ls, line);
-	while (ls)
-	{
-		printf("type : %d <> value %s \n", ls->type, ls->value);
-		ls = ls->next;
-	}
+	if(line == NULL)
+		exit(g_pub.exit_status);
+	create_token_list(lst, line);
 	free(line);
-	return (line);
 }
-void at()
-{
-	system("leaks minishell");
-}
+
 int	main(int argc, char **argv, char **env)
 {
+	t_list	*lst;
+
 	(void)argc;
-	(void)argv;
-	// g_pub.env = NULL;
-	// g_pub.exp_list = malloc(sizeof(char *));
-	// g_pub.exp_list[0] = NULL;
-	// 	load_env(argv[0], env);
-	// 	export_args(argv);
-	// //export_to_env("PWD", ".", OPT_APPEND);
-	// //unset_var("_");
-	// //unset_var("PWD");
-	// //unset_var("SHLVL");
-	// printf("===================\n");
-	// // // char **join = mat_join(argv,argv);
-	// // // sort_mat(join);
-	// export();
-	// // // for (size_t i = 0; join[i] != 0; i++)
-	// // // 	printf("%s\n", join[i]);
-	// printf("===================\n");
-
-
-	// atexit(at);
-	//  while (1)
-	//  	prompt();
+	lst = NULL;
+	g_pub.env = NULL;
+	g_pub.exp_list = malloc(sizeof(char *));
+	g_pub.exp_list[0] = NULL;
+	load_env(argv[0], env);
+	while (1)
+	{
+		prompt(&lst);
+		if (check_syntax(lst) == TRUE)
+			test(lst);
+		else
+			ft_lstclear(&lst);
 
 
 
@@ -78,14 +54,8 @@ int	main(int argc, char **argv, char **env)
 
 
 
-/* ==============> Test Alien-Mega <============== */
 
-	test();
+
+
+	}
 }
-/*
-add file lexer
-		int	check_quote(t_list *tokens); check if exist open token
-		int check_brace(t_list *tokens) check if num of open brace diffrent num of colse brace exmp: ()) or (()
-		modifed : tokenizer.c  tokenizer_utlils.c minishell.h lexer.c
-
-*/
