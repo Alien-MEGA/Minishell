@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/13 18:56:22 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/15 17:39:40 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRC = minishell.c \
 		./parser/parser.c \
 		./parser/manage_tree.c \
 		./parser/tree_utils.c \
-		./parser/tool.c
+		./parser/tool.c \
+		./execute_test/here_doc.c
 
 OBJ = $(SRC:.c=.o)
 
