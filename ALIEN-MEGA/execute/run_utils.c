@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/18 00:16:03 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 00:33:17 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	execute_x(char *argv, char **env)
 	char	*path;
 
 	cmd = ft_split(argv, ' ');
+	free(argv);
 	if (!env)
 		return (ft_printf(2, "pipex() : %s : No such file or directory\n"
 				, cmd[0]), exit(127));
