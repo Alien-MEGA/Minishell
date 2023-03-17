@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/15 17:49:17 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:11:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,12 @@ void	printTree(t_tree *tree);
 
 /* ==============> execute <============== */
 /* ==============> /execute/ <============== */
+
+typedef struct s_fd
+{
+	int		fd_wr;
+	int		fd_rd;
+}			t_fd;
 
 char	*here_doc(char *delimiter);
 

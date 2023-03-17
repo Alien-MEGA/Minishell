@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/16 14:52:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:01:45 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static char	*generator_tmp(void)
 	num = malloc(10);
 	status = read(open("/dev/urandom", O_RDONLY), num, 10);
 	if (status == -1)
-		return (free(num), ft_strdup("tmp1"));
-	gen_tmp = ft_strjoin("tmp", ft_itoa(*num));
+		return (free(num), ft_strdup("tmp-"));
+	gen_tmp = ft_strjoin("/tmp/tmp-", ft_itoa(*num));
 	return (free(num), gen_tmp);
 }
 
