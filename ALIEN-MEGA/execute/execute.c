@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/18 00:28:59 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 00:37:01 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out)
 		run_redirect(root->redirect_mode);
 		run_command(root->lst);
 	}
-	else
-		return (pross);
+	return (pross);
 }
 
 pid_t	execute(t_tree *root, int fd_in, int fd_out)
