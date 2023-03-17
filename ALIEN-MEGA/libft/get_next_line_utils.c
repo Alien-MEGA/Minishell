@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:32:51 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/01 21:51:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:44:44 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strchr_gnl(const char *str, int c, int option)
 	return (NULL);
 }
 
-int	ft_strchr_cheack_gnl(const char *str, int c)
+int	ft_strchr_check(const char *str, int c)
 {
 	size_t	i;
 

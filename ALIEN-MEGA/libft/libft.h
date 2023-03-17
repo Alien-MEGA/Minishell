@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:34:12 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/06 14:44:28 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:44:46 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*get_next_line(int fd);
 char	*ft_strchr_gnl(const char *str, int c, int option);
 char	*ft_substr_gnl(char const *str, unsigned int start, size_t len);
 char	*ft_strjoin_gnl(char *s1, char *s2);
-int		ft_strchr_cheack_gnl(const char *str, int c);
+int		ft_strchr_check(const char *str, int c);
 
 void	ft_printf(int fd, const char *str, ...);
 int		ft_putchar(char c, int fd);
