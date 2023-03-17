@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/18 00:16:06 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 00:34:07 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,6 @@ typedef struct s_fd
 char			*here_doc(char *delimiter);
 void			execute_x(char *argv, char **env);
 pid_t			execute(t_tree *root, int fd_in, int fd_out);
-int wait_pross(pid_t pross);
+int				wait_pross(pid_t pross);
 
 #endif
