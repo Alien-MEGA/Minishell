@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/18 23:14:52 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/19 00:06:31 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
 	t_fd			fd_pipe;
 	pid_t			pross;
 
+	if (!root || !root->lst)
+		return (-1);
 	if (root->lst->type == TK_OR || root->lst->type == TK_AND)
 	{
 		execute(root->left, fd_in, fd_out, (t_flag) { .should_wait = TRUE, .flag = -1});
