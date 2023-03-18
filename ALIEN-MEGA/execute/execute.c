@@ -6,11 +6,24 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/18 20:52:48 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:14:52 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	close_fd(int fd_in, int fd_out, int flag)
+{
+	if (flag == C_X)
+	{
+		ft_error(close(fd_in), 1);
+		ft_error(close(fd_out), 1);
+	}	
+	else if (flag == C_IN)
+		ft_error(close(fd_in), 1);
+	else if (flag == C_OUT)
+		ft_error(close(fd_out), 1);
+}
 
 void	run_redirect(t_list *redirect)
 {
@@ -67,7 +80,7 @@ t_fd	create_pipe(void)
 	return (fd_pipe);	
 }
 
-pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
+pid_t	run_x(t_tree *root, int fd_in, int fd_out, t_flag flags)
 {
 	pid_t	pross;
 
@@ -77,39 +90,37 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 	{
 		ft_error(dup2(fd_in, STDIN_FILENO), 1);
 		ft_error(dup2(fd_out, STDOUT_FILENO), 1);
-		// if (isatty(fd_in))
-		// 	ft_error(close(fd_in), 1);
-		// if (isatty(fd_out))
-		// 	ft_error(close(fd_out), 1);
+		close_fd(fd_in, fd_out, flags.flag);
 		run_redirect(root->redirect_mode);
 		run_command(root->lst);
 	}
-	if (should_wait)
+	close_fd(fd_in, fd_out, flags.flag);
+	if (flags.should_wait)
 		g_pub.exit_status = wait_pross(pross);
 	return (pross);
 }
 
-pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
+pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
 {
 	t_fd			fd_pipe;
 	pid_t			pross;
 
 	if (root->lst->type == TK_OR || root->lst->type == TK_AND)
 	{
-		execute(root->left, fd_in, fd_out, TRUE);
+		execute(root->left, fd_in, fd_out, (t_flag) { .should_wait = TRUE, .flag = -1});
 		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
 			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
-			execute(root->right, fd_in, fd_out, TRUE);
+			execute(root->right, fd_in, fd_out, (t_flag) { .should_wait = TRUE, .flag = -1});
 	}
 	else if (root->lst->type == TK_PIPE)
 	{
 		fd_pipe = create_pipe();
-		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
-		pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
-		if (should_wait == TRUE)
+		execute(root->left, fd_in, fd_pipe.fd_wr, (t_flag) { .should_wait = FALSE, .flag = C_OUT});
+		pross = execute(root->right, fd_pipe.fd_rd, fd_out, (t_flag) { .should_wait = FALSE, .flag = C_IN});
+		if (flags.should_wait == TRUE)
 			g_pub.exit_status = wait_pross(pross);
 	}
 	else
-		pross = run_x(root, fd_in, fd_out, should_wait);
+		pross = run_x(root, fd_in, fd_out, flags);
 	return (pross);
 }

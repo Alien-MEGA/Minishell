@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/18 14:16:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 21:45:05 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,10 +169,18 @@ typedef struct s_fd
 	int		fd_wr;
 	int		fd_rd;
 }			t_fd;
+# define C_IN 0
+# define C_OUT 1
+# define C_X 2
+typedef struct s_flag
+{
+	int		should_wait;
+	int		flag;
+}			t_flag;
 
 char	*here_doc(char *delimiter);
 void	execute_x(char *argv, char **env);
-pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
+pid_t   execute(t_tree *root, int fd_in, int fd_out, t_flag flags);
 int		wait_pross(pid_t pross);
 
 #endif
