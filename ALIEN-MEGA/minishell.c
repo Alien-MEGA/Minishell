@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/14 20:09:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:16:17 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_list	*lst;
 	int		line_status;
+	t_tree	*tree;
 
 	(void)argc;
 	g_pub.env = NULL;
@@ -59,11 +60,10 @@ int	main(int argc, char **argv, char **env)
 		if (line_status == FALSE)
 			continue ;
 		if (check_syntax(lst) == TRUE)
-			test(lst);
+			tree = mk_tree(lst);
 		else
 			ft_lstclear(&lst);
-
-
+		execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 
 
 

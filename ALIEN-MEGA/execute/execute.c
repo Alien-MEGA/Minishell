@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/18 00:37:01 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:12:55 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_fd	create_pipe(void)
 	return (fd_pipe);	
 }
 
-pid_t	run_x(t_tree *root, int fd_in, int fd_out)
+pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	pid_t	pross;
 
@@ -78,29 +78,32 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out)
 		run_redirect(root->redirect_mode);
 		run_command(root->lst);
 	}
+	if (should_wait)
+		g_pub.exit_status = wait_pross(pross);
 	return (pross);
 }
 
-pid_t	execute(t_tree *root, int fd_in, int fd_out)
+pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	t_fd			fd_pipe;
-	unsigned int	exit_status;
 	pid_t			pross;
 
 	if (root->lst->type == TK_OR || root->lst->type == TK_AND)
 	{
-		pross = execute(root->left, fd_in, fd_out);
-		exit_status = wait_pross(pross);
-		if (root->lst->type == TK_OR && exit_status != 0)
-			pross = execute(root->right, fd_in, fd_out);
+		execute(root->left, fd_in, fd_out, TRUE);
+		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
+			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
+			execute(root->right, fd_in, fd_out, TRUE);
 	}
 	else if (root->lst->type == TK_PIPE)
 	{
 		fd_pipe = create_pipe();
-		execute(root->left, fd_in, fd_pipe.fd_wr);
-		pross = execute(root->right, fd_pipe.fd_rd, fd_out);
+		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
+		pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
+		if (should_wait)
+			g_pub.exit_status = wait_pross(pross);
 	}
 	else
-		pross = run_x(root, fd_in, fd_out);
+		pross = run_x(root, fd_in, fd_out, should_wait);
 	return (pross);
 }
