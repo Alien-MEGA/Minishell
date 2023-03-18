@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/18 14:16:17 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:32:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	prompt(t_list **lst)
 		add_history(line);
 	if (line == NULL)
 		exit(g_pub.exit_status);
-	if (check_line(line) == FALSE) // Modif : 2 segfault is handle
+	if (check_line(line) == FALSE)
 		return (FALSE);
 	create_token_list(lst, line);
 	free(line);
@@ -60,10 +60,10 @@ int	main(int argc, char **argv, char **env)
 		if (line_status == FALSE)
 			continue ;
 		if (check_syntax(lst) == TRUE)
+		{
 			tree = mk_tree(lst);
-		else
-			ft_lstclear(&lst);
-		execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
+			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
+			// exit(WEXITSTATUS(g_pub.exit_status));
 
 
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv, char **env)
 
 
 
-
-
+		}
+		ft_lstclear(&lst);
 	}
 }

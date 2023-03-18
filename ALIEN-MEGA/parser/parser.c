@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/14 17:32:05 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:31:46 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,24 @@ t_tree	*mk_tree(t_list *lst)
 	return (or_and(&lst));
 }
 
-/* ==============> Test <============== */
+// /* ==============> Test <============== */
 
-void	test(t_list *lst)
-{
-	ft_indexing(lst);
-	// printList(lst, NULL);
-	printf("\n\n");
+// void	test(t_list *lst)
+// {
+// 	ft_indexing(lst);
+// 	// printList(lst, NULL);
+// 	printf("\n\n");
 
-	t_tree *tree = mk_tree(lst);
+// 	t_tree *tree = mk_tree(lst);
 
-	printTree(tree);
-
-
+// 	printTree(tree);
 
 
 
 
 
 
-	ft_lstclear(&lst);
-}
+
+
+// 	ft_lstclear(&lst);
+// }
