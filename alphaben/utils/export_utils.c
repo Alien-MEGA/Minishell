@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:33:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 19:24:01 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:21:49 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	unset_from_exp(char *key)
 	while (g_pub.env[i] != NULL && ft_strcmp(key,g_pub.exp_list[i]) != 0)
 	{
 	i++;
-
 	}
 		if (i < len)
 		free(g_pub.exp_list[i]);
@@ -95,5 +94,4 @@ void	unset_from_exp(char *key)
 			i++;
 		}
 		g_pub.exp_list[i] = NULL;
-
 }

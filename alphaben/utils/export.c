@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:31:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/07 19:03:12 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:25:19 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,20 @@ void export_args(char **args)
 	char	*key;
 	char	*value;
 	int		opt;
+
 	while(*args)
 	{
 		if(valid_arg(*args) == FALSE)
-			printf("minishell: export: '%s': not a valid identifier\n",*args);
-		else if (indexofchar(*args, '=') == -1)
+		{
+			ft_printf(2, "minishell: export: '%s': not a valid identifier\n",*args);
+			g_pub.exit_status = 1;
+		}
+		else if (indexofchar(*args, '=') == -1 && index_in_env(*args) == -1 )
 			export_to_explist(ft_strdup(*args));
 			else
 			{
 				fill_key_value_opt(*args, &key, &value, &opt);
+				unset_from_exp(key);
 				export_to_env(key, value, opt);
 				free(key);
 				free(value);

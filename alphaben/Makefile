@@ -6,7 +6,7 @@
 #    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/11 16:33:03 by ebennamr         ###   ########.fr        #
+#    Updated: 2023/03/18 15:37:53 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,29 +14,30 @@ NAME = minishell
 
 CC = gcc -g
 
-FLAGS = #-Wall -Werror -Wextra
-
+FLAGS = #-fsanitize=address#-Wall -Werror -Wextra
 
 SRC = minishell.c \
 		string.c \
 		./lexer/tokenizer.c \
 		./lexer/tokenizer_util.c \
+		./lexer/lexer.c \
+		./lexer/lexer_util.c \
 		./utils/pwd.c \
 		./utils/env.c \
-		./parser/parser.c \
-		./parser/manage_tree.c \
-		./parser/tree_utils.c \
+		./utils/env_util.c \
+		./utils/export.c \
+		./utils/export_utils.c \
+		./utils/unset.c \
+		./utils/helper.c \
+		./utils/signal.c \
 		./built-in/echo.c \
 		./built-in/exit.c \
 		./built-in/cd.c \
-		./utils/env_util.c\
-		./utils/export.c\
-		./utils/export_utils.c\
-		./utils/unset.c\
-		./utils/helper.c\
-		./utils/signal.c\
-		./lexer/lexer.c\
-		./lexer/lexer_util.c
+		./parser/parser.c \
+		./parser/manage_tree.c \
+		./parser/tree_utils.c \
+		./parser/tool.c\
+		./expander/wildcard.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -67,4 +68,3 @@ fclean : clean
 re : fclean all
 
 .PHONY : all clean fclean re
-

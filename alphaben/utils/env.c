@@ -6,13 +6,13 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:16:59 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/11 13:40:23 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:08:04 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int index_in_env(char *key)
+int index_in_env(char *key)
 {
 	char *join;
 	int i;

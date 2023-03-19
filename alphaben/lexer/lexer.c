@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:57:50 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/12 14:17:32 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:22:28 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	check_brace(t_list *tokens)
 			return (FALSE);
 		tokens = tokens->next;
 	}
-	printf("num O %d C %d\n",num_open_brace, num_close_brace);
 	if (num_close_brace == num_open_brace)
 		return (TRUE);
 
@@ -78,6 +77,11 @@ int check_tokens(t_list *tk)
 			return (FALSE);
 		}
 		else if (istype(tk->type,TP_REDIR) && !check_rd_syntax(nxt))
+		{
+			ft_printf(2, "%sminishell:lexer:error in >%s%s%s\n", RED, GREEN, tk->value, RESET);
+			return (FALSE);
+		}
+		if ((tk->type == TK_OPEN_BRACE && nxt != NULL )&&nxt->type == TK_CLOSE_BRACE)
 		{
 			ft_printf(2, "%sminishell:lexer:error in >%s%s%s\n", RED, GREEN, tk->value, RESET);
 			return (FALSE);

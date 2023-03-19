@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:18:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/11 20:08:00 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:05:17 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int		ft_strcmp(char *str1, char *str2);
 	/* ==============> /utils/pwd <============== */
 char	*get_pwd(void);
 char	*get_prompt(char *pwd);
-char	*wildcard_exp(char *word);
 t_list	*get_ls(void);
 
 /* ==============> /utils/env/ <============== */
@@ -113,11 +112,12 @@ void	export_args(char **args);
 void	export_to_explist(char *arg);
 void	add_to_export(char *content);
 void	unset_from_exp(char *key);
+int		index_in_env(char *key);
 
-/* ==============> /utils/signal/ <============== */
-void	sig_inint();
-	/* ==============> /utils/unset <============== */
-	void unset_cmd(char **args);
+	/* ==============> /utils/signal/ <============== */
+	void sig_inint();
+/* ==============> /utils/unset <============== */
+void unset_cmd(char **args);
 /* ==============> /utils/export <============== */
 void	sort_mat(char **arr);
 void	export();
@@ -135,23 +135,35 @@ void	cd_cmd(char *path);
 	/* ==============> /parser/ <============== */
 typedef struct s_tree
 {
-	t_list			*lst;
-	t_list			*redirect_mode;
-	struct s_tree	*left;
-	struct s_tree	*right;
-}					t_tree;
+	t_list *lst;
+	t_list *redirect_mode;
+	struct s_tree *left;
+	struct s_tree *right;
+} t_tree;
 
 t_tree *ft_treenew(t_list *lst);
 t_tree *ft_treelast(t_tree *tree, int option);
 void ft_treeadd_back(t_tree **tree, t_tree *new, int option);
-void ft_treeadd_front(t_tree **tree, t_tree *new, int option);
+void ft_treeswap_root(t_tree **current_root, t_tree *new_root, int option);
 void ft_treeclear(t_tree **tree);
 
-t_tree	*mk_tree(t_list *lst);
-void	test();
+void syntax_error(char *token);
+t_tree *mk_tree(t_list *lst);
+void test(t_list *lst);
 
-t_tree	*create_command(t_list *lst, int *i);
-t_tree *create_operator(t_list *lst, int *i);
-t_tree *create_redirect(t_list *lst, int *i);
+t_tree *create_command(t_list **lst);
+t_tree *create_operator(t_list **lst);
+t_list *create_redirect(t_list **lst);
 
+void skip_space(t_list **lst);
+t_tree *bracket_handle(t_list **lst);
+t_tree *pipeline(t_list **lst);
+t_tree *or_and(t_list **lst);
+t_tree *mk_tree(t_list *lst);
+
+void printList(t_list *lst, t_list *rd);
+void printTree(t_tree *tree);
+
+/* ==============> /parser/ <============== */
+void	wildcard(t_list *list);
 #endif

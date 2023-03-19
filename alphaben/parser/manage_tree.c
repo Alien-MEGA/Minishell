@@ -1,60 +1,94 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   manage_tree.c                                      :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-// /*   Updated: 2023/03/10 21:25:04 by ebennamr         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manage_tree.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
+/*   Updated: 2023/03/13 01:58:13 by reben-ha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "../minishell.h"
+#include "../minishell.h"
 
-// t_tree	*create_command(t_list *lst, int *i)
-// {
-// 	t_tree	*new_tree;
-// 	t_list	*new_lst;
-// 	t_list	*new_rd;
+void	skip_space(t_list **lst)
+{
+	if ((*lst)->type == TK_WT_SPACE)
+		(*lst) = (*lst)->next;
+}
 
-// 	new_lst = NULL;
-// 	new_rd = NULL;
-// 	while (in(lst, (*i)) && in(lst, (*i))->type >= TK_RD_INPUT
-// 			&& in(lst, (*i))->type <= TK_RD_OUTPUT_APPEND)
-// 		ft_lstadd_back(&new_rd, create_redirect(lst, i));
-// 	while (in(lst, (*i))
-// 		&& !(in(lst, (*i))->type >= TK_PIPE && in(lst, (*i))->type <= TK_OR))
-// 	{
-// 		ft_lstadd_back(&new_lst,
-// 			ft_lstnew(in(lst, (*i))->type, in(lst, (*i))->value, NULL));
-// 		(*i)++;
-// 	}
-// 	while (in(lst, (*i)) && in(lst, (*i))->type >= TK_RD_INPUT
-// 			&& in(lst, (*i))->type <= TK_RD_OUTPUT_APPEND)
-// 		ft_lstadd_back(&new_rd, create_redirect(lst, i));
-// 	new_tree = ft_treenew(new_lst);
-// 	new_tree->redirect_mode = new_rd;
-// 	return (new_tree);
-// }
+void	search_rd(t_list **new_rd, t_list **lst)
+{
+	while ((*lst) && (*lst)->type >= TK_RD_INPUT
+		&& (*lst)->type <= TK_RD_OUTPUT_APPEND
+		&& (*lst)->type != TK_CLOSE_BRACE)
+	{
+		ft_lstadd_back(new_rd, create_redirect(lst));
+		skip_space(lst);
+	}
+}
 
-// t_tree	*create_operator(t_list *lst, int *i)
-// {
-// 	t_tree	*operator;
+t_tree	*create_command(t_list **lst)
+{
+	t_tree	*new_tree;
+	t_list	*new_lst;
+	t_list	*new_rd;
 
-// 	operator = ft_treenew(ft_lstnew(in(lst, (*i))->type, in(lst, (*i))->value, NULL));
-// 	(*i)++;
-// 	return (operator);
-// }
+	new_lst = NULL;
+	new_rd = NULL;
+	skip_space(lst);
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
+	search_rd(&new_rd, lst);
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
+	if (((*lst)->type >= TK_PIPE
+		&& (*lst)->type <= TK_OR)
+		&& (*lst)->type == TK_CLOSE_BRACE)
+		syntax_error((*lst)->value);
+	while ((*lst)
+		&& !((*lst)->type >= TK_PIPE
+		&& (*lst)->type <= TK_OR)
+		&& (*lst)->type != TK_CLOSE_BRACE)
+	{
+		ft_lstadd_back(&new_lst,
+			ft_lstnew((*lst)->type, (*lst)->value, NULL));
+			(*lst) = (*lst)->next;
+		if ((*lst) && (*lst)->next 
+				&& (((*lst)->next->type >= TK_PIPE && (*lst)->next->type <= TK_OR)
+				|| (*lst)->next->type == TK_CLOSE_BRACE))
+			skip_space(lst);	
+	}
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
+	search_rd(&new_rd, lst);
+	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
+		return (bracket_handle(lst));
+	new_tree = ft_treenew(new_lst);
+	new_tree->redirect_mode = new_rd;
+	return (new_tree);
+}
 
-// t_list	*create_redirect(t_list *lst, int *i)
-// {
-// 	t_list	*new_node;
+t_tree	*create_operator(t_list **lst)
+{
+	t_tree	*operator;
 
-// 	new_node = NULL;
-// 	ft_lstadd_back(&new_node, ft_lstnew(in(lst, (*i))->type, in(lst, (*i))->value, NULL));
-// 	(*i)++;
-// 	ft_lstadd_back(&new_node, ft_lstnew(in(lst, (*i))->type, in(lst, (*i))->value, NULL));
-// 	(*i)++;
-// 	return (new_node);
-// }
+	operator = ft_treenew(ft_lstnew((*lst)->type, (*lst)->value, NULL));
+		(*lst) = (*lst)->next;
+	return (operator);
+}
+
+t_list	*create_redirect(t_list **lst)
+{
+	t_list	*new_node;
+
+	new_node = NULL;
+	ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
+		(*lst) = (*lst)->next;
+	ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
+		(*lst) = (*lst)->next;
+	ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
+		(*lst) = (*lst)->next;
+	return (new_node);
+}

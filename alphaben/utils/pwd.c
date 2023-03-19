@@ -6,31 +6,11 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/07 14:50:42 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:10:25 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-char	*wildcard_exp(char *word)
-{
-	t_list *pwd_ls;
-	char *path;
-	int i;
-	int j;
-
-	pwd_ls = get_ls();
-	if (pwd_ls == 0)
-		return (ft_strdup(""));
-	while (pwd_ls)
-	{
-		i = 0;
-		j = 0;
-		path = (char *)pwd_ls->data;
-	}
-
-	return 0;
-}
 
 char *get_pwd(void)
 {
@@ -43,9 +23,15 @@ char *get_pwd(void)
 
 char *get_prompt(char *pwd)
 {
+	char *prompt;
+
 	if (ft_strrchr(pwd, '/') != NULL)
-		return (ft_strjoin_gnl((ft_strjoin(PROMPT_ONE, ft_strrchr(pwd, '/') + 1)), PROMPT_TWO));
-	return (PROMPT);
+	{
+		prompt = ft_strjoin_gnl((ft_strjoin(PROMPT_ONE,
+					ft_strrchr(pwd, '/') + 1)),PROMPT_TWO);
+		return (free(pwd), prompt);
+	}
+	return (free(pwd), PROMPT);
 }
 
 t_list *get_ls()
@@ -55,30 +41,16 @@ t_list *get_ls()
 	char *path;
 	struct dirent *ent;
 
-	list = 0;
+	list = NULL;
 	path = get_pwd();
 	op_dir = opendir(path);
 	ft_error_str(op_dir, 2);
 	while ((ent = readdir(op_dir)) != NULL)
 	{
 		if (ent->d_name[0] != '.')
-			ft_lstadd_back(&list, ft_lstnew(0, ent->d_name, NULL));
+			ft_lstadd_back(&list, ft_lstnew(0, ft_strdup(ent->d_name), NULL));
 	}
-	free(path);
-	return (list);
+	closedir(op_dir);
+	return (free(path), free(ent),list);
 }
 
-int	check_match(char	*word,char	*name)
-{
-	int j;
-	int i;
-	int start;
-	int end;
-
-while (name[i])
-{
-
-}
-
-
-}

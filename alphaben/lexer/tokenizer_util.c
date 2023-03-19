@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:29:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/11 17:58:10 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:29:03 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	skip_quote(t_list **list, char *line, int *i,char quote)
 
 	pt_quote[0] = quote;
 	if (ind_of_quote < 0)
-	add_token(list, TK_OPEN_QUOTE, pt_quote);
+		add_token(list, TK_OPEN_QUOTE, pt_quote);
 	else if (quote == '\'')
 		add_token(list, TK_SINGLE_QUOTE, ft_substr(line,*i + 1, ind_of_quote));
 	else if (quote == '"')

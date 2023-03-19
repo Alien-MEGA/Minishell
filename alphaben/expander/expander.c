@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 20:56:51 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/14 11:37:09 by ebennamr         ###   ########.fr       */
+/*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
+/*   Updated: 2023/03/17 15:23:21 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-void ft_lstclear(t_list **lst)
-{
-	t_list *tmp;
+#include "../minishell.h"
 
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		free((*lst)->value);
-		free(*lst);
-		*lst = tmp;
-	}
-}
+
+

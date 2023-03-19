@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 20:56:51 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/14 11:37:09 by ebennamr         ###   ########.fr       */
+/*   Created: 2023/03/14 12:58:51 by ebennamr          #+#    #+#             */
+/*   Updated: 2023/03/14 13:20:37 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-void ft_lstclear(t_list **lst)
-{
-	t_list *tmp;
+#include "../minishell.h"
 
-	while (*lst)
+void	env_b()
+{
+	int i;
+
+	i = 0;
+	export_to_env("_", "env", OPT_APPEND);
+
+	while (g_pub.env[i])
 	{
-		tmp = (*lst)->next;
-		free((*lst)->value);
-		free(*lst);
-		*lst = tmp;
+		printf("%s\n", g_pub.env[i]);
+		i++;
 	}
+	g_pub.exit_status = 0;
+
 }
