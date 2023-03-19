@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:18:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/18 12:05:17 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/19 13:53:06 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ typedef struct s_struct
 	int		j;
 }			t_loc;
 
-t_loc	ini_loc();
-/* ==============> Tokenizer <============== */
-int	check_quote(t_list *tokens);
+t_loc ini_loc(int i, int j);
+
+	/* ==============> Tokenizer <============== */
+	int check_quote(t_list *tokens);
 int	check_brace(t_list *tokens);
 /* ==============> /lexer_util/ <============== */
 int	istype(int t, int type);

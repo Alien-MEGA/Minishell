@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/18 19:10:25 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/19 15:40:40 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,31 @@ char *get_prompt(char *pwd)
 	return (free(pwd), PROMPT);
 }
 
+static void	sort_list(t_list *list, int i)
+{
+	int		len;
+	t_list	*head;
+	char 	*tmp;
+
+	len = ft_lstsize(list);
+	while (i < len )
+	{
+		head = list;
+		while (head->next != NULL)
+		{
+			if (ft_strcmp(head->value, (head->next)->value) > 0)
+			{
+				tmp = head->next->value;
+				head->next->value = head->value;
+				head->value= tmp;
+			}
+				head = head->next;
+		}
+		printf("=====================#=======#===========#=========#===========\n");
+		i++;
+	}
+}
+
 t_list *get_ls()
 {
 	t_list *list;
@@ -51,6 +76,11 @@ t_list *get_ls()
 			ft_lstadd_back(&list, ft_lstnew(0, ft_strdup(ent->d_name), NULL));
 	}
 	closedir(op_dir);
+	// if (list != NULL)
+	// 	sort_list(list, 0);
 	return (free(path), free(ent),list);
 }
 
+// Makefile built-in const.h expander lexer libft minishell minishell.c minishell.h minishell.o parser string.c string.o utils
+// Makefile:built-in:const.h:expander:lexer:libft:minishell:minishell.c:minishell.h:minishell.o:parser:string.c:string.o:utils:%
+//built - in : const.h : expander : lexer : libft : Makefile : minishell : minishell.c : minishell.h : minishell.o : parser : string.c : string.o : utils:

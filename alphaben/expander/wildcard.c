@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/18 19:12:10 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:32:36 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,14 @@ void	wildcard(t_list *list)
 	per_type = TK_WT_SPACE;
 	while (list)
 	{
-		bool = list->type == TK_WORD && !istype(per_type, TP_WORD) && list->type != TK_HERE_DOC;
+		bool = list->type == TK_WORD && (!istype(per_type, TP_WORD) && per_type != TK_HERE_DOC);
 		if (indexofchar(list->value, '*') != -1 && bool)
 		{
 			newlist = wild_card_expand(list->value);
 			if (newlist != NULL)
 				ft_insert(&list, newlist);
 		}
+
 	per_type = list->type;
 	list = list->next;
 	}
