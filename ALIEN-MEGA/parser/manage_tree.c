@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/18 00:36:42 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:43:04 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	skip_space(t_list **lst)
 {
-	if ((*lst)->type == TK_WT_SPACE)
+	if ((*lst) && (*lst)->type == TK_WT_SPACE)
 		(*lst) = (*lst)->next;
 }
 

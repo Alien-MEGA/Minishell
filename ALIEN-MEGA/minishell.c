@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/18 23:15:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:46:08 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int	prompt(t_list **lst)
 	char	*line;
 
 	line = readline(get_prompt(get_pwd()));
+	// line = ft_strdup("ls > outfile");
+	// line = ft_strdup("ls >> outfile");
+	// line = ft_strdup("cat < outfile");
+	// line = ft_strdup("cat << outfile");
 	if (line != NULL)
 		add_history(line);
 	if (line == NULL)

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/19 17:30:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:30:20 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	close_fd(int fd_in, int fd_out, int flag)
 {
 	if (flag == C_X)
 	{
-		if (isatty(fd_in) == 0)
+		if (fd_in >= 0 && isatty(fd_in) == 0)
 			ft_error(close(fd_in), 1);
-		if (isatty(fd_out) == 0)
+		if (fd_out >= 0 && isatty(fd_out) == 0)
 			ft_error(close(fd_out), 1);
 	}	
 	else if (flag == C_IN)
