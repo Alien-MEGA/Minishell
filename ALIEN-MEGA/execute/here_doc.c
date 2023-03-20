@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/17 16:01:45 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/19 20:58:05 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static void	ft_read_tmp(char *tmp_file, char *limiter)
 	limiter = ft_strjoin(limiter, "\n");
 	while (1)
 	{
-		ft_printf(1, "pipe heredoc> ");
+		ft_printf(2, "pipe heredoc> ");
 		str = get_next_line(0);
+		// str = readline("pipe heredoc> ");
 		if (!str || ft_strncmp(str, limiter, ft_strlen(limiter)) == 0)
 			break ;
 		ft_printf(fd_tmp, "%s", str);

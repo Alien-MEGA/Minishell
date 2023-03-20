@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/19 17:43:04 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:49:07 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	skip_space(t_list **lst)
 
 void	search_rd(t_list **new_rd, t_list **lst)
 {
-	while ((*lst) && (*lst)->type >= TK_RD_INPUT
-		&& (*lst)->type <= TK_RD_OUTPUT_APPEND
-		&& (*lst)->type != TK_CLOSE_BRACE)
+	while ((*lst) && (*lst)->type >= TK_HERE_DOC
+		&& (*lst)->type <= TK_RD_OUTPUT_APPEND)
 	{
 		ft_lstadd_back(new_rd, create_redirect(lst));
 		skip_space(lst);

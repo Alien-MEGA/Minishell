@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/19 18:35:53 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/20 04:24:59 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,29 @@ void	close_fd(int fd_in, int fd_out, int flag)
 		close(fd_out);
 }
 
-void	run_redirect(t_list *redirect)
+t_fd	run_redirect(t_list *redirect)
 {
-	int	fd_in;
-	int	fd_out;
+	t_fd	fd_rd;
 
-	fd_in = -2;
-	fd_out = -2;
+	fd_rd.fd_rd = -2;
+	fd_rd.fd_wr = -2;
 	if (!redirect)
-		return ;
+		return (fd_rd);
 	while (redirect)
 	{
 		if (redirect->type == TK_RD_OUTPUT)
-			fd_out = open(redirect->next->value, O_RDWR | O_TRUNC | O_CREAT, 0644);
+			fd_rd.fd_wr = open(redirect->next->value, O_RDWR | O_TRUNC | O_CREAT, 0644);
 		else if (redirect->type == TK_RD_OUTPUT_APPEND)
-			fd_out = open(redirect->next->value, O_RDWR | O_APPEND | O_CREAT, 0644);
-		ft_error(fd_out, 1);
+			fd_rd.fd_wr = open(redirect->next->value, O_RDWR | O_APPEND | O_CREAT, 0644);
+		ft_error(fd_rd.fd_wr, 1);
 		if (redirect->type == TK_RD_INPUT)
-			fd_in = open(redirect->next->value, O_RDONLY);
+			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
 		else if (redirect->type == TK_HERE_DOC)
-			fd_in = open(here_doc(redirect->next->value), O_RDONLY);
-		ft_error(fd_in, 1);
+			fd_rd.fd_rd = open(here_doc(redirect->next->value), O_RDONLY);
+		ft_error(fd_rd.fd_rd, 1);
 		redirect = redirect->next->next;
 	}
-	if (fd_in != -2)
-		ft_error(dup2(fd_in, STDIN_FILENO), 1);
-	if (fd_out != -2)
-		ft_error(dup2(fd_out, STDOUT_FILENO), 1);
-	close_fd(fd_in, fd_out, C_X);
+	return (fd_rd);
 }
 
 void	run_command(t_list *lst)
@@ -92,7 +87,6 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, t_flag flags)
 		ft_error(dup2(fd_in, STDIN_FILENO), 1);
 		ft_error(dup2(fd_out, STDOUT_FILENO), 1);
 		close_fd(fd_in, fd_out, flags.flag);
-		run_redirect(root->redirect_mode);
 		run_command(root->lst);
 	}
 	close_fd(fd_in, fd_out, flags.flag);
@@ -104,6 +98,7 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, t_flag flags)
 pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
 {
 	t_fd			fd_pipe;
+	t_fd			fd_red;
 	pid_t			pross;
 
 	if (!root || !root->lst)
@@ -111,8 +106,7 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
 	if (root->lst->type == TK_OR || root->lst->type == TK_AND)
 	{
 		execute(root->left, fd_in, fd_out, (t_flag) { .should_wait = TRUE, .flag = -1});
-		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
-			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
+		if (!(root->lst->type == TK_OR && g_pub.exit_status == 0))
 			execute(root->right, fd_in, fd_out, (t_flag) { .should_wait = TRUE, .flag = -1});
 	}
 	else if (root->lst->type == TK_PIPE)
@@ -124,6 +118,13 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
 			g_pub.exit_status = wait_pross(pross);
 	}
 	else
-		pross = run_x(root, fd_in, fd_out, flags);
+	{
+		fd_red = run_redirect(root->redirect_mode);
+		if (fd_red.fd_rd < 0)
+			fd_red.fd_rd = fd_in;
+		if (fd_red.fd_wr < 0)
+			fd_red.fd_wr = fd_out;
+		pross = run_x(root, fd_red.fd_rd, fd_red.fd_wr, flags);
+	}
 	return (pross);
 }
