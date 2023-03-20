@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/19 17:46:08 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:09:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ int	main(int argc, char **argv, char **env)
 		if (check_syntax(lst) == TRUE)
 		{
 			tree = mk_tree(lst);
-			execute(tree, STDIN_FILENO, STDOUT_FILENO, (t_flag) { .should_wait = TRUE, .flag = -1});
+			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
+
+
+
+
+
+
+
+
+
+
+
 			// exit(WEXITSTATUS(g_pub.exit_status));
-
-
-
-
-
-
-
-
-
-
-
 		}
 		ft_lstclear(&lst);
 	}

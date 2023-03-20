@@ -6,24 +6,17 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/20 04:24:59 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:07:51 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	close_fd(int fd_in, int fd_out, int flag)
+void	close_fd(int fd_in, int fd_out)
 {
-	if (flag == C_X)
-	{
-		if (isatty(fd_in) == 0)
-			close(fd_in);
-		if (isatty(fd_out) == 0)
-			close(fd_out);
-	}	
-	else if (flag == C_IN)
+	if (isatty(fd_in) == 0)
 		close(fd_in);
-	else if (flag == C_OUT)
+	if (isatty(fd_out) == 0)
 		close(fd_out);
 }
 
@@ -76,7 +69,7 @@ t_fd	create_pipe(void)
 	return (fd_pipe);	
 }
 
-pid_t	run_x(t_tree *root, int fd_in, int fd_out, t_flag flags)
+pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	pid_t	pross;
 
@@ -86,16 +79,16 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, t_flag flags)
 	{
 		ft_error(dup2(fd_in, STDIN_FILENO), 1);
 		ft_error(dup2(fd_out, STDOUT_FILENO), 1);
-		close_fd(fd_in, fd_out, flags.flag);
+		close_fd(fd_in, fd_out);
 		run_command(root->lst);
 	}
-	close_fd(fd_in, fd_out, flags.flag);
-	if (flags.should_wait)
+	close_fd(fd_in, fd_out);
+	if (should_wait)
 		g_pub.exit_status = wait_pross(pross);
 	return (pross);
 }
 
-pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
+pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	t_fd			fd_pipe;
 	t_fd			fd_red;
@@ -105,16 +98,16 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
 		return (-1);
 	if (root->lst->type == TK_OR || root->lst->type == TK_AND)
 	{
-		execute(root->left, fd_in, fd_out, (t_flag) { .should_wait = TRUE, .flag = -1});
+		execute(root->left, fd_in, fd_out, TRUE);
 		if (!(root->lst->type == TK_OR && g_pub.exit_status == 0))
-			execute(root->right, fd_in, fd_out, (t_flag) { .should_wait = TRUE, .flag = -1});
+			execute(root->right, fd_in, fd_out, TRUE);
 	}
 	else if (root->lst->type == TK_PIPE)
 	{
 		fd_pipe = create_pipe();
-		execute(root->left, fd_in, fd_pipe.fd_wr, (t_flag) { .should_wait = FALSE, .flag = C_X});
-		pross = execute(root->right, fd_pipe.fd_rd, fd_out, (t_flag) { .should_wait = FALSE, .flag = C_X});
-		if (flags.should_wait == TRUE)
+		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
+		pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
+		if (should_wait == TRUE)
 			g_pub.exit_status = wait_pross(pross);
 	}
 	else
@@ -124,7 +117,7 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, t_flag flags)
 			fd_red.fd_rd = fd_in;
 		if (fd_red.fd_wr < 0)
 			fd_red.fd_wr = fd_out;
-		pross = run_x(root, fd_red.fd_rd, fd_red.fd_wr, flags);
+		pross = run_x(root, fd_red.fd_rd, fd_red.fd_wr, should_wait);
 	}
 	return (pross);
 }
