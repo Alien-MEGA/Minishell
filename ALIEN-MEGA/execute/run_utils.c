@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/21 13:31:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:36:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	**ft_path(char *cmd)
 	int		i;
 
 	i = 0;
-	path = expand_env("PATH");
+	// path = expand_env("PATH"); // waiting for Update
+	path = ft_strdup("/Users/reben-ha/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
 	if (!path)
 		return (ft_printf(2, "Minishell : %s : No such file or directory\n"
 				, cmd), exit(127), NULL);
