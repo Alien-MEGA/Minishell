@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/21 17:34:48 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:58:11 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	run_command(t_list *lst)
 	cmd = (char **)malloc((ft_lstsize(lst) + 1) * sizeof(char *));
 	while (lst)
 	{
-		cmd[i] = ft_strdup(lst->value);
+		if (lst->type != TK_WT_SPACE)
+			cmd[i++] = ft_strdup(lst->value);
 		lst = lst->next;
-		i++;
 	}
 	cmd[i] = NULL;
 	execute_x(cmd, g_pub.env);
@@ -77,6 +77,8 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	pid_t	pross;
 
+	if (!root->lst)
+		return (-1);
 	pross = fork();
 	ft_error(pross, 1);
 	if (pross == 0)
@@ -98,15 +100,15 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	t_fd			fd_red;
 	pid_t			pross;
 
-	if (!root || !root->lst)
+	if (!root)
 		return (-1);
-	if (root->lst->type == TK_OR || root->lst->type == TK_AND)
+	if (root->lst && (root->lst->type == TK_OR || root->lst->type == TK_AND))
 	{
 		execute(root->left, fd_in, fd_out, TRUE);
 		if (!(root->lst->type == TK_OR && g_pub.exit_status == 0))
 			execute(root->right, fd_in, fd_out, TRUE);
 	}
-	else if (root->lst->type == TK_PIPE)
+	else if (root->lst && root->lst->type == TK_PIPE)
 	{
 		fd_pipe = create_pipe();
 		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);

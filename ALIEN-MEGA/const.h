@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/12 23:19:37 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:00:50 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define PROMPT "\e[1;32m┌──(Minishell㉿Aliens)\n└─$ \e[0m"
 # define PROMPT_1 "\e[1;32m┌──(Minishell㉿Aliens)\n"
 # define PROMPT_2 "\e[1;32m└─$ \e[0m"
-# define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[ ./"
-# define PROMPT_TWO " ]\n└─$ \e[0m"
+# define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[./"
+# define PROMPT_TWO "]\n└─$ \e[0m"
 //====== boolean ========
 # define FALSE 0
 # define TRUE 1

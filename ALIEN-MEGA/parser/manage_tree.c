@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/19 18:49:07 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:46:47 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ t_tree	*create_command(t_list **lst)
 	search_rd(&new_rd, lst);
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
 		return (bracket_handle(lst));
-	if (((*lst)->type >= TK_PIPE
+	if ((*lst)
+		&& ((*lst)->type >= TK_PIPE
 		&& (*lst)->type <= TK_OR)
 		&& (*lst)->type == TK_CLOSE_BRACE)
 		syntax_error((*lst)->value);
