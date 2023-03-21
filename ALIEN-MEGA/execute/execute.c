@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/20 23:07:51 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:34:48 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,18 @@ t_fd	run_redirect(t_list *redirect)
 
 void	run_command(t_list *lst)
 {
-	char	*cmd;
+	char	**cmd;
+	int		i;
 
-	cmd = NULL;
+	i = 0;
+	cmd = (char **)malloc((ft_lstsize(lst) + 1) * sizeof(char *));
 	while (lst)
 	{
-		cmd = ft_strjoin_gnl(cmd, lst->value);
+		cmd[i] = ft_strdup(lst->value);
 		lst = lst->next;
+		i++;
 	}
+	cmd[i] = NULL;
 	execute_x(cmd, g_pub.env);
 }
 

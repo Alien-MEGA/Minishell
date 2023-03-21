@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/20 23:08:18 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:35:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ typedef struct s_flag
 }			t_flag;
 
 char	*here_doc(char *delimiter);
-void	execute_x(char *argv, char **env);
+void	execute_x(char **cmd, char **env);
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
 int		wait_pross(pid_t pross);
 
