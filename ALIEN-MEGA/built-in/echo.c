@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:53 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/08 18:18:30 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:31:42 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*echo_mk_str(char *command, int option)
 		return (ft_strnstr(command, "echo", ft_strlen(command)) + 5);
 }
 /* Give full command line ,Ex : "echo -n hello" */
-void	echo_b(char *command_line)
+void	echo_cmd(char *command_line)
 {
 	char	*str;
 
