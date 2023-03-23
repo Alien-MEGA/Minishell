@@ -6,35 +6,42 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:53 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/22 15:31:42 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:16:59 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	echo_check_option(char *command_line)
+char	*cmd_join(char **cmd)
 {
-	if (ft_strnstr(command_line, "-n", ft_strlen(command_line)) != NULL)
-		return (TRUE);
-	return (FALSE);
+	int i;
+	char *cmd_line;
+
+	i = 0;
+	cmd_line = NULL;
+	while (cmd[++i])
+	{
+		cmd_line = ft_strjoin_gnl(cmd_line, cmd[i]);
+		cmd_line = ft_strjoin_gnl(cmd_line, " ");
+	}
+	return (cmd_line);
 }
 
-static char	*echo_mk_str(char *command, int option)
+void	echo_cmd(char **cmd)
 {
-	if (option == TRUE)
-		return (ft_strnstr(command, "echo -n", ft_strlen(command)) + 8);
+	char	*string;
+	int		flag;
+
+	flag = FALSE;
+	if (ft_strncmp(cmd[1], "-n", 2) == 0)
+	{
+		string = cmd_join(&cmd[2]);
+		flag = TRUE;
+	}
 	else
-		return (ft_strnstr(command, "echo", ft_strlen(command)) + 5);
-}
-/* Give full command line ,Ex : "echo -n hello" */
-void	echo_cmd(char *command_line)
-{
-	char	*str;
-
-	str = echo_mk_str(command_line,
-			echo_check_option(command_line));
-	if (TRUE == echo_check_option(command_line))
-		printf("%s", str);
-	else if (FALSE == echo_check_option(command_line))
-		printf("%s\n", str);
+		string = cmd_join(&cmd[1]);
+	if (flag == TRUE)
+		printf("%s", string);
+	else if (flag == FALSE)
+		printf("%s\n", string);
 }

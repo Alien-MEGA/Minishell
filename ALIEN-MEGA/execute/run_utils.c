@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/23 15:21:48 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:11:25 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,13 @@ int run_builtin(char **cmd)
 	int		i;
 
 	i = -1;
-	cmd_line = NULL;
-	while (cmd[++i])
-	{
-		cmd_line = ft_strjoin_gnl(cmd_line, cmd[i]);
-		cmd_line = ft_strjoin_gnl(cmd_line, " ");
-	}
+
 	if (ft_strncmp(cmd[0], "echo", 4) == 0)
-		echo_cmd(cmd_line);
+		echo_cmd(cmd);
 	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
-		cd_cmd(ft_strtrim(cmd_line + 2, " "));
+		cd_cmd(cmd[1]);
 	else if (ft_strncmp(cmd[0], "exit", 4) == 0)
-		exit_cmd(ft_strtrim(cmd_line + 4, " "));
+		exit_cmd(cmd);
 	else
 		return (-1);
 	// else if (ft_strncmp(cmd[0], "pwd", 3) == 0)

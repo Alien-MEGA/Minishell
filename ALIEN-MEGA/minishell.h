@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/22 15:33:41 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:11:45 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ int		check_var(char *var);
 void	print_export(char *var);
 /* ==============> built-in <============== */
 /* ==============> /built-in/ <============== */
-void	echo_cmd(char *command_line);
-void	exit_cmd(char *command_line);
+void	echo_cmd(char **cmd);
+void	exit_cmd(char **cmd);
 void	cd_cmd(char *path);
 /* ==============> Parser <============== */
 /* ==============> /parser/ <============== */
