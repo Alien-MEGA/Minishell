@@ -6,11 +6,41 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/21 20:22:19 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:21:48 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int run_builtin(char **cmd)
+{
+	char	*cmd_line;
+	int		i;
+
+	i = -1;
+	cmd_line = NULL;
+	while (cmd[++i])
+	{
+		cmd_line = ft_strjoin_gnl(cmd_line, cmd[i]);
+		cmd_line = ft_strjoin_gnl(cmd_line, " ");
+	}
+	if (ft_strncmp(cmd[0], "echo", 4) == 0)
+		echo_cmd(cmd_line);
+	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
+		cd_cmd(ft_strtrim(cmd_line + 2, " "));
+	else if (ft_strncmp(cmd[0], "exit", 4) == 0)
+		exit_cmd(ft_strtrim(cmd_line + 4, " "));
+	else
+		return (-1);
+	// else if (ft_strncmp(cmd[0], "pwd", 3) == 0)
+	// 	;
+	// else if (ft_strncmp(cmd[0], "export", 6) == 0)
+	// 	;
+	// else if (ft_strncmp(cmd[0], "unset", 5) == 0)
+	// 	;
+	// else if (ft_strncmp(cmd[0], "env", 3) == 0)
+	// 	;
+}
 
 int wait_pross(pid_t pross)	
 {
@@ -68,6 +98,7 @@ void	execute_x(char **cmd, char **env)
 	char	**paths;
 	char	*path;
 
+	run_builtin(cmd);
 	if (!env)
 		return (ft_printf(2, "Minishell : %s : No such file or directory\n"
 				, cmd[0]), exit(127));
