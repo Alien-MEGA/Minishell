@@ -6,13 +6,13 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/19 17:32:36 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:12:14 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int ismatch(char *wd_card, char *word)
+static int	ismatch(char *wd_card, char *word)
 {
 	if (*wd_card == '\0' && *word == '\0')
 		return (TRUE);
@@ -22,47 +22,52 @@ static int ismatch(char *wd_card, char *word)
 			wd_card++;
 	}
 	if (*wd_card == '*' && *(wd_card + 1) != '\0' && *word == '\0')
-		return FALSE;
+		return (FALSE);
 	if (*wd_card == *word)
-		return ismatch(wd_card + 1, word + 1);
-
+		return (ismatch(wd_card + 1, word + 1));
 	if (*wd_card == '*')
-		return ismatch(wd_card + 1, word) || ismatch(wd_card, word + 1);
+		return (ismatch(wd_card + 1, word) || ismatch(wd_card, word + 1));
 	return (FALSE);
 }
 
-t_list	*wild_card_expand(char *exper)
+static t_list	*wild_card_expand(char *exper)
 {
-	t_list	*newlist;
-	t_list	*list_file;
+	t_list	*nlst;
+	t_list	*lstfile;
 	t_list	*tmp;
 
-
-	list_file = get_ls();
-	tmp = list_file;
-	newlist = NULL;
-	if (list_file == NULL)
+	lstfile = get_ls();
+	tmp = lstfile;
+	nlst = NULL;
+	if (lstfile == NULL)
 		return (NULL);
-	while (list_file)
+	while (lstfile)
 	{
-		if (ismatch(exper, list_file->value))
+		if (ismatch(exper, lstfile->value))
 		{
-			ft_lstadd_back(&newlist, ft_lstnew(TK_WORD, ft_strdup(list_file->value), NULL));
-			ft_lstadd_back(&newlist, ft_lstnew(TK_WT_SPACE, ft_strdup(" "), NULL));
+			ft_lstadd_back(&nlst, ft_lstnew(0, ft_strdup(lstfile->value), 0));
+			ft_lstadd_back(&nlst, ft_lstnew(TK_WT_SPACE, ft_strdup(" "), NULL));
 		}
-	list_file = list_file->next;
+	lstfile = lstfile->next;
 	}
 	ft_lstclear(&tmp);
 	free(tmp);
-	return (newlist);
+	return (nlst);
 }
 
-static	void ft_insert(t_list **head, t_list *newlst)
+static	void	ft_insert(t_list **head, t_list *newlst)
 {
-	t_list *headnext;
+	t_list	*headnext;
+	t_list	*tmp;
 
 	headnext = (*head)->next;
-
+	if (headnext != NULL && headnext->type == TK_WT_SPACE)
+	{
+		tmp = headnext;
+		headnext = headnext->next;
+		free(tmp->value);
+		free(tmp);
+	}
 	free((*head)->value);
 	(*head)->value = newlst->value;
 	(*head)->value = newlst->value;
@@ -71,24 +76,51 @@ static	void ft_insert(t_list **head, t_list *newlst)
 	free(newlst);
 }
 
-void	wildcard(t_list *list)
+void	wildcard_cmd(t_list *list)
 {
-	t_list	*newlist;
-	int per_type;
-	int bool;
+	t_list	*nlst;
+	int		per_type;
+	int		bool;
 
 	per_type = TK_WT_SPACE;
 	while (list)
 	{
-		bool = list->type == TK_WORD && (!istype(per_type, TP_WORD) && per_type != TK_HERE_DOC);
+		bool = (list->type == TK_WORD && (!istype(per_type, T_W)));
 		if (indexofchar(list->value, '*') != -1 && bool)
 		{
-			newlist = wild_card_expand(list->value);
-			if (newlist != NULL)
-				ft_insert(&list, newlist);
+			nlst = wild_card_expand(list->value);
+			if (nlst != NULL)
+				ft_insert(&list, nlst);
 		}
-
 	per_type = list->type;
 	list = list->next;
+	}
+}
+
+void wildcard_redir(t_list *list)
+{
+	t_list	*nlst;
+	int		per_type;
+	int		len;
+
+	per_type = -1;
+	while (list)
+	{
+		if (list->type == TK_WORD &&  indexofchar(list->value, '*') != -1 && per_type != TK_HERE_DOC)
+		{
+			nlst = wild_card_expand(list->value);
+			len = ft_lstsize(nlst);
+			if (len > 1)
+			{
+				ft_printf(STDERR_FILENO, "minishell:*: ambiguous redirect");
+				ft_lstclear(&nlst);
+				exit(1);
+			}
+			if (nlst != NULL)
+				ft_insert(&list, nlst);
+		}
+		if (list->type == TK_HERE_DOC)
+			per_type = list->type;
+		list = list->next;
 	}
 }

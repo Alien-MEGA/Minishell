@@ -6,41 +6,74 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/19 18:57:14 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:38:52 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-t_list	*ft_fillter(t_list *lst)
+static t_list	*remove_empty(t_list *lst)
 {
-	int prev;
-	t_list	*newlst;
-	t_list *tmp;
+	int		prev;
+	t_list	*nlst;
+	t_list	*tmp;
 
-	prev = -1;
-	newlist = NULL;
+	prev = TK_AND;
+	nlst = NULL;
 	tmp = lst;
 	while (lst)
 	{
-		if (lst->vlaue[0] == 0)
+		if (lst->value[0] == '\0')
 		{
-			if (!(istype(prev, TP_WORD) ||(lst->next != NULL && istype(lst->type, TP_WORD))))
+			if (!(istype(prev, T_W) || (lst->next
+					&& !istype(lst->next->type, T_W))))
 			{
-				ft_lstadd_back(newlst, ft_lstnew(lst->type, lst->value, NULL));
+				ft_lstadd_back(&nlst,
+					ft_lstnew(lst->type, ft_strdup(lst->value), NULL));
 				prev = lst->type;
 			}
-			else
-			prev = TK_WT_SPACE;
-
 		}
-		esle
+		else
 		{
-			ft_lstadd_back(newlst, ft_lstnew(lst->type, lst->value, NULL));
+			ft_lstadd_back(&nlst, ft_lstnew(lst->type, ft_strdup(lst->value), NULL));
 			prev = lst->type;
 		}
 		lst = lst->next;
 	}
-	return(ft_lstclear(tmp), new)
+	return (ft_lstclear(&tmp), nlst);
+}
+
+static t_list	*remove_sapce(t_list *lst)
+{
+	int		prev;
+	int		bool;
+	t_list	*nlst;
+	t_list	*tmp;
+
+	prev = -1;
+	nlst = NULL;
+	tmp = lst;
+	while (lst)
+	{
+		bool = (!istype(prev, T_W)
+				|| !lst->next || !istype(lst->next->type, T_W));
+		if (lst->type == TK_WT_SPACE && bool)
+			prev = -1;
+		else
+		{
+			ft_lstadd_back(&nlst, ft_lstnew(lst->type,
+					ft_strdup(lst->value), 0));
+			prev = lst->type;
+		}
+		lst = lst->next;
+	}
+	return (ft_lstclear(&tmp), nlst);
+}
+
+t_list	*ft_fillter(t_list *lst)
+{
+	t_list	*tmp;
+
+	tmp = remove_empty(lst);
+	return (remove_sapce(tmp));
 }

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/18 18:27:44 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:41:57 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_token(t_list **list, int type, char *value)
 
 	new_node = ft_lstnew(type, ft_strdup(value), NULL);
 	ft_lstadd_back(list, new_node);
-	if (istype(type, TP_WORD))
+	if (istype(type, T_W))
 		free(value);
 }
 

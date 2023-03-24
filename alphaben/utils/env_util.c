@@ -6,10 +6,9 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:20:26 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/09 16:33:09 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:15:36 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -32,7 +31,8 @@ void	add_to_env(char *content)
 	g_pub.env[i + 1] = NULL;
 	free(tmp);
 }
-void	set_shlvl()
+
+void	set_shlvl(void)
 {
 	char	*old_value;
 	char	*new_value;
@@ -60,7 +60,7 @@ void	set_shlvl()
 	free(new_value);
 }
 
-void	fill_key_value_opt(char *arg,char **key,char **value,int *opt)
+void	fill_key_value_opt(char *arg, char **key, char **value, int *opt)
 {
 	int	index;
 

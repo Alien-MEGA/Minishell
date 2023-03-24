@@ -6,16 +6,16 @@
 #    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/18 15:37:53 by ebennamr         ###   ########.fr        #
+#    Updated: 2023/03/24 21:18:23 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = gcc -g
+CC = gcc -g #-fsanitize=address
 
-FLAGS = #-fsanitize=address#-Wall -Werror -Wextra
 
+FLAGS = # -Wall -Werror -Wextra
 SRC = minishell.c \
 		string.c \
 		./lexer/tokenizer.c \
@@ -36,9 +36,13 @@ SRC = minishell.c \
 		./parser/parser.c \
 		./parser/manage_tree.c \
 		./parser/tree_utils.c \
-		./parser/tool.c\
+		./parser/tool.c \
+		./expander/concater.c \
+		./expander/expander.c \
+		./expander/expander_util.c\
 		./expander/wildcard.c
 
+#		./execute/execute.c \ ./execute/here_doc.c \ ./execute/run_utils.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT = ./libft/libft.a
