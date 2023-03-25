@@ -6,24 +6,23 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/24 21:51:25 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:36:11 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int fd;
-void print_list(t_list *t)
+
+void	print_list(t_list *t)
 {
 	printf("\n");
 	while (t)
 	{
 		if (t->next)
-		printf("(%d:%s)->", t->type,t->value);
+			printf("(%d:%s)->", t->type,t->value);
 		else
-		printf("(%d:%s)", t->type, t->value);
+			printf("(%d:%s)", t->type, t->value);
 		t = t->next;
 	}
-
 }
 
 int	check_line(char *line)
@@ -64,15 +63,15 @@ int	main(int argc, char **argv, char **env)
 	t_list	*lst;
 	int		line_status;
 	t_tree	*tree;
-	if (fd < 0)
-		exit(0);
+
 	(void)argc;
 	g_pub.env = NULL;
 	g_pub.exp_list = malloc(sizeof(char *));
 	g_pub.exp_list[0] = NULL;
+	g_pub.isdef_env = FALSE;
 	load_env(argv[0], env);
 	atexit(at);
-	export_to_env("hello","valiue",OPT_CREAT);
+	export_to_env("PATH", ":ok", OPT_APPEND);
 	while (1)
 	{
 		lst = NULL;
@@ -82,7 +81,6 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		if (check_syntax(lst) == TRUE)
 		{
-
 		lst = ft_fillter(lst);
 		//ft_lstclear(&tmp);
 		printf("filter: ");
@@ -90,13 +88,12 @@ int	main(int argc, char **argv, char **env)
 		 t_list *tmp = lst;
 		 lst = concater(lst);
 		  ft_lstclear(&tmp);
-		 // wildcard_cmd(lst);
+		  wildcard_cmd(lst);
 		 // wildcard_redir(lst);
 		 print_list(lst);
 		 ft_lstclear(&lst);
 		}
 		else
 		ft_lstclear(&lst);
-
 	}
 }

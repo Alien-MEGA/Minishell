@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/23 17:14:17 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:40:13 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@
 /* ==============> Tools <============== */
 # define SP_CHAR "'\"<>()| \t"
 # define CL_DEFAULT "\e[0m"
-# define PROMPT "\e[1;32m┌──(Minishell㉿Aliens)\n└─$ \e[0m"
+# define PROMPT "#GREEN ┌──(Minishell㉿Aliens)\n└─$ \e[0m"
 # define PROMPT_1 "\e[1;32m┌──(Minishell㉿Aliens)\n"
 # define PROMPT_2 "\e[1;32m└─$ \e[0m"
 # define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[./"
 # define PROMPT_TWO "]\n└─$ \e[0m"
+//#define FIRE_PORMPT GREEN "┌──(" RED "Fire🔥Shell" GREEN ")\n└─$"
 //====== boolean ========
 # define FALSE 0
 # define TRUE 1

@@ -6,13 +6,13 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/23 18:20:41 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:16:03 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void sigint_handler(int sig)
+void	sigint_handler(int sig)
 {
 	char	*prompt;
 
