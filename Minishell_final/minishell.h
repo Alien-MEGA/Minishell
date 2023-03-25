@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/25 22:55:06 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/25 23:00:15 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,11 @@ void	printTree(t_tree *tree);
 /* ==============> expender <============== */
 /* ==============> /expender/ <============== */
 void	wildcard_cmd(t_list *list);
-void	wildcard_redir(t_list *list);
+int		wildcard_redir(t_list *list);
 void	exapnd_var_list(t_list *lst);
 t_list	*ft_fillter(t_list *lst);
 t_list	*concater(t_list *lst);
+int 	expander(t_tree *node);
 void	print_list(t_list *t);
 
 /* ==============> execute <============== */

@@ -6,13 +6,13 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/23 18:09:44 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/25 23:16:52 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = gcc -g
+CC = gcc -g -fsanitize=address
 
 FLAGS =  #-Wall -Werror -Wextra -fsanitize=address
 
@@ -37,6 +37,10 @@ SRC = minishell.c \
 		./parser/manage_tree.c \
 		./parser/tree_utils.c \
 		./parser/tool.c \
+		./expander/concater.c \
+		./expander/expander.c \
+		./expander/expander_util.c \
+		./expander/wildcard.c \
 		./execute/execute.c \
 		./execute/here_doc.c \
 		./execute/run_utils.c

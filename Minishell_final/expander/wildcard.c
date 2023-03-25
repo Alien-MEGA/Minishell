@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/25 22:35:16 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/25 23:12:20 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,5 @@ int	wildcard_redir(t_list *list)
 			per_type = list->type;
 		list = list->next;
 	}
-		return (TRUE);
+	return (TRUE);
 }
