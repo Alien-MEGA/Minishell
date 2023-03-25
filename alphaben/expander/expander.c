@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/24 16:50:37 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/25 22:34:18 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,12 @@ void	exapnd_var_list(t_list *lst)
 	}
 }
 
-void	expander(t_list lst)
+int expander(t_tree *node)
 {
-	//exapnd_var_list(lst)
+	exapnd_var_list(node->redirect_mode);
+	exapnd_var_list(node->lst);
+	if (wildcard_redir(node->lst) == FALSE)
+		retrun (FALSE);
+	wildcard_cmd(node->lst);
+	retrun (TRUE);
 }

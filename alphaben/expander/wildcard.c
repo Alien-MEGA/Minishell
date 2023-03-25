@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/24 18:12:14 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/25 22:35:16 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	wildcard_cmd(t_list *list)
 	}
 }
 
-void wildcard_redir(t_list *list)
+int	wildcard_redir(t_list *list)
 {
 	t_list	*nlst;
 	int		per_type;
@@ -114,7 +114,7 @@ void wildcard_redir(t_list *list)
 			{
 				ft_printf(STDERR_FILENO, "minishell:*: ambiguous redirect");
 				ft_lstclear(&nlst);
-				exit(1);
+				return (FALSE);
 			}
 			if (nlst != NULL)
 				ft_insert(&list, nlst);
@@ -123,4 +123,5 @@ void wildcard_redir(t_list *list)
 			per_type = list->type;
 		list = list->next;
 	}
+		return (TRUE);
 }
