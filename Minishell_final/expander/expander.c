@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/25 23:13:25 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/25 23:21:40 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ int expander(t_tree *node)
 {
 	exapnd_var_list(node->redirect_mode);
 	exapnd_var_list(node->lst);
-	concater(node->redirect_mode);
-	concater(node->lst);
+	node->redirect_mode = concater(node->redirect_mode);
+	node->lst = concater(node->lst);
 	if (wildcard_redir(node->redirect_mode) == FALSE)
 		return (FALSE);
 	wildcard_cmd(node->lst);
