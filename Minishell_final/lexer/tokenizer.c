@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/23 17:41:57 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/26 17:26:34 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int check_teken1(char *line, int *i, t_list **list)
 	else if (line[*i] == '<' && *i < len - 1 && line[*i + 1] == '<')
 		add_token(list, TK_HERE_DOC, "<<");
 	else if (line[*i] == '>' && *i < len - 1 && line[*i + 1] == '>')
-		add_token(list, TK_HERE_DOC, ">>");
+		add_token(list, TK_RD_OUTPUT_APPEND, ">>");
 	else if (line[*i] == '&' && *i < len - 1 && line[*i + 1] == '&')
 		add_token(list, TK_AND, "&&");
 	else
