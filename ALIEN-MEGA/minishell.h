@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/23 17:11:45 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/25 23:00:15 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	export_args(char **args);
 void	export_to_explist(char *arg);
 void	add_to_export(char *content);
 void	unset_from_exp(char *key);
-
+int		index_in_env(char *key);
 /* ==============> /utils/signal/ <============== */
 void	sig_inint(void);
 	/* ==============> /utils/unset <============== */
@@ -160,6 +160,16 @@ t_tree	*mk_tree(t_list *lst);
 
 void	printList(t_list *lst, t_list *rd);
 void	printTree(t_tree *tree);
+
+/* ==============> expender <============== */
+/* ==============> /expender/ <============== */
+void	wildcard_cmd(t_list *list);
+int		wildcard_redir(t_list *list);
+void	exapnd_var_list(t_list *lst);
+t_list	*ft_fillter(t_list *lst);
+t_list	*concater(t_list *lst);
+int 	expander(t_tree *node);
+void	print_list(t_list *t);
 
 /* ==============> execute <============== */
 /* ==============> /execute/ <============== */

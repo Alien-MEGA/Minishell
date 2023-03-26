@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/12 23:19:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:16:03 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	sigint_handler(int sig)
 {
+	char	*prompt;
+
+	prompt = get_prompt(get_pwd());
 	printf("\n");
 	rl_on_new_line();
+	if (isatty(0))
+		ft_printf(1, prompt);
 	rl_replace_line("", 0);
-	ft_printf(2, PROMPT_1);
 	rl_redisplay();
+	free(prompt);
 	g_pub.exit_status = sig;
 }
 

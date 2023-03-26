@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:20:26 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/12 23:17:14 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:15:36 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	set_shlvl(void)
 	free(new_value);
 }
 
-void	fill_key_value_opt(char *arg,char **key,char **value,int *opt)
+void	fill_key_value_opt(char *arg, char **key, char **value, int *opt)
 {
 	int	index;
 

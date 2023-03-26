@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/21 20:00:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/25 22:52:05 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define PROMPT_2 "\e[1;32m└─$ \e[0m"
 # define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[./"
 # define PROMPT_TWO "]\n└─$ \e[0m"
+//#define FIRE_PORMPT GREEN "┌──(" RED "Fire🔥Shell" GREEN ")\n└─$"
 //====== boolean ========
 # define FALSE 0
 # define TRUE 1
@@ -41,9 +42,9 @@
 # define LEFT 0
 # define RIGHT 1
 // type ========
-# define TP_OPER 0
-# define TP_REDIR 1
-# define TP_WORD 2
+# define T_O 0
+# define T_R 1
+# define T_W 2
 /* ==============> String  <============== */
 # define SHLVL "SHLVL=1"
 # define DEFAULT_PATH "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."

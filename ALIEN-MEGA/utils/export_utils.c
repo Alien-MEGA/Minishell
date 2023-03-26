@@ -6,10 +6,9 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:33:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/08 19:24:01 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:16:57 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -20,9 +19,8 @@ int	check_var(char *var)
 
 	if (var[0] != '_' && !ft_isalpha(var[0]))
 		return (FALSE);
-		i = 1;
-		len = ft_strlen(var);
-
+	i = 1;
+	len = ft_strlen(var);
 	while (i < len)
 	{
 		if (var[i] != '_' && !ft_isalnum(var[i]))
@@ -35,29 +33,29 @@ int	check_var(char *var)
 void	print_export(char *var)
 {
 	int	i;
-	int index;
+	int	index;
 
 	index = indexofchar(var, '=');
 	i = 0;
 	printf("%s", DECLARE_X);
 	while (var[i])
 	{
-		printf("%c",var[i]);
+		printf("%c", var[i]);
 		if (i == index)
-		printf("\"");
+			printf("\"");
 		i++;
 	}
-	if(index > 0)
+	if (index > 0)
 		printf("\"\n");
 	else
 		printf("\n");
 }
 
-void add_to_export(char *content)
+void	add_to_export(char *content)
 {
-	int len;
-	char **tmp;
-	int i;
+	int		len;
+	char	**tmp;
+	int		i;
 
 	tmp = g_pub.exp_list;
 	len = (int)ft_matlen(g_pub.exp_list);
@@ -80,20 +78,18 @@ void	unset_from_exp(char *key)
 
 	i = 0;
 	len = ft_matlen(g_pub.exp_list);
-	if(g_pub.exp_list[0] == NULL)
-	return ;
-	while (g_pub.env[i] != NULL && ft_strcmp(key,g_pub.exp_list[i]) != 0)
+	if (g_pub.exp_list[0] == NULL)
+		return ;
+	while (g_pub.env[i] != NULL && ft_strcmp(key, g_pub.exp_list[i]) != 0)
 	{
-	i++;
-
+		i++;
 	}
-		if (i < len)
+	if (i < len)
 		free(g_pub.exp_list[i]);
-		while (i < len - 1)
-		{
-			g_pub.exp_list[i] = g_pub.exp_list[i + 1];
-			i++;
-		}
-		g_pub.exp_list[i] = NULL;
-
+	while (i < len - 1)
+	{
+		g_pub.exp_list[i] = g_pub.exp_list[i + 1];
+		i++;
+	}
+	g_pub.exp_list[i] = NULL;
 }

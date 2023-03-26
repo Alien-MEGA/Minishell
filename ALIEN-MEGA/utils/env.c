@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:16:59 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/12 23:18:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:11:09 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	index_in_env(char *key)
+int	index_in_env(char *key)
 {
 	char	*join;
 	int		i;
@@ -59,18 +59,25 @@ void	export_to_env(char *key, char *value, int option)
 	char	*tmp;
 
 	tmp = NULL;
+	if (g_pub.isdef_env == TRUE && strcmp(key, "PATH") == 0)
+	{
+		g_pub.isdef_env = FALSE;
+		if (option == OPT_APPEND)
+			export_to_env(key, g_pub.path, OPT_CREAT);
+	}
 	join = ft_strjoin(key, "=");
 	index = index_in_env(key);
 	if (index >= 0 && OPT_CREAT == option)
 	{
 		tmp = g_pub.env[index];
-		g_pub.env[index] = ft_strjoin_gnl(join, value);
+		g_pub.env[index] = ft_strjoin(join, value);
 	}
 	else if (index >= 0 && OPT_APPEND == option)
-			g_pub.env[index] = ft_strjoin_gnl(g_pub.env[index], value);
+		g_pub.env[index] = ft_strjoin_gnl(g_pub.env[index], value);
 	else
-		add_to_env(ft_strjoin_gnl(join, value));
+		add_to_env(ft_strjoin(join, value));
 	free(tmp);
+	free(join);
 }
 
 void	unset_var(char *key)
@@ -78,6 +85,11 @@ void	unset_var(char *key)
 	int	index;
 	int	len;
 
+	if (g_pub.isdef_env == TRUE && strcmp(key, "PATH") == 0)
+	{
+		free(g_pub.path);
+		g_pub.isdef_env = FALSE;
+	}
 	if (g_pub.env[0] == NULL)
 		return ;
 	index = index_in_env(key);
@@ -100,9 +112,13 @@ char	*expand_env(char *key)
 	int		len;
 
 	i = 0;
+	if (ft_strcmp(key, "?") == 0)
+		return (ft_itoa(g_pub.exit_status));
+	if (g_pub.isdef_env == TRUE && strcmp(key, "PATH") == 0)
+		return (strdup(g_pub.path));
 	join = ft_strjoin(key, "=");
-	len = ft_strlen(join);
 	ft_error_str(join, 1);
+	len = ft_strlen(join);
 	unset_from_exp(key);
 	while (g_pub.env[i])
 	{
