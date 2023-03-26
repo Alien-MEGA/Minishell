@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/25 23:21:40 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/26 22:26:58 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,22 @@ void	exapnd_var_list(t_list *lst)
 
 	while (lst)
 	{
-		if (lst->type != TK_SINGLE_QUOTE && iscontain_var(lst->value))
+		if (lst->type == TK_HERE_DOC)
 		{
-			tmp = lst->value;
-			lst->value = expand_word(tmp, 0, 0);
-			free(tmp);
+			lst = lst->next;
+			while (lst && istype(lst->type, T_W))
+				lst = lst->next;
+			if (lst == NULL)
+				break ;
+		}
+		else if (lst->type != TK_SINGLE_QUOTE && iscontain_var(lst->value))
+		 {
+		 tmp = lst->value;
+		 lst->value = expand_word(tmp, 0, 0);
+		 free(tmp);
 		}
 
 		lst = lst->next;
-		// if (lst->type == TK_HERE_DOC)
-		// lst->next->type = TK_SINGLE_QUOTE;
 	}
 }
 
