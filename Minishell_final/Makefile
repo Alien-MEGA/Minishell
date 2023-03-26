@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/26 18:37:14 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/26 20:17:10 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,22 +17,25 @@ CC = gcc -g -fsanitize=address
 FLAGS =  #-Wall -Werror -Wextra -fsanitize=address
 
 SRC = minishell.c \
-		string.c \
 		./lexer/tokenizer.c \
 		./lexer/tokenizer_util.c \
 		./lexer/lexer.c \
 		./lexer/lexer_util.c \
+		./utils/string.c \
 		./utils/pwd.c \
 		./utils/env.c \
 		./utils/env_util.c \
 		./utils/export.c \
 		./utils/export_utils.c \
-		./utils/unset.c \
 		./utils/helper.c \
 		./utils/signal.c \
-		./built-in/echo.c \
-		./built-in/exit.c \
-		./built-in/cd.c \
+		./built-in/cd_cmd.c \
+		./built-in/echo_cmd.c \
+		./built-in/env_cmd.c \
+		./built-in/exit_cmd.c \
+		./built-in/export_cmd.c \
+		./built-in/pwd_cmd.c \
+		./built-in/unset_cmd.c \
 		./parser/parser.c \
 		./parser/manage_tree.c \
 		./parser/tree_utils.c \

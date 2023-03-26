@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/23 18:20:01 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:46:17 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+// Note : use this to get pwd
 char	*get_pwd(void)
 {
 	char	cwd[PATH_MAX];
 
 	getcwd(cwd, sizeof(cwd));
 	ft_error_str(cwd, 1);
-	return (strdup(cwd));
+	return (ft_strdup(cwd));
 }
 
 char	*get_prompt(char *pwd)

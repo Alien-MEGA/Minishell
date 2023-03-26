@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/25 21:49:27 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:27:50 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ int run_builtin(char **cmd)
 
 	i = -1;
 
-	if (ft_strncmp(cmd[0], "echo", 4) == 0)
+	if (ft_strcmp(cmd[0], "echo") == 0)
 		echo_cmd(cmd);
-	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
+	else if (ft_strcmp(cmd[0], "cd") == 0)
 		cd_cmd(cmd[1]);
-	else if (ft_strncmp(cmd[0], "exit", 4) == 0)
+	else if (ft_strcmp(cmd[0], "exit") == 0)
 		exit_cmd(cmd);
+	else if (ft_strcmp(cmd[0], "pwd") == 0)
+		pwd_cmd();
+	else if (ft_strcmp(cmd[0], "export") == 0)
+		export_cmd(cmd);
+	else if (ft_strcmp(cmd[0], "unset") == 0)
+		unset_cmd(&cmd[1]);
+	else if (ft_strcmp(cmd[0], "env") == 0)
+		env_cmd();
 	else
 		return (-1);
-	// else if (ft_strncmp(cmd[0], "pwd", 3) == 0)
-	// 	;
-	// else if (ft_strncmp(cmd[0], "export", 6) == 0)
-	// 	;
-	// else if (ft_strncmp(cmd[0], "unset", 5) == 0)
-	// 	;
-	// else if (ft_strncmp(cmd[0], "env", 3) == 0)
-	// 	;
+	if (g_pub.should_fork == TRUE)
+		exit(g_pub.exit_status);
+	return (SUCCESS);
 }
 
 int wait_pross(pid_t pross)	
@@ -73,8 +76,7 @@ char	**ft_path(char *cmd)
 	int		i;
 
 	i = 0;
-	path = expand_env("PATH"); // waiting for Update
-	// path = ft_strdup("/Users/reben-ha/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
+	path = expand_env("PATH");
 	if (!path)
 		return (ft_printf(2, "Minishell : %s : No such file or directory\n"
 				, cmd), exit(127), NULL);
@@ -93,7 +95,8 @@ void	execute_x(char **cmd, char **env)
 	char	**paths;
 	char	*path;
 
-	run_builtin(cmd);
+	if (run_builtin(cmd) != FAIL)
+		return ;
 	if (!env) // change to expend_env();
 		return (ft_printf(2, "Minishell : %s : No such file or directory\n"
 				, cmd[0]), exit(127));

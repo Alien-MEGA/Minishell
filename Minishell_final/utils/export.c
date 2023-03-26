@@ -3,58 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:31:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/23 18:04:13 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:01:32 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	export(void)
-{
-	char	**arr;
-	int		i;
-
-	i = 0;
-	arr = mat_join(g_pub.env, g_pub.exp_list);
-	sort_mat(arr);
-	while (arr[i])
-	{
-		print_export(arr[i]);
-		i++;
-	}
-	ft_free(arr);
-}
-
-void	export_args(char **args)
-{
-	char	*key;
-	char	*value;
-	int		opt;
-
-	while (*args)
-	{
-		if (valid_arg(*args) == FALSE)
-		{
-			ft_printf(2, "minishell: export: '%s': not a valid identifier\n",
-				*args);
-			g_pub.exit_status = 1;
-		}
-		else if (indexofchar(*args, '=') == -1 && index_in_env(*args) == -1)
-			export_to_explist(ft_strdup(*args));
-		else
-		{
-			fill_key_value_opt(*args, &key, &value, &opt);
-			unset_from_exp(key);
-			export_to_env(key, value, opt);
-			free(key);
-			free(value);
-		}
-		args++;
-	}
-}
 
 void	export_to_explist(char *arg)
 {
@@ -115,8 +71,8 @@ void	sort_mat(char **arr)
 				arr[j] = arr[j + 1];
 				arr[j + 1] = tmp;
 			}
-		j++;
+			j++;
 		}
-	i++;
+		i++;
 	}
 }

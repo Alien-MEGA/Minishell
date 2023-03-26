@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/25 22:52:05 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:27:35 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 //====== boolean ========
 # define FALSE 0
 # define TRUE 1
+# define SUCCESS 0
 //====== option ========
 # define OPT_CREAT 0
 # define OPT_APPEND 1

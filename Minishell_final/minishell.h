@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:27 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/25 23:00:15 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:12:34 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_public
 	char			**exp_list;
 	char			*path;
 	int				isdef_env;
+	int				should_fork;
 }					t_public;
 
 t_public	g_pub;
@@ -114,8 +115,6 @@ void	unset_from_exp(char *key);
 int		index_in_env(char *key);
 /* ==============> /utils/signal/ <============== */
 void	sig_inint(void);
-	/* ==============> /utils/unset <============== */
-void	unset_cmd(char **args);
 /* ==============> /utils/export <============== */
 void	sort_mat(char **arr);
 void	export(void);
@@ -128,6 +127,11 @@ void	print_export(char *var);
 void	echo_cmd(char **cmd);
 void	exit_cmd(char **cmd);
 void	cd_cmd(char *path);
+void	unset_cmd(char **cmd);
+void	pwd_cmd(void);
+void	export_cmd(char **cmd);
+void	env_cmd(void);
+
 /* ==============> Parser <============== */
 /* ==============> /parser/ <============== */
 typedef struct s_tree

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:38:13 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/12 23:12:09 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:09:14 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	cd_cmd(char *path)
 	if (path == NULL)
 		cd_to_home();
 	else if (chdir(path) == FAIL)
-		perror("minishell:cd:");
+		perror("minishell : cd");
 	else
 	{
 		pwd = get_pwd();

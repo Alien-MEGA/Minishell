@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   unset_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:16:07 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/24 22:02:06 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:32:58 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	unset_cmd(char **args)
+void unset_cmd(char **cmd)
 {
 	g_pub.exit_status = 0;
-	if (*args == NULL)
-		exit(0);
-	while (*args)
+	if (*cmd == NULL)
+		return;
+	while (*cmd)
 	{
-		if (check_var(*args) != TRUE)
+		if (check_var(*cmd) != TRUE)
+		{
+			ft_printf(2, "minishell: unset: '%s': not a valid identifier\n",
+				*cmd);
 			g_pub.exit_status = 1;
+			return ;
+		}
 		else
 		{
-			unset_var(*args);
-			unset_from_exp(*args);
+			unset_var(*cmd);
+			unset_from_exp(*cmd);
 		}
-		printf("args: %s",*args);
-		args++;
+		cmd++;
 	}
-	exit(g_pub.exit_status);
 }

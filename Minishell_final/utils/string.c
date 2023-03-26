@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:53:30 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/07 18:00:23 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:15:59 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	indexofchar(char *line, char c)
 {
