@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 21:45:46 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:04:06 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,8 @@ char	*get_prompt(char *pwd);
 t_list	*get_ls(void);
 void	sigint_handler(int sig);
 void	sigquit_handler(int sig);
+void	seg_herdoc();
+void	seg_default();
 void	sig_inint(void);
 int		indexofchar(char *line, char c);
 char	**mat_join(char **s1, char **s2);
