@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/25 23:17:41 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/27 19:52:06 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_line(char *line)
+static int	check_line(char *line)
 {
 	int	i;
 
@@ -26,24 +26,34 @@ int	check_line(char *line)
 	return (TRUE);
 }
 
-int	prompt(t_list **lst)
+static int	prompt(t_list **lst)
 {
 	char	*line;
-
-	line = readline(get_prompt(get_pwd()));
-	// line = ft_strdup("touch text");
-	// line = ft_strdup("ls >> outfile");
-	// line = ft_strdup("cat < outfile");
-	// line = ft_strdup("cat << outfile");
+	char	*prompt;
+	prompt = get_prompt(get_pwd());
+	if (isatty(0))
+		printf("%s", prompt);
+	free(prompt);
+		line = readline("$");
 	if (line != NULL)
 		add_history(line);
 	if (line == NULL)
 		exit(g_pub.exit_status);
 	if (check_line(line) == FALSE)
-		return (FALSE);
+		return (free(line), FALSE);
 	create_token_list(lst, line);
-	free(line);
-	return (TRUE);
+	return (free(line), TRUE);
+}
+
+static void init(int argc, char **argv, char **env)
+{
+	(void)argc;
+	g_pub.env = NULL;
+	g_pub.exp_list = malloc(sizeof(char *));
+	g_pub.exp_list[0] = NULL;
+	g_pub.exit_status = 0;
+	load_env(argv[0], env);
+	sig_inint();
 }
 
 int	main(int argc, char **argv, char **env)
@@ -51,12 +61,7 @@ int	main(int argc, char **argv, char **env)
 	t_list	*lst;
 	int		line_status;
 	t_tree	*tree;
-
-	(void)argc;
-	g_pub.env = NULL;
-	g_pub.exp_list = malloc(sizeof(char *));
-	g_pub.exp_list[0] = NULL;
-	load_env(argv[0], env);
+	init(argc, argv, env);
 	while (1)
 	{
 		lst = NULL;

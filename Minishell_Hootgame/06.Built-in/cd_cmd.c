@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:38:13 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:32:36 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	cd_cmd(char *path)
 		pwd = get_pwd();
 		export_to_env("OLDPWD", oldpwd, OPT_CREAT);
 		export_to_env("PWD", pwd, OPT_CREAT);
-		g_pub.exit_status = 0;
 		free(pwd);
 		free(oldpwd);
 	}
+		g_pub.exit_status = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 18:12:53 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/27 19:49:32 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static char *get_prompt_ex_st()
 		return (free(status), tmp);
 	}
 }
+
 char	*get_pwd(void)
 {
 	char	cwd[PATH_MAX];
