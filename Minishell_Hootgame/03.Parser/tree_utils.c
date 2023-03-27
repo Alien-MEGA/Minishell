@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/27 02:42:28 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_tree	*ft_treelast(t_tree *tree, int option)
 
 void	ft_treeadd_back(t_tree **tree, t_tree *new, int option)
 {
-	t_tree	*last;
-
 	if (!tree)
 		return ;
 	if (!(*tree))

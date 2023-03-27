@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/03/27 02:27:33 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/03/27 02:42:06 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = gcc -g
 
-FLAGS =  #-Wall -Werror -Wextra -fsanitize=address
+FLAGS = -Wall -Werror -Wextra
 
 SRC = ./01.Main/minishell.c \
 	./02.Lexer/lexer.c \
