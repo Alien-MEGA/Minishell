@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:33:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/27 02:45:25 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	add_to_export(char *content)
 	char	**tmp;
 	int		i;
 
+	i = 0;
 	tmp = g_pub.exp_list;
 	len = (int)ft_matlen(g_pub.exp_list);
 	g_pub.exp_list = malloc(sizeof(char *) * (len + 2));

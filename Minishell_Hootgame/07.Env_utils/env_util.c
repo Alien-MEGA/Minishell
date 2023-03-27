@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:20:26 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/27 02:45:02 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	add_to_env(char *content)
 	char	**tmp;
 	int		i;
 
+	i = 0;
 	tmp = g_pub.env;
 	env_len = (int)ft_matlen(g_pub.env);
 	g_pub.env = malloc(sizeof(char *) * (env_len + 2));

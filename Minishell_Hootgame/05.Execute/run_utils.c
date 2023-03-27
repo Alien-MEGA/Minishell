@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/27 02:44:42 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int run_builtin(char **cmd)
 {
-	char	*cmd_line;
 	int		i;
 
 	i = -1;
-
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		echo_cmd(cmd);
 	else if (ft_strcmp(cmd[0], "cd") == 0)

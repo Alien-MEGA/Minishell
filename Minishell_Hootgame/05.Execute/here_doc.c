@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/27 02:44:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*generator_tmp(void)
 	char		*gen_tmp;
 	int			*num;
 	int			status;
-	int			number;
 
 	num = malloc(10);
 	status = read(open("/dev/urandom", O_RDONLY), num, 10);
