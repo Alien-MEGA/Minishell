@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:15:23 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	syntax_error(char *token)
 {
 	return (ft_printf(2,
-		"%sMinishell : syntax error near unexpected `%s'%s\n",
-		RED, token, RESET),
+			"%sMinishell : syntax error near unexpected `%s'%s\n",
+			RED, token, RESET),
 		exit(258));
 }
 
@@ -38,7 +38,7 @@ t_tree	*pipeline(t_list **lst)
 
 	tree = create_command(lst);
 	while (*lst
-			&& (*lst)->type == TK_PIPE)
+		&& (*lst)->type == TK_PIPE)
 	{
 		ft_treeswap_root(&tree, create_operator(lst), LEFT);
 		tree->right = create_command(lst);
@@ -52,7 +52,7 @@ t_tree	*or_and(t_list **lst)
 
 	tree = pipeline(lst);
 	while ((*lst)
-			&& ((*lst)->type == TK_OR
+		&& ((*lst)->type == TK_OR
 			|| (*lst)->type == TK_AND))
 	{
 		ft_treeswap_root(&tree, create_operator(lst), LEFT);
