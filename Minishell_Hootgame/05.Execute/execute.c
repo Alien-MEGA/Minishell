@@ -6,11 +6,20 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:44:18 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:25:50 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
+
+void	dup_fd(int fd_in, int fd_out)
+{
+	if (fd_in < 0 && fd_out < 0)
+		return ;
+	ft_error(dup2(fd_in, STDIN_FILENO), 1);
+	ft_error(dup2(fd_out, STDOUT_FILENO), 1);
+	close_fd(fd_in, fd_out);
+}
 
 void	close_fd(int fd_in, int fd_out)
 {
@@ -45,7 +54,7 @@ t_fd	run_redirect(t_list *redirect)
 	return (fd_rd);
 }
 
-void	run_command(t_list *lst)
+char	**get_cmd(t_list *lst)
 {
 	char	**cmd;
 	int		i;
@@ -59,7 +68,7 @@ void	run_command(t_list *lst)
 		lst = lst->next;
 	}
 	cmd[i] = NULL;
-	execute_x(cmd, g_pub.env);
+	return (cmd);
 }
 
 t_fd	create_pipe(void)
@@ -76,17 +85,20 @@ t_fd	create_pipe(void)
 pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	pid_t	pross;
+	char	**cmd;
 
 	if (!root->lst)
 		return (-1);
+	cmd = get_cmd(root->lst);
+	if (g_pub.should_fork != TRUE)
+		if (run_builtin(cmd, fd_in, fd_out) == SUCCESS)
+			return (-1);
 	pross = fork();
 	ft_error(pross, 1);
 	if (pross == 0)
 	{
-		ft_error(dup2(fd_in, STDIN_FILENO), 1);
-		ft_error(dup2(fd_out, STDOUT_FILENO), 1);
-		close_fd(fd_in, fd_out);
-		run_command(root->lst);
+		dup_fd(fd_in, fd_out);
+		execute_x(cmd, g_pub.env);
 	}
 	close_fd(fd_in, fd_out);
 	if (should_wait)
@@ -105,14 +117,18 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	pross = -1;
 	if (root->lst && (root->lst->type == TK_OR || root->lst->type == TK_AND))
 	{
+		g_pub.should_fork = FALSE;
 		execute(root->left, fd_in, fd_out, TRUE);
+		g_pub.should_fork = FALSE;
 		if (!(root->lst->type == TK_OR && g_pub.exit_status == 0))
 			execute(root->right, fd_in, fd_out, TRUE);
 	}
 	else if (root->lst && root->lst->type == TK_PIPE)
 	{
 		fd_pipe = create_pipe();
+		g_pub.should_fork = TRUE;
 		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
+		g_pub.should_fork = TRUE;
 		pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
 		if (should_wait == TRUE)
 			g_pub.exit_status = wait_pross(pross);

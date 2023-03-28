@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 22:04:06 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:02:31 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,12 @@ typedef struct s_fd
 
 void	close_fd(int fd_in, int fd_out);
 t_fd	run_redirect(t_list *redirect);
-void	run_command(t_list *lst);
+char	**get_cmd(t_list *lst);
+void	dup_fd(int fd_in, int fd_out);
 t_fd	create_pipe(void);
 pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait);
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
-int 	run_builtin(char **cmd);
+int 	run_builtin(char **cmd, int fd_in, int fd_out);
 int 	wait_pross(pid_t pross)	;
 int		find_path(char **paths);
 void	ft_apply_now(char *path, char **cmd, char **env);

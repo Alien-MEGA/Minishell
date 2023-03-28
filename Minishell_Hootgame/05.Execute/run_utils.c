@@ -6,36 +6,33 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:44:42 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:19:43 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-int run_builtin(char **cmd)
+int run_builtin(char **cmd, int fd_in, int fd_out)
 {
 	int		i;
 
 	i = -1;
 	if (ft_strcmp(cmd[0], "echo") == 0)
-		echo_cmd(cmd);
+		return (dup_fd(fd_in, fd_out), echo_cmd(cmd), SUCCESS);
 	else if (ft_strcmp(cmd[0], "cd") == 0)
-		cd_cmd(cmd[1]);
+		return (dup_fd(fd_in, fd_out), cd_cmd(cmd[1]), SUCCESS);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
-		exit_cmd(cmd);
+		return (dup_fd(fd_in, fd_out), exit_cmd(cmd), SUCCESS);
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
-		pwd_cmd();
+		return (dup_fd(fd_in, fd_out), pwd_cmd(), SUCCESS);
 	else if (ft_strcmp(cmd[0], "export") == 0)
-		export_cmd(cmd);
+		return (dup_fd(fd_in, fd_out), export_cmd(cmd), SUCCESS);
 	else if (ft_strcmp(cmd[0], "unset") == 0)
-		unset_cmd(&cmd[1]);
+		return (dup_fd(fd_in, fd_out), unset_cmd(&cmd[1]), SUCCESS);
 	else if (ft_strcmp(cmd[0], "env") == 0)
-		env_cmd();
+		return (dup_fd(fd_in, fd_out), env_cmd(), SUCCESS);
 	else
-		return (-1);
-	if (g_pub.should_fork == TRUE)
-		exit(g_pub.exit_status);
-	return (SUCCESS);
+		return (FAIL);
 }
 
 int wait_pross(pid_t pross)	
@@ -93,8 +90,8 @@ void	execute_x(char **cmd, char **env)
 	char	**paths;
 	char	*path;
 
-	if (run_builtin(cmd) != FAIL)
-		return ;
+	if (run_builtin(cmd, -1, -1) == SUCCESS)
+		exit(g_pub.exit_status);
 	if (!env) // change to expend_env();
 		return (ft_printf(2, "Minishell : %s : No such file or directory\n"
 				, cmd[0]), exit(127));
