@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 20:25:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:17:35 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ t_fd	run_redirect(t_list *redirect)
 	while (redirect)
 	{
 		if (redirect->type == TK_RD_OUTPUT)
-			fd_rd.fd_wr = open(redirect->next->value, O_RDWR | O_TRUNC | O_CREAT, 0644);
+			fd_rd.fd_wr = open(redirect->next->value,
+					O_RDWR | O_TRUNC | O_CREAT, 0644);
 		else if (redirect->type == TK_RD_OUTPUT_APPEND)
-			fd_rd.fd_wr = open(redirect->next->value, O_RDWR | O_APPEND | O_CREAT, 0644);
+			fd_rd.fd_wr = open(redirect->next->value,
+					O_RDWR | O_APPEND | O_CREAT, 0644);
 		ft_error(fd_rd.fd_wr, 1);
 		if (redirect->type == TK_RD_INPUT)
 			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
@@ -73,13 +75,13 @@ char	**get_cmd(t_list *lst)
 
 t_fd	create_pipe(void)
 {
-	int 	fd[2];
+	int		fd[2];
 	t_fd	fd_pipe;
 
 	ft_error(pipe(fd), 1);
 	fd_pipe.fd_rd = fd[0];
 	fd_pipe.fd_wr = fd[1];
-	return (fd_pipe);	
+	return (fd_pipe);
 }
 
 pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)

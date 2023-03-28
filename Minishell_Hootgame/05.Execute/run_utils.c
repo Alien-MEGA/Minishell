@@ -6,13 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 20:19:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:19:52 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-int run_builtin(char **cmd, int fd_in, int fd_out)
+int	run_builtin(char **cmd, int fd_in, int fd_out)
 {
 	int		i;
 
@@ -35,9 +35,9 @@ int run_builtin(char **cmd, int fd_in, int fd_out)
 		return (FAIL);
 }
 
-int wait_pross(pid_t pross)	
+int	wait_pross(pid_t pross)
 {
-	int status;
+	int	status;
 
 	waitpid(pross, &status, 0);
 	while (wait(NULL) != -1)
@@ -92,9 +92,6 @@ void	execute_x(char **cmd, char **env)
 
 	if (run_builtin(cmd, -1, -1) == SUCCESS)
 		exit(g_pub.exit_status);
-	if (!env) // change to expend_env();
-		return (ft_printf(2, "Minishell : %s : No such file or directory\n"
-				, cmd[0]), exit(127));
 	if (ft_strchr_check(cmd[0], '/'))
 		ft_apply_now(cmd[0], cmd, env);
 	paths = ft_path(cmd[0]);
