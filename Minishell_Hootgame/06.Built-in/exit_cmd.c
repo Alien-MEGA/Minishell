@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:55 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:44:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:10:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	exit_cmd(char **cmd)
 {
 	char	*parameter;
 
-	if (cmd[1] == NULL)
+	if (cmd == NULL || cmd[0] == NULL)
 		return (ft_printf(2, "exit\n"),
-				exit(0));
-	if (cmd[2] != NULL)
+			exit(g_pub.exit_status));
+	if (cmd[1] != NULL)
+	{
+		g_pub.exit_status = 1;
 		return (ft_printf(2,
-				"exit\nMinishell : exit: too many arguments\n"), exit(1));
-	parameter = ft_strdup(cmd[1]);
+				"exit\nMinishell : exit: too many arguments\n"));
+	}
+	// Note : if not number
 	return (ft_printf(2, "exit\n"),
-			exit(ft_atoi(parameter)));
+		exit(ft_atoi(cmd[0])));
 }

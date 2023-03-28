@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 21:19:52 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:21:12 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	run_builtin(char **cmd, int fd_in, int fd_out)
 
 	i = -1;
 	if (ft_strcmp(cmd[0], "echo") == 0)
-		return (dup_fd(fd_in, fd_out), echo_cmd(cmd), SUCCESS);
+		return (dup_fd(fd_in, fd_out), echo_cmd(&cmd[1]), SUCCESS);
 	else if (ft_strcmp(cmd[0], "cd") == 0)
 		return (dup_fd(fd_in, fd_out), cd_cmd(cmd[1]), SUCCESS);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
-		return (dup_fd(fd_in, fd_out), exit_cmd(cmd), SUCCESS);
+		return (dup_fd(fd_in, fd_out), exit_cmd(&cmd[1]), SUCCESS);
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
 		return (dup_fd(fd_in, fd_out), pwd_cmd(), SUCCESS);
 	else if (ft_strcmp(cmd[0], "export") == 0)

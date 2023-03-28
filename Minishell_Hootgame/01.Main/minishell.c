@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 22:01:39 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:00:25 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	prompt(t_list **lst)
 	if (line != NULL)
 		add_history(line);
 	if (line == NULL)
-		exit(g_pub.exit_status);
+		exit_cmd(NULL);
 	if (check_line(line) == FALSE)
 		return (free(line), FALSE);
 	create_token_list(lst, line);
