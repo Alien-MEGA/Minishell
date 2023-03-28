@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 18:20:59 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:42:55 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[/"
 # define PROMPT_TWO "]\n└─$ \e[0m"
 
-#define PROMPT_P1 "\n\033[34;1m┌──< Fire🔥Shell >-( "
-#define	PROMPT_P2 " )-[ "
+#define PROMPT_P1 "\n\033[34;1m┌──(Mini㉿Shell)-["
+#define	PROMPT_P2 "]-[ "
 #define PROMPT_P3 "\033[34;1m ]\n└─$ \e[0m"
 
 //#define FIRE_PORMPT GREEN "┌──(" RED "Fire🔥Shell" GREEN ")\n└─$"
