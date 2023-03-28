@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 20:02:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:12:52 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	ft_treeclear(t_tree **tree);
 void	wildcard_cmd(t_list *list);
 int		wildcard_redir(t_list *list);
 void	exapnd_var_list(t_list *lst);
-int 	expander(t_tree *node);
+int		expander(t_tree *node);
 t_list	*ft_filter(t_list *lst); // Note Used
 t_list	*concater(t_list *lst);
 
@@ -141,8 +141,8 @@ void	dup_fd(int fd_in, int fd_out);
 t_fd	create_pipe(void);
 pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait);
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
-int 	run_builtin(char **cmd, int fd_in, int fd_out);
-int 	wait_pross(pid_t pross)	;
+int		run_builtin(char **cmd, int fd_in, int fd_out);
+int		wait_pross(pid_t pross);
 int		find_path(char **paths);
 void	ft_apply_now(char *path, char **cmd, char **env);
 char	**ft_path(char *cmd);
@@ -192,11 +192,11 @@ char	*get_prompt(char *pwd);
 t_list	*get_ls(void);
 void	sigint_handler(int sig);
 void	sigquit_handler(int sig);
-void	seg_herdoc();
-void	seg_default();
+void	seg_herdoc(void);
+void	seg_default(void);
 void	sig_inint(void);
 int		indexofchar(char *line, char c);
 char	**mat_join(char **s1, char **s2);
-int		ft_strcmp( char *str1,  char *str2);
+int		ft_strcmp(char *str1, char *str2);
 
 #endif
