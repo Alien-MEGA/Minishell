@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 21:17:35 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:45:08 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 		g_pub.should_fork = FALSE;
 		execute(root->left, fd_in, fd_out, TRUE);
 		g_pub.should_fork = FALSE;
-		if (!(root->lst->type == TK_OR && g_pub.exit_status == 0))
+		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
+			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
 			execute(root->right, fd_in, fd_out, TRUE);
 	}
 	else if (root->lst && root->lst->type == TK_PIPE)
