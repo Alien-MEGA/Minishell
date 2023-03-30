@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 21:21:12 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:52:45 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	wait_pross(pid_t pross)
 	waitpid(pross, &status, 0);
 	while (wait(NULL) != -1)
 		;
-	return (status);
+	return (WEXITSTATUS(status));
 }
 
 int	find_path(char **paths)
