@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/30 14:24:03 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:24:18 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void init(int argc, char **argv, char **env)
 	g_pub.exit_status = 0;
 	load_env(argv[0], env);
 	sig_inint();
-	// rl_catch_signals = 0; Note : ??
+	rl_catch_signals = 0;
 }
 
 int	main(int argc, char **argv, char **env)
