@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/31 21:48:19 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:52:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@
 # define T_R 1
 # define T_W 2
 // sig type ======
-#define TP_SIG_MAIN 0
-#define TP_SIG_HRDC 1
-#define TP_SIG_CHILD 2
-#define TP_SIG_EMPTY 3
+# define TP_SIG_MAIN 0
+# define TP_SIG_HRDC 1
+# define TP_SIG_CHILD 2
+# define TP_SIG_EMPTY 3
 /* ==============> String  <============== */
 # define SHLVL "SHLVL=1"
 # define DEFAULT_PATH "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."
