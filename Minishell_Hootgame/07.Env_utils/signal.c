@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/31 21:47:42 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:57:25 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../01.Main/minishell.h"
 
 static void sigint_handler(int sig)
 {

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/31 18:24:18 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/31 23:18:16 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	prompt(t_list **lst)
 {
 	char	*line;
 	char	*prompt;
+
 	prompt = get_prompt(get_pwd());
 	line = readline(prompt);
 	free(prompt);
@@ -43,7 +44,7 @@ static int	prompt(t_list **lst)
 	return (free(line), TRUE);
 }
 
-static void init(int argc, char **argv, char **env)
+static void	init(int argc, char **argv, char **env)
 {
 	(void)argc;
 	g_pub.env = NULL;
@@ -51,7 +52,7 @@ static void init(int argc, char **argv, char **env)
 	g_pub.exp_list[0] = NULL;
 	g_pub.exit_status = 0;
 	load_env(argv[0], env);
-	sig_inint();
+	sig_inint(TP_SIG_MAIN);
 	rl_catch_signals = 0;
 }
 
@@ -60,6 +61,7 @@ int	main(int argc, char **argv, char **env)
 	t_list	*lst;
 	int		line_status;
 	t_tree	*tree;
+
 	init(argc, argv, env);
 	while (1)
 	{
@@ -67,6 +69,7 @@ int	main(int argc, char **argv, char **env)
 		line_status = prompt(&lst);
 		if (line_status == FALSE)
 			continue ;
+		lst = ft_filter(lst);
 		if (check_syntax(lst) == TRUE)
 		{
 			tree = mk_tree(lst);

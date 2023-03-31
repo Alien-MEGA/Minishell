@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/31 21:53:03 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:58:03 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_public
 	char			**exp_list;
 	char			*path;
 	int				isdef_env;
+	int				is_sigset;
 	int				should_fork;
 }					t_public;
 
