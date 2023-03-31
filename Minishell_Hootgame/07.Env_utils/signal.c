@@ -6,45 +6,64 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/29 18:31:02 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:47:42 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../01.Main/minishell.h"
-
-void	sigint_handler(int sig)
+static void sigint_handler(int sig)
 {
-	char	*prompt;
+	char *prompt;
 	g_pub.exit_status = 130;
 	(void)sig;
 	prompt = get_prompt(get_pwd());
 	printf("\n");
-	//rl_on_new_line();
 	if (isatty(0))
 		ft_printf(1, prompt);
 	rl_replace_line("", 0);
-	//printf("\r\r\r");
 	rl_redisplay();
 	free(prompt);
 }
 
-void	sigquit_handler(int sig)
+void sig_empty(int sig)
 {
 	(void)sig;
 }
 
-void	sig_inint(void)
+static void sig_child(int sig)
 {
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
+	if (sig == SIGINT)
+		exit(130);
+	if (sig == SIGQUIT)
+		exit(131);
 }
 
-void	seg_default()
+static void sig_herdoc(int sig)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	g_pub.is_sigset = TRUE;
+	close(0);
 }
-void	seg_herdoc()
-{
 
+void sig_inint(int type)
+{
+	if (type == TP_SIG_MAIN)
+	{
+		signal(SIGINT, sigint_handler);
+		signal(SIGQUIT, sig_empty);
+	}
+	else if (type == TP_SIG_CHILD)
+	{
+		signal(SIGINT, sig_child);
+		signal(SIGQUIT, sig_child);
+	}
+	else if (type == TP_SIG_HRDC)
+	{
+		g_pub.is_sigset = FALSE;
+		signal(SIGINT, sig_herdoc);
+		signal(SIGQUIT, sig_empty);
+	}
+	else if (type == TP_SIG_EMPTY)
+	{
+		signal(SIGINT, sig_empty);
+		signal(SIGQUIT, sig_empty);
+	}
 }

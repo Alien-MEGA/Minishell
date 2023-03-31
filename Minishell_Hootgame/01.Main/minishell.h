@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 21:12:52 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:49:54 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,11 +190,7 @@ void	unset_from_exp(char *key);
 char	*get_pwd(void);
 char	*get_prompt(char *pwd);
 t_list	*get_ls(void);
-void	sigint_handler(int sig);
-void	sigquit_handler(int sig);
-void	seg_herdoc(void);
-void	seg_default(void);
-void	sig_inint(void);
+void sig_inint(int type);
 int		indexofchar(char *line, char c);
 char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
