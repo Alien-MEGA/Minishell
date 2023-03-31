@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 18:42:55 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:43:02 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define CONST_H
 
 /* ==============> Color <============== */
-#define RED     "\033[31;3m"
+# define RED     "\033[31;3m"
 # define GREEN   "\033[0;32m"
 # define YELLOW  "\033[0;33m"
-#define BLUE	"\033[34;1m"
+# define BLUE	"\033[34;1m"
 # define MAGENTA "\033[0;35m"
 # define CYAN    "\033[0;36m"
 # define WHITE   "\033[0;37m"
@@ -32,9 +32,9 @@
 # define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[/"
 # define PROMPT_TWO "]\n└─$ \e[0m"
 
-#define PROMPT_P1 "\n\033[34;1m┌──(Mini㉿Shell)-["
-#define	PROMPT_P2 "]-[ "
-#define PROMPT_P3 "\033[34;1m ]\n└─$ \e[0m"
+# define PROMPT_P1 "\n\033[34;1m┌──(Mini㉿Shell)-["
+# define PROMPT_P2 "]-[ "
+# define PROMPT_P3 "\033[34;1m ]\n└─$ \e[0m"
 
 //#define FIRE_PORMPT GREEN "┌──(" RED "Fire🔥Shell" GREEN ")\n└─$"
 //====== boolean ========
