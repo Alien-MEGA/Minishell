@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/29 19:30:23 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:04:53 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_tree	*create_operator(t_list **lst)
 		(*lst) = (*lst)->next;
 	return (operator);
 }
-// Note : Need More test
+
 t_list	*create_redirect(t_list **lst)
 {
 	t_list	*new_node;
@@ -88,7 +88,7 @@ t_list	*create_redirect(t_list **lst)
 		(*lst) = (*lst)->next;
 	skip_space(lst);
 	while ((*lst)
-			&& !((*lst)->type >= TK_PIPE
+		&& !((*lst)->type >= TK_PIPE
 			&& (*lst)->type <= TK_WT_SPACE))
 	{
 		ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
