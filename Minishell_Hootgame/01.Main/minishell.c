@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/01 01:37:24 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:54:47 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	main(int argc, char **argv, char **env)
 
 
 
-		dup2(fd, 0);
-		close(fd);
+			dup2(fd, 0);
+			close(fd);
 			// exit(0);
 			// exit(WEXITSTATUS(g_pub.exit_status));
 		}
