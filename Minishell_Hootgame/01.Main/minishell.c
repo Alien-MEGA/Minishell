@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/01 01:07:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/01 01:37:24 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int argc, char **argv, char **env)
 	init(argc, argv, env);
 	while (1)
 	{
+		int fd = dup(0);
 		lst = NULL;
 		line_status = prompt(&lst);
 		if (line_status == FALSE)
@@ -76,11 +77,13 @@ int	main(int argc, char **argv, char **env)
 			tree = mk_tree(lst);
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 			sig_inint(TP_SIG_MAIN);
+			g_pub.is_sigset = FALSE;
 
 
 
 
-
+		dup2(fd, 0);
+		close(fd);
 			// exit(0);
 			// exit(WEXITSTATUS(g_pub.exit_status));
 		}
