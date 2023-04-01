@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/01 00:20:12 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:45:56 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	pid_t			pross;
 
 	if (!root)
-		return (-1);
-	pross = -1;
+		return (-2);
+	pross = -2;
 	if (root->lst && (root->lst->type == TK_OR || root->lst->type == TK_AND))
 	{
 		g_pub.should_fork = FALSE;
