@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 21:18:24 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/03/31 23:31:48 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ char	*here_doc(char *delimiter)
 
 	tmp_file = generator_tmp();
 	ft_read_tmp(tmp_file, delimiter);
+	if (g_pub.is_sigset)
+		unlink(tmp_file);
 	return (tmp_file);
 }

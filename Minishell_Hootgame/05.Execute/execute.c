@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/30 14:55:47 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/01 00:20:12 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,14 @@ t_fd	run_redirect(t_list *redirect)
 		if (redirect->type == TK_RD_INPUT)
 			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
 		else if (redirect->type == TK_HERE_DOC)
+		{
+			sig_inint(TP_SIG_HRDC);
 			fd_rd.fd_rd = open(here_doc(redirect->next->value), O_RDONLY);
-		ft_error(fd_rd.fd_rd, 1);
+		}
+		if (g_pub.is_sigset == FALSE)
+			ft_error(fd_rd.fd_rd, 1);
+		else
+			return (fd_rd);
 		redirect = redirect->next->next;
 	}
 	return (fd_rd);
@@ -121,18 +127,28 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	{
 		g_pub.should_fork = FALSE;
 		execute(root->left, fd_in, fd_out, TRUE);
+		if (pross == FAIL)
+			return (FAIL);
 		g_pub.should_fork = FALSE;
 		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
 			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
+		{
 			execute(root->right, fd_in, fd_out, TRUE);
+			if (pross == FAIL)
+				return (FAIL);
+		}
 	}
 	else if (root->lst && root->lst->type == TK_PIPE)
 	{
 		fd_pipe = create_pipe();
 		g_pub.should_fork = TRUE;
 		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
+		if (pross == FAIL)
+			return (FAIL);
 		g_pub.should_fork = TRUE;
 		pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
+		if (pross == FAIL)
+			return (FAIL);
 		if (should_wait == TRUE)
 			g_pub.exit_status = wait_pross(pross);
 	}
@@ -141,6 +157,8 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 		if (expander(root) == FALSE)
 			return (-1);
 		fd_red = run_redirect(root->redirect_mode);
+		if (g_pub.is_sigset == TRUE)
+			return (FAIL);
 		if (fd_red.fd_rd < 0)
 			fd_red.fd_rd = fd_in;
 		if (fd_red.fd_wr < 0)

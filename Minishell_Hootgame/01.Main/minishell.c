@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/31 23:18:16 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/01 01:07:31 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	init(int argc, char **argv, char **env)
 	g_pub.exp_list = malloc(sizeof(char *));
 	g_pub.exp_list[0] = NULL;
 	g_pub.exit_status = 0;
+	g_pub.is_sigset = FALSE;
 	load_env(argv[0], env);
 	sig_inint(TP_SIG_MAIN);
 	rl_catch_signals = 0;
@@ -74,11 +75,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			tree = mk_tree(lst);
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
-
-
-
-
-
+			sig_inint(TP_SIG_MAIN);
 
 
 
