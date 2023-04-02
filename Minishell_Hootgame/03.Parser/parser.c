@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/28 21:15:23 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:46:11 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 void	syntax_error(char *token)
 {
 	return (ft_printf(2,
-			"%sMinishell : syntax error near unexpected `%s'%s\n",
-			RED, token, RESET),
-		exit(258));
+			"Minishell : syntax error near unexpected `%s'\n",
+			token), exit(258));
 }
 
 t_tree	*bracket_handle(t_list **lst)
