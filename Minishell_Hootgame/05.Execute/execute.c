@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/02 01:07:11 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/02 02:44:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	dup_fd(int fd_in, int fd_out)
 		return ;
 	ft_error(dup2(fd_in, STDIN_FILENO), 1);
 	ft_error(dup2(fd_out, STDOUT_FILENO), 1);
-	close_fd(fd_in, fd_out);
+	// close_fd(fd_in, fd_out);
 }
 
 void	close_fd(int fd_in, int fd_out)
@@ -96,11 +96,18 @@ char	**get_cmd(t_list *lst)
 t_fd	create_pipe(void)
 {
 	int		fd[2];
+	int		*fd_in;
 	t_fd	fd_pipe;
 
 	ft_error(pipe(fd), 1);
 	fd_pipe.fd_rd = fd[0];
 	fd_pipe.fd_wr = fd[1];
+	fd_in = (int *)malloc(sizeof(int));
+	*fd_in = fd[0];
+	ft_lstadd_back(&g_pub.fd_lst, ft_lstnew(-1, NULL, fd_in));
+	fd_in = (int *)malloc(sizeof(int));
+	*fd_in = fd[1];
+	ft_lstadd_back(&g_pub.fd_lst, ft_lstnew(-1, NULL, fd_in));
 	return (fd_pipe);
 }
 
@@ -120,9 +127,10 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 	if (pross == 0)
 	{
 		dup_fd(fd_in, fd_out);
+		close_all_fd();
 		execute_x(cmd, g_pub.env);
 	}
-	close_fd(fd_in, fd_out);
+	// close_fd(fd_in, fd_out);
 	if (should_wait)
 		g_pub.exit_status = wait_pross(pross);
 	return (pross);

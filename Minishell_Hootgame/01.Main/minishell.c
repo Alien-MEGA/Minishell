@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/01 19:54:47 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:19:24 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	init(int argc, char **argv, char **env)
 {
 	(void)argc;
 	g_pub.env = NULL;
+	g_pub.fd_lst = NULL;
 	g_pub.exp_list = malloc(sizeof(char *));
 	g_pub.exp_list[0] = NULL;
 	g_pub.exit_status = 0;
