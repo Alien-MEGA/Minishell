@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/01 01:07:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:00:04 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_public
 	int				isdef_env;
 	int				is_sigset;
 	int				should_fork;
+	t_list			*fd_lst;
 }					t_public;
 
 t_public	g_pub;
