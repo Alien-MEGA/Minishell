@@ -6,11 +6,25 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/01 19:45:56 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:07:11 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
+
+void	close_all_fd(void)
+{
+	t_list	*fd_lst;
+	int		*fd;
+
+	fd_lst = g_pub.fd_lst;
+	while (fd_lst)
+	{
+		fd = (int *)fd_lst->data;
+		close(*fd);
+		fd_lst = fd_lst->next;
+	}
+}
 
 void	dup_fd(int fd_in, int fd_out)
 {
