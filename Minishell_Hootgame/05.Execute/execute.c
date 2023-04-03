@@ -148,14 +148,14 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	if (root->lst && (root->lst->type == TK_OR || root->lst->type == TK_AND))
 	{
 		g_pub.should_fork = FALSE;
-		execute(root->left, fd_in, fd_out, TRUE);
+		execute(root->left, fd_in, fd_out, TRUE);/*                           <=== Before Here paste FALSE for close fd   */
 		if (pross == FAIL)
 			return (FAIL);
 		g_pub.should_fork = FALSE;
 		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
 			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
 		{
-			execute(root->right, fd_in, fd_out, TRUE);
+			execute(root->right, fd_in, fd_out, TRUE);/*                  <=== Before Here paste TRUE for close fd   */
 			if (pross == FAIL)
 				return (FAIL);
 		}
