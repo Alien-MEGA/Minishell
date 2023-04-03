@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:38:13 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 18:32:36 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/03 00:43:32 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	cd_cmd(char *path)
 		export_to_env("PWD", pwd, OPT_CREAT);
 		free(pwd);
 		free(oldpwd);
-	}
 		g_pub.exit_status = 0;
+	}
 }

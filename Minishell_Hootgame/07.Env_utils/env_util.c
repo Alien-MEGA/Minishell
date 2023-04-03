@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:20:26 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 02:45:02 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/03 00:37:32 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ void	fill_key_value_opt(char *arg, char **key, char **value, int *opt)
 	{
 		*key = ft_substr(arg, 0, index);
 		*value = ft_substr(arg, index + 1, ft_strlen(&arg[index + 1]));
-		*opt = OPT_APPEND;
+		*opt = OPT_CREAT;
 	}
 }

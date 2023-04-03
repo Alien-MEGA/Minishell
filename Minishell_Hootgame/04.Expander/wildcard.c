@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:40:13 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,28 +100,28 @@ void	wildcard_cmd(t_list *list)
 int	wildcard_redir(t_list *list)
 {
 	t_list	*nlst;
-	int		per_type;
-	int		len;
 
-	per_type = -1;
 	while (list)
 	{
-		if (list->type == TK_WORD &&  indexofchar(list->value, '*') != -1 && per_type != TK_HERE_DOC)
+		if (list->type == TK_WORD && indexofchar(list->value, '*') != -1)
 		{
 			nlst = wild_card_expand(list->value);
-			len = ft_lstsize(nlst);
-			if (len > 1)
+			if (ft_lstsize(nlst) > 2)
 			{
-				ft_printf(STDERR_FILENO, "minishell:*: ambiguous redirect");
-				ft_lstclear(&nlst);
-				return (FALSE);
+				ft_printf(STDERR_FILENO, "minishell:*: ambiguous redirect \n");
+				return (ft_lstclear(&nlst), FALSE);
 			}
 			if (nlst != NULL)
-				ft_insert(&list, nlst);
+			{
+				free(list->value);
+				list->value = ft_strdup(nlst->value);
+				ft_lstclear(&nlst);
+			}
 		}
 		if (list->type == TK_HERE_DOC)
-			per_type = list->type;
-		list = list->next;
+			list = list->next->next;
+		else
+			list = list->next;
 	}
 	return (TRUE);
 }

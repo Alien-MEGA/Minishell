@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:29:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:11:41 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,11 @@ void	skip_wt_sapce(t_list **list, char *line, int *i)
 void	skip_quote(t_list **list, char *line, int *i,char quote)
 {
 	int ind_of_quote;
-	char pt_quote[2];
 
 	ind_of_quote = indexofchar(&line[*i + 1], quote);
 
-	pt_quote[0] = quote;
 	if (ind_of_quote < 0)
-		add_token(list, TK_OPEN_QUOTE, pt_quote);
+		add_token(list, TK_OPEN_QUOTE, "'");
 	else if (quote == '\'')
 		add_token(list, TK_SINGLE_QUOTE, ft_substr(line,*i + 1, ind_of_quote));
 	else if (quote == '"')

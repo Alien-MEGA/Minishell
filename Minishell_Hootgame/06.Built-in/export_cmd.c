@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 20:01:49 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:35:29 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	export_args(char **args)
 		}
 		else if (indexofchar(*args, '=') == -1 && index_in_env(*args) == -1)
 			export_to_explist(ft_strdup(*args));
-		else
+		else if (indexofchar(*args, '=') != -1)
 		{
 			fill_key_value_opt(*args, &key, &value, &opt);
 			unset_from_exp(key);
