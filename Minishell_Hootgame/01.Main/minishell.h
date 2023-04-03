@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/03 00:18:21 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:50:25 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int		find_path(char **paths);
 void	ft_apply_now(char *path, char **cmd, char **env);
 char	**ft_path(char *cmd);
 void	execute_x(char **cmd, char **env);
-char	*here_doc(char *delimiter);
+char	*here_doc(t_list *delimiter);
 void	close_all_fd(void);
 
 /*###############################################################################
