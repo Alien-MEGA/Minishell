@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/31 23:31:48 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:45:14 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*generator_tmp(void)
 	return (free(num), gen_tmp);
 }
 
-static void	ft_read_tmp(char *tmp_file, char *limiter)
+static void	ft_read_tmp(char *tmp_file, char *limiter, int should_expand)
 {
 	char	*str;
 	int		fd_tmp;
@@ -38,6 +38,8 @@ static void	ft_read_tmp(char *tmp_file, char *limiter)
 	{
 		ft_printf(2, "Heredoc > ");
 		str = get_next_line(0);
+		// if (should_expand == TRUE)
+		// 	expand...; 
 		if (!str || ft_strncmp(str, limiter, ft_strlen(limiter)) == 0)
 			break ;
 		ft_printf(fd_tmp, "%s", str);
@@ -47,12 +49,16 @@ static void	ft_read_tmp(char *tmp_file, char *limiter)
 	close(fd_tmp);
 }
 
-char	*here_doc(char *delimiter)
+char	*here_doc(t_list *delimiter)
 {
 	char	*tmp_file;
+	int		should_expand;
 
+	should_expand = TRUE;
+	if (delimiter->type == TK_DOUBLE_QUOTE)
+		should_expand = FALSE;
 	tmp_file = generator_tmp();
-	ft_read_tmp(tmp_file, delimiter);
+	ft_read_tmp(tmp_file, delimiter->value, should_expand);
 	if (g_pub.is_sigset)
 		unlink(tmp_file);
 	return (tmp_file);
