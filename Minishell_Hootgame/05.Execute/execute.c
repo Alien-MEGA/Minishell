@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/02 02:44:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:28:22 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,14 +148,14 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	if (root->lst && (root->lst->type == TK_OR || root->lst->type == TK_AND))
 	{
 		g_pub.should_fork = FALSE;
-		execute(root->left, fd_in, fd_out, TRUE);/*                           <=== Before Here paste FALSE for close fd   */
+		execute(root->left, fd_in, fd_out, TRUE);
 		if (pross == FAIL)
 			return (FAIL);
 		g_pub.should_fork = FALSE;
 		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
 			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
 		{
-			execute(root->right, fd_in, fd_out, TRUE);/*                  <=== Before Here paste TRUE for close fd   */
+			execute(root->right, fd_in, fd_out, TRUE);
 			if (pross == FAIL)
 				return (FAIL);
 		}
@@ -165,10 +165,12 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 		fd_pipe = create_pipe();
 		g_pub.should_fork = TRUE;
 		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
+		close(fd_pipe.fd_wr);
 		if (pross == FAIL)
 			return (FAIL);
 		g_pub.should_fork = TRUE;
 		pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
+		close(fd_pipe.fd_rd);
 		if (pross == FAIL)
 			return (FAIL);
 		if (should_wait == TRUE)
