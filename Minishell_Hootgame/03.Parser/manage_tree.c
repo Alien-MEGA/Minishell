@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/02 00:29:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:26:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,21 @@ t_tree	*create_command(t_list **lst)
 		return (syntax_error((*lst)->value), NULL);
 	while ((*lst)
 		&& !((*lst)->type >= TK_PIPE
-			&& (*lst)->type <= TK_OR)
-		&& (*lst)->type != TK_CLOSE_BRACE)
+			&& (*lst)->type <= TK_CLOSE_BRACE))
 	{
 		ft_lstadd_back(&new_lst,
 			ft_lstnew((*lst)->type, (*lst)->value, NULL));
 			(*lst) = (*lst)->next;
 		if ((*lst) && (*lst)->next
-			&& (((*lst)->next->type >= TK_PIPE && (*lst)->next->type <= TK_OR)
-				|| (*lst)->next->type == TK_CLOSE_BRACE))
+			&& (*lst)->type >= TK_PIPE
+			&& (*lst)->type <= TK_CLOSE_BRACE)
 			skip_space(lst);
 	}
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
-		return (bracket_handle(lst));
+		return (syntax_error((*lst)->value), NULL);
 	search_rd(&new_rd, lst);
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
-		return (bracket_handle(lst));
+		return (syntax_error((*lst)->value), NULL);
 	new_tree = ft_treenew(new_lst);
 	new_tree->redirect_mode = new_rd;
 	return (new_tree);
