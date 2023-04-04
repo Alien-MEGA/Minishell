@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/31 22:59:07 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:32:06 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ t_list	*ft_filter(t_list *lst)
 {
 	t_list	*tmp;
 
-	tmp = remove_empty(lst);
-	return (remove_sapce(tmp));
+	//tmp = remove_empty(lst);
+	return (remove_sapce(lst));
 }

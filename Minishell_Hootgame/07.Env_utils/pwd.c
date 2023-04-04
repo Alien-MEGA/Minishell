@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/30 14:25:09 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:21:45 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ t_list	*get_ls(void)
 		ent = readdir(op_dir);
 		if (ent == NULL)
 			break ;
-		if (ent->d_name[0] != '.')
 			ft_lstadd_back(&list, ft_lstnew(0, ft_strdup(ent->d_name), NULL));
 	}
 	closedir(op_dir);

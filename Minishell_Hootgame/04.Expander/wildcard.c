@@ -6,14 +6,16 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/01 22:40:13 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:18:48 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-static int	ismatch(char *wd_card, char *word)
+static int	ismatch(char *wd_card, char *word, int lv)
 {
+	if (lv == 0 && word[0] == '.' && wd_card[0] != '.')
+		return (FALSE);
 	if (*wd_card == '\0' && *word == '\0')
 		return (TRUE);
 	if (*wd_card == '*')
@@ -24,9 +26,9 @@ static int	ismatch(char *wd_card, char *word)
 	if (*wd_card == '*' && *(wd_card + 1) != '\0' && *word == '\0')
 		return (FALSE);
 	if (*wd_card == *word)
-		return (ismatch(wd_card + 1, word + 1));
+		return (ismatch(wd_card + 1, word + 1, lv + 1));
 	if (*wd_card == '*')
-		return (ismatch(wd_card + 1, word) || ismatch(wd_card, word + 1));
+		return (ismatch(wd_card + 1, word, lv + 1) || ismatch(wd_card, word + 1, lv + 1));
 	return (FALSE);
 }
 
@@ -43,7 +45,7 @@ static t_list	*wild_card_expand(char *exper)
 		return (NULL);
 	while (lstfile)
 	{
-		if (ismatch(exper, lstfile->value))
+		if (ismatch(exper, lstfile->value, 0))
 		{
 			ft_lstadd_back(&nlst, ft_lstnew(0, ft_strdup(lstfile->value), 0));
 			ft_lstadd_back(&nlst, ft_lstnew(TK_WT_SPACE, ft_strdup(" "), NULL));

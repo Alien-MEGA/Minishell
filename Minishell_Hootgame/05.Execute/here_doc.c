@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/04 02:26:33 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:41:47 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ char	*here_doc(t_list *delimiter)
 	char	*tmp_file;
 	int		should_expand;
 
-	should_expand = TRUE;
-	if (delimiter->type == TK_DOUBLE_QUOTE)
-		should_expand = FALSE;
+	should_expand = FALSE;
+	if (delimiter->type == TK_WORD)
+		should_expand = TRUE;
 	tmp_file = generator_tmp();
 	ft_read_tmp(tmp_file, delimiter->value, should_expand);
 	if (g_pub.is_sigset)
