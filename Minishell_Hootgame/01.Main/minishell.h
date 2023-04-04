@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/03 22:50:25 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:24:29 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,5 +197,7 @@ void	sig_inint(int type);
 int		indexofchar(char *line, char c);
 char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
+int		iscontain_var(char *word);
+char	*expand_word(char *word, int start, int i);
 
 #endif

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/03/27 02:33:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:23:41 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-static int	iscontain_var(char *word)
+int	iscontain_var(char *word)
 {
 	int	i;
 	int	bool;
 
 	i = 0;
-	if (indexofchar(word, '$') == -1)
+	if (!word || indexofchar(word, '$') == -1)
 		return (FALSE);
 
 	while (word[i])
@@ -53,7 +53,7 @@ static char	*get_next_key(char *word, int *i)
 	return(ft_strdup(&word[start]));
 }
 
-static char	*expand_word(char *word, int start, int i)
+ char	*expand_word(char *word, int start, int i)
 {
 	char	*key;
 	char	*new_word;

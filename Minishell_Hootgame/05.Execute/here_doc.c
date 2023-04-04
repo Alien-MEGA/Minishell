@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/03 22:45:14 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:37:08 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	ft_read_tmp(char *tmp_file, char *limiter, int should_expand)
 {
 	char	*str;
 	int		fd_tmp;
+	char	*tmp;
 
 	fd_tmp = open(tmp_file, O_RDWR | O_TRUNC | O_CREAT, 0600);
 	ft_error(fd_tmp, 1);
@@ -38,8 +39,12 @@ static void	ft_read_tmp(char *tmp_file, char *limiter, int should_expand)
 	{
 		ft_printf(2, "Heredoc > ");
 		str = get_next_line(0);
-		// if (should_expand == TRUE)
-		// 	expand...; 
+		 if (should_expand == TRUE && iscontain_var(str))
+		 {
+			tmp = str;
+			str = expand_word(str, 0, 0);
+			free(tmp);
+		 }
 		if (!str || ft_strncmp(str, limiter, ft_strlen(limiter)) == 0)
 			break ;
 		ft_printf(fd_tmp, "%s", str);
