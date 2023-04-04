@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/03 21:10:39 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:34:44 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,44 @@ int	run_builtin(char **cmd, int fd_in, int fd_out)
 		return (FAIL);
 }
 
+int	handle_sig(int status)
+{
+	if (WTERMSIG(status) == SIGSTOP)
+		ft_printf(2, "SIG: Sendable stop signal not from tty ./minishell");
+	if (WTERMSIG(status) == SIGINT)
+		ft_printf(2, "SIG: Interrupt ./minishell");
+	if (WTERMSIG(status) == SIGQUIT)
+		ft_printf(2, "SIG: Quit ./minishell");
+	if (WTERMSIG(status) == SIGABRT)
+		ft_printf(2, "SIG: Abort ./minishell");
+	if (WTERMSIG(status) == SIGFPE)
+		ft_printf(2, "SIG: Floating point exception  ./minishell");
+	if (WTERMSIG(status) == SIGKILL)
+		ft_printf(2, "SIG: Kill (cannot be caught or ignored) ./minishell");
+	if (WTERMSIG(status) == SIGBUS)
+		ft_printf(2, "SIG: Bus error ./minishell");
+	if (WTERMSIG(status) == SIGSEGV)
+		ft_printf(2, "SIG: Segmentation violation  ./minishell");
+	if (WTERMSIG(status) == SIGSYS)
+		ft_printf(2, "SIG: Bad argument to system call ./minishell");
+	if (WTERMSIG(status) == SIGPIPE)
+		ft_printf(2, "SIG: Write on a pipe with no one to read it  ./minishell");
+	if (WTERMSIG(status) == SIGTERM)
+		ft_printf(2, "SIG: Software termination signal from kill ./minishell");
+	if (WTERMSIG(status) == SIGCHLD)
+		ft_printf(2, "SIG: To parent on child stop or exit ./minishell");
+	return (128 + WTERMSIG(status));
+}
+
+int	get_exit_status(int status)
+{
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (handle_sig(status));
+	return (0);
+}
+
 int	wait_pross(pid_t pross)
 {
 	int	status;
@@ -42,7 +80,7 @@ int	wait_pross(pid_t pross)
 	waitpid(pross, &status, 0);
 	while (wait(NULL) != -1)
 		;
-	return (WEXITSTATUS(status));
+	return (get_exit_status(status));
 }
 
 int	find_path(char **paths)
