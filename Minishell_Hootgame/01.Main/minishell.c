@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/02 01:19:24 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:16:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	main(int argc, char **argv, char **env)
 		if (check_syntax(lst) == TRUE)
 		{
 			tree = mk_tree(lst);
+			sig_inint(TP_SIG_EMPTY);
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 			sig_inint(TP_SIG_MAIN);
 			g_pub.is_sigset = FALSE;
@@ -85,6 +86,7 @@ int	main(int argc, char **argv, char **env)
 
 			dup2(fd, 0);
 			close(fd);
+			sig_inint(TP_SIG_MAIN);
 			// exit(0);
 			// exit(WEXITSTATUS(g_pub.exit_status));
 		}

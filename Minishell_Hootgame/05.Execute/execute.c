@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/03 22:40:36 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:00:58 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_fd	run_redirect(t_list *redirect)
 		{
 			sig_inint(TP_SIG_HRDC);
 			fd_rd.fd_rd = open(here_doc(redirect->next), O_RDONLY);
+			sig_inint(TP_SIG_EMPTY);
 		}
 		if (g_pub.is_sigset == FALSE)
 			ft_error(fd_rd.fd_rd, 1);
@@ -126,6 +127,7 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 	ft_error(pross, 1);
 	if (pross == 0)
 	{
+		sig_inint(TP_SIG_CHILD);
 		dup_fd(fd_in, fd_out);
 		close_all_fd();
 		execute_x(cmd, g_pub.env);
