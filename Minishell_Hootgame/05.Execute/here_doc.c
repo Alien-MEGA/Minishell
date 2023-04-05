@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/04 18:41:47 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/04 21:00:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ static char	*generator_tmp(void)
 	int			*num;
 	int			status;
 
-	num = malloc(10);
-	status = read(open("/dev/urandom", O_RDONLY), num, 10);
-	if (status == -1)
-		return (free(num), ft_strdup("tmp-"));
+	num = malloc(4);
+	status = read(open("/dev/urandom", O_RDONLY), num, 4);
 	gen_tmp = ft_strjoin("/tmp/tmp-", ft_itoa(*num));
 	return (free(num), gen_tmp);
 }
