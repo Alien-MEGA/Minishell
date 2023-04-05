@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
+#    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/02 01:38:22 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/04/05 14:40:14 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ CC = gcc -g -fsanitize=address
 FLAGS = #-Wall -Werror -Wextra
 
 SRC = ./01.Main/minishell.c \
-	./02.Lexer/lexer.c \
-	./02.Lexer/lexer_util.c \
+	./02.Lexer/checker.c \
+	./02.Lexer/checker_util.c \
 	./02.Lexer/tokenizer.c \
 	./02.Lexer/tokenizer_util.c \
 	./03.Parser/manage_tree.c \

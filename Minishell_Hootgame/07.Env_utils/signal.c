@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/01 01:12:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:03:50 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	sigint_handler(int sig)
 {
 	char	*prompt;
 
-	g_pub.exit_status = 130;
+	g_pub.exit_status = 1;
 	(void)sig;
 	prompt = get_prompt(get_pwd());
 	printf("\n");
