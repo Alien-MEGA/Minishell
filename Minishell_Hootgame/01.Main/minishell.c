@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/05 20:16:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:54:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int argc, char **argv, char **env)
 	t_list	*lst;
 	int		line_status;
 	t_tree	*tree;
+	int 	status;
 
 	init(argc, argv, env);
 	while (1)
@@ -80,15 +81,12 @@ int	main(int argc, char **argv, char **env)
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 			sig_inint(TP_SIG_MAIN);
 			g_pub.is_sigset = FALSE;
-
-
-
-
 			dup2(fd, 0);
 			close(fd);
 			sig_inint(TP_SIG_MAIN);
-			// exit(0);
-			// exit(WEXITSTATUS(g_pub.exit_status));
+			while (wait(&status) != -1)
+				;
+			g_pub.exit_status = get_exit_status(status);
 		}
 		// ft_lstclear(&lst);
 	}
