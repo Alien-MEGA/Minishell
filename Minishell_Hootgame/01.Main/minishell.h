@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/04 00:24:29 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:41:50 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,5 +199,7 @@ char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
 int		iscontain_var(char *word);
 char	*expand_word(char *word, int start, int i);
+
+int	get_exit_status(int status);
 
 #endif
