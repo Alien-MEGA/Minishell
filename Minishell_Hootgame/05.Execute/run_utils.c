@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/05 20:19:58 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/06 21:30:19 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	handle_sig(int status)
 	if (WTERMSIG(status) == SIGSYS)
 		ft_printf(2, "SIG: Bad argument to system call ./minishell");
 	if (WTERMSIG(status) == SIGPIPE)
-		ft_printf(2, "SIG: Write on a pipe with no one to read it  ./minishell");
+		ft_printf(2, "SIG: Write on a pipe with no one to read it ./minishell");
 	if (WTERMSIG(status) == SIGTERM)
 		ft_printf(2, "SIG: Software termination signal from kill ./minishell");
 	if (WTERMSIG(status) == SIGCHLD)

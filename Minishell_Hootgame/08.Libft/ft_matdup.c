@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:22:41 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/25 22:54:02 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/06 21:31:40 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**ft_matrixdup(char **matrix)
 
 	if (!matrix)
 		return (NULL);
-	new_matrix = (char **)malloc((ft_matlen(matrix) + 1)  * sizeof(char *) );
+	new_matrix = (char **)malloc((ft_matlen(matrix) + 1) * sizeof(char *));
 	ft_error_str(new_matrix, 1);
 	i = -1;
 	while (matrix[++i])
