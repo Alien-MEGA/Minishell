@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/31 21:52:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/06 23:45:53 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@
 # define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[/"
 # define PROMPT_TWO "]\n└─$ \e[0m"
 
-# define PROMPT_P1 "\n\033[34;1m┌──(Mini㉿Shell)-["
-# define PROMPT_P2 "]-[ "
-# define PROMPT_P3 "\033[34;1m ]\n└─$ \e[0m"
+#define PROMPT_P1 "\n\033[34;1m┌──(\033[0;33mMini㉿Shell\033[34;1m)-[\033[0;33m"
+#define PROMPT_P2 "\033[34;1m]-["
+# define PROMPT_P3 "\033[34;1m]\n└─$ \e[0m"
 
-//#define FIRE_PORMPT GREEN "┌──(" RED "Fire🔥Shell" GREEN ")\n└─$"
 //====== boolean ========
 # define FALSE 0
 # define TRUE 1
