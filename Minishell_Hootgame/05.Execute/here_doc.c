@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/07 05:50:27 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:37:00 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*generator_tmp(void)
 	return (free(num), gen_tmp);
 }
 
-static void	ft_read_tmp(char *tmp_file, char *limiter, int should_expand)
+static void	ft_read_tmp(char *tmp_file, char *limiter)
 {
 	char	*str;
 	int		fd_tmp;
@@ -45,16 +45,12 @@ static void	ft_read_tmp(char *tmp_file, char *limiter, int should_expand)
 	close(fd_tmp);
 }
 
-char	*here_doc(t_list *delimiter)
+char	*here_doc(char *delimiter)
 {
 	char	*tmp_file;
-	int		should_expand;
 
-	should_expand = FALSE;
-	if (delimiter->type == TK_WORD)
-		should_expand = TRUE;
 	tmp_file = generator_tmp();
-	ft_read_tmp(tmp_file, delimiter->value, should_expand);
+	ft_read_tmp(tmp_file, delimiter);
 	if (g_pub.is_sigset)
 		unlink(tmp_file);
 	return (tmp_file);

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/07 17:27:10 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:41:36 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int		find_path(char **paths);
 void	ft_apply_now(char *path, char **cmd, char **env);
 char	**ft_path(char *cmd);
 void	execute_x(char **cmd, char **env);
-char	*here_doc(t_list *delimiter);
+char	*here_doc(char *delimiter);
 void	close_all_fd(void);
 void	run_here_doc(t_tree *tree);
 
@@ -200,9 +200,8 @@ char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
 int		iscontain_var(char *word);
 char	*expand_word(char *word, int start, int i);
-
 int		get_exit_status(int status);
-void ft_insert(t_list **head, t_list *newlst);
-void expand_var_insert(t_list *lst);
+void	ft_insert(t_list **head, t_list *newlst);
+void	expand_var_insert(t_list *lst);
 
 #endif

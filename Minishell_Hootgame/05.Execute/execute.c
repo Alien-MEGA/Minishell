@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/07 05:57:04 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/07 21:05:41 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,42 +43,37 @@ void	close_fd(int fd_in, int fd_out)
 		close(fd_out);
 }
 
-// void	expand_file(char *file, int should_expand)
-// {
-// 	int		fd;
-// 	char	*str;
-// 	char	*full_str;
-// 	char	*tmp;
+void	expand_file(char *file, int type)
+{
+	int		fd;
+	char	*str;
+	char	*full_str;
+	char	*tmp;
 
-// 	str = NULL;
-// 	full_str = NULL;
-// 	fd = open(file, O_RDONLY);
-// 	ft_error(fd, 1);
-// 	while (1)
-// 	{
-// 		str = get_next_line(fd);
-// 		if (!str)
-// 			break;
-// 		full_str = ft_strjoin_gnl(full_str, str);
-// 		free(str);
-// 	}
-// 	close(fd);
-// 	// Note : Should expand ??
-// 	tmp = full_str;
-	
-// 	full_str = expand_word(full_str, 0, 0);
-// 	free(tmp);
-// 	fd = open(file, O_RDWR);
-// 	ft_error(fd, 1);
-// 	ft_printf(fd, "%s", full_str);
-// }
-
-// 		if (should_expand == TRUE && iscontain_var(str))
-// 		{
-// 			tmp = str;
-// 			str = expand_word(str, 0, 0);
-// 			free(tmp);
-// 		}
+	if (type != TK_WORD)
+		return ;
+	str = NULL;
+	full_str = NULL;
+	fd = open(file, O_RDONLY);
+	ft_error(fd, 1);
+	while (1)
+	{
+		str = get_next_line(fd);
+		if (!str)
+			break;
+		full_str = ft_strjoin_gnl(full_str, str);
+		free(str);
+	}
+	close(fd);
+	// Note : Should expand ??
+	tmp = full_str;
+	full_str = expand_word(full_str, 0, 0);
+	free(tmp);
+	fd = open(file, O_RDWR | O_TRUNC);
+	ft_error(fd, 1);
+	ft_printf(fd, "%s", full_str);
+	close(fd);
+}
 
 t_fd	run_redirect(t_list *redirect)
 {
@@ -102,7 +97,7 @@ t_fd	run_redirect(t_list *redirect)
 		else if (redirect->type == TK_HERE_DOC)
 		{
 			sig_inint(TP_SIG_HRDC);
-			expand_file(redirect->next->value);
+			expand_file(redirect->next->value, redirect->next->type);
 			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
 			sig_inint(TP_SIG_EMPTY);
 		}
