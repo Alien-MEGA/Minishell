@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/04 18:18:48 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:46:36 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_list	*wild_card_expand(char *exper)
 	return (nlst);
 }
 
-static	void	ft_insert(t_list **head, t_list *newlst)
+void	ft_insert(t_list **head, t_list *newlst)
 {
 	t_list	*headnext;
 	t_list	*tmp;

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/04 18:32:06 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:08:10 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_list	*remove_empty(t_list *lst)
 		if (lst->value[0] == '\0')
 		{
 			if (!(istype(prev, T_W) || (lst->next
-					&& !istype(lst->next->type, T_W))))
+				&& !istype(lst->next->type, T_W))))
 			{
 				ft_lstadd_back(&nlst,
 					ft_lstnew(lst->type, ft_strdup(lst->value), NULL));
@@ -43,7 +43,7 @@ static t_list	*remove_empty(t_list *lst)
 	return (ft_lstclear(&tmp), nlst);
 }
 
-static t_list	*remove_sapce(t_list *lst)
+t_list	*ft_filter(t_list *lst)
 {
 	int		prev;
 	int		bool;
@@ -70,10 +70,30 @@ static t_list	*remove_sapce(t_list *lst)
 	return (ft_lstclear(&tmp), nlst);
 }
 
-t_list	*ft_filter(t_list *lst)
+void	expand_var_insert(t_list *lst)
 {
-	t_list	*tmp;
+	char	**words;
+	t_list	*nlst;
+	int i;
 
-	//tmp = remove_empty(lst);
-	return (remove_sapce(lst));
+	i = 0;
+	nlst = NULL;
+	words = ft_split(lst->value, " ");
+	if (words == NULL)
+	{
+		free(lst->value);
+		lst->value = ft_strdup("");
+	}
+	else if (lst->type == TK_WORD && ft_strlen(lst->value) > 0)
+	{
+		while (words[i])
+		{
+			printf("%s", words[i]);
+			ft_lstadd_back(&nlst, ft_lstnew(TK_WORD, words[i], NULL));
+			ft_lstadd_back(&nlst, ft_lstnew(TK_WT_SPACE, ft_strdup(" "), NULL));
+			i++;
+		}
+		ft_insert(&lst, nlst);
+		free(words);
+	}
 }
