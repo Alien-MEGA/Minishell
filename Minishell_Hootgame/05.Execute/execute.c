@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/07 05:53:36 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/07 05:57:04 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	close_fd(int fd_in, int fd_out)
 		close(fd_out);
 }
 
-// void	expand_file(char *file)
+// void	expand_file(char *file, int should_expand)
 // {
 // 	int		fd;
 // 	char	*str;
@@ -60,16 +60,25 @@ void	close_fd(int fd_in, int fd_out)
 // 		if (!str)
 // 			break;
 // 		full_str = ft_strjoin_gnl(full_str, str);
+// 		free(str);
 // 	}
 // 	close(fd);
 // 	// Note : Should expand ??
-// 	tmp = str;
-// 	str = expand_word(str, 0, 0);
+// 	tmp = full_str;
+	
+// 	full_str = expand_word(full_str, 0, 0);
 // 	free(tmp);
 // 	fd = open(file, O_RDWR);
 // 	ft_error(fd, 1);
-// 	ft_printf(fd, "%s", str);
+// 	ft_printf(fd, "%s", full_str);
 // }
+
+// 		if (should_expand == TRUE && iscontain_var(str))
+// 		{
+// 			tmp = str;
+// 			str = expand_word(str, 0, 0);
+// 			free(tmp);
+// 		}
 
 t_fd	run_redirect(t_list *redirect)
 {
