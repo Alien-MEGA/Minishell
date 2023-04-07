@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/05 20:41:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/07 04:36:39 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ char	**ft_path(char *cmd);
 void	execute_x(char **cmd, char **env);
 char	*here_doc(t_list *delimiter);
 void	close_all_fd(void);
+void	run_here_doc(t_tree *tree);
 
 /*###############################################################################
 #                                 BUILT-IN                                      #

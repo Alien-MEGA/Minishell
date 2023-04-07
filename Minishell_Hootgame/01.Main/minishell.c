@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/06 23:52:00 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/07 05:40:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			tree = mk_tree(lst);
 			sig_inint(TP_SIG_EMPTY);
+			run_here_doc(tree);
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 			sig_inint(TP_SIG_MAIN);
 			g_pub.is_sigset = FALSE;
