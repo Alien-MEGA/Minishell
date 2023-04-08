@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 22:28:36 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 22:29:31 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,3 +107,5 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	}
 	return (pross);
 }
+
+// Add to Header
