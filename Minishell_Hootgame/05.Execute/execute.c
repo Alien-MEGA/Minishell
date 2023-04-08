@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/07 21:05:41 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 03:04:32 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,10 @@ t_fd	run_redirect(t_list *redirect)
 			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
 		else if (redirect->type == TK_HERE_DOC)
 		{
-			sig_inint(TP_SIG_HRDC);
 			expand_file(redirect->next->value, redirect->next->type);
 			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
-			sig_inint(TP_SIG_EMPTY);
 		}
-		if (g_pub.is_sigset == FALSE)
-			ft_error(fd_rd.fd_rd, 1);
-		else
-			return (fd_rd);
+		ft_error(fd_rd.fd_rd, 1);
 		redirect = redirect->next->next;
 	}
 	return (fd_rd);
