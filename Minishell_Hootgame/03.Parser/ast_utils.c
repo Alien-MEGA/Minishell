@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_tree.c                                      :+:      :+:    :+:   */
+/*   ast_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 04:34:51 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:53:19 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
-
-void	skip_space(t_list **lst)
-{
-	if ((*lst) && (*lst)->type == TK_WT_SPACE)
-		(*lst) = (*lst)->next;
-}
 
 void	search_rd(t_list **new_rd, t_list **lst)
 {
