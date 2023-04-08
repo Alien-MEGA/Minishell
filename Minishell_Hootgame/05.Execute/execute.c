@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 04:55:24 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 05:06:17 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,37 @@ void	dup_fd(int fd_in, int fd_out)
 	ft_error(dup2(fd_out, STDOUT_FILENO), 1);
 }
 
-void	expand_file(char *file, int type)
+char	*read_file(char *file)
 {
 	int		fd;
 	char	*str;
 	char	*full_str;
-	char	*tmp;
 
-	if (type != TK_WORD)
-		return ;
-	str = NULL;
 	full_str = NULL;
+	str = NULL;
 	fd = open(file, O_RDONLY);
 	ft_error(fd, 1);
 	while (1)
 	{
 		str = get_next_line(fd);
 		if (!str)
-			break;
+			break ;
 		full_str = ft_strjoin_gnl(full_str, str);
 		free(str);
 	}
 	close(fd);
-	// Note : Should expand ??
+	return (full_str);
+}
+
+void	expand_file(char *file, int type)
+{
+	int		fd;
+	char	*full_str;
+	char	*tmp;
+
+	if (type != TK_WORD)
+		return ;
+	full_str = read_file(file);
 	tmp = full_str;
 	full_str = expand_word(full_str, 0, 0);
 	free(tmp);
