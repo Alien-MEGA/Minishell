@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_manage.c                                       :+:      :+:    :+:   */
+/*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 04:36:00 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:50:16 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
-
-void	syntax_error(char *token)
-{
-	return (ft_printf(2,
-			"Minishell : syntax error near unexpected `%s'\n",
-			token), exit(258));
-}
 
 t_tree	*bracket_handle(t_list **lst)
 {

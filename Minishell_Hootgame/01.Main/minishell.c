@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/08 03:05:32 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:48:19 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	main(int argc, char **argv, char **env)
 			close(fd);
 			sig_inint(TP_SIG_MAIN);
 		}
+		else
+			g_pub.exit_status = 258;
 		// ft_lstclear(&lst);
 	}
 }
