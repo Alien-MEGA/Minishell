@@ -6,13 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 05:06:17 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 05:53:47 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-void	close_all_fd(void)
+void	close_pipe_fd(void)
 {
 	t_list	*fd_lst;
 	int		*fd;
@@ -156,14 +156,15 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 	{
 		sig_inint(TP_SIG_CHILD);
 		dup_fd(fd_in, fd_out);
-		close_all_fd();
+		close_pipe_fd();
 		execute_x(cmd, g_pub.env);
 	}
 	if (should_wait)
 		g_pub.exit_status = wait_pross(pross);
 	return (pross);
 }
-
+// You have three part : { exec_andor, exec_pipe, exec_cmd}
+// close all fd's
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	t_fd			fd_pipe;
