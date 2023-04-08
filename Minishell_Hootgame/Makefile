@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/05 20:53:34 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/04/08 04:39:24 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ SRC = ./01.Main/minishell.c \
 	./02.Lexer/checker_util.c \
 	./02.Lexer/tokenizer.c \
 	./02.Lexer/tokenizer_util.c \
-	./03.Parser/manage_tree.c \
-	./03.Parser/parser.c \
+	./03.Parser/ast_manage.c \
+	./03.Parser/ast_utils.c \
 	./03.Parser/tree_utils.c \
 	./04.Expander/concater.c \
 	./04.Expander/expander.c \

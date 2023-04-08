@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 04:28:22 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:34:51 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	create_cmd(t_list **lst, t_list **new_lst)
 	}
 }
 
-t_tree	*create_command(t_list **lst) // Norminette
+t_tree	*create_command(t_list **lst)
 {
 	t_tree	*new_tree;
 	t_list	*new_lst;
