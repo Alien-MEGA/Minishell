@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/07 17:08:10 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/08 02:10:38 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	expand_var_insert(t_list *lst)
 
 	i = 0;
 	nlst = NULL;
-	words = ft_split(lst->value, " ");
+	words = ft_split(lst->value, ' '); //Note : You miss this " "
 	if (words == NULL)
 	{
 		free(lst->value);
