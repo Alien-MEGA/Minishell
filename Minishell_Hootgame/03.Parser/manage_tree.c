@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 03:18:22 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:28:22 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ void	search_rd(t_list **new_rd, t_list **lst)
 	}
 }
 
+void	create_cmd(t_list **lst, t_list **new_lst)
+{
+	while ((*lst)
+		&& !((*lst)->type >= TK_PIPE
+			&& (*lst)->type <= TK_CLOSE_BRACE))
+	{
+		ft_lstadd_back(new_lst,
+			ft_lstnew((*lst)->type, (*lst)->value, NULL));
+			(*lst) = (*lst)->next;
+		if ((*lst) && (*lst)->next
+			&& (*lst)->type >= TK_PIPE
+			&& (*lst)->type <= TK_CLOSE_BRACE)
+			skip_space(lst);
+	}
+}
+
 t_tree	*create_command(t_list **lst) // Norminette
 {
 	t_tree	*new_tree;
@@ -42,18 +58,7 @@ t_tree	*create_command(t_list **lst) // Norminette
 	search_rd(&new_rd, lst);
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
 		return (syntax_error((*lst)->value), NULL);
-	while ((*lst)
-		&& !((*lst)->type >= TK_PIPE
-			&& (*lst)->type <= TK_CLOSE_BRACE))
-	{
-		ft_lstadd_back(&new_lst,
-			ft_lstnew((*lst)->type, (*lst)->value, NULL));
-			(*lst) = (*lst)->next;
-		if ((*lst) && (*lst)->next
-			&& (*lst)->type >= TK_PIPE
-			&& (*lst)->type <= TK_CLOSE_BRACE)
-			skip_space(lst);
-	}
+	create_cmd(lst, &new_lst);
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
 		return (syntax_error((*lst)->value), NULL);
 	search_rd(&new_rd, lst);
