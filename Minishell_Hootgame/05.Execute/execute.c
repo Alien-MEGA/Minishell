@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 05:53:47 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 22:14:54 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,8 @@ void	expand_file(char *file, int type)
 	close(fd);
 }
 
-t_fd	run_redirect(t_list *redirect)
+t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
 {
-	t_fd	fd_rd;
-
-	fd_rd.fd_rd = -2;
-	fd_rd.fd_wr = -2;
 	if (!redirect)
 		return (fd_rd);
 	while (redirect)
@@ -139,7 +135,7 @@ t_fd	create_pipe(void)
 	return (fd_pipe);
 }
 
-pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
+pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	pid_t	pross;
 	char	**cmd;
@@ -163,60 +159,56 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 		g_pub.exit_status = wait_pross(pross);
 	return (pross);
 }
-// You have three part : { exec_andor, exec_pipe, exec_cmd}
-// close all fd's
+
+void	exec_and_or(t_tree *root, int fd_in, int fd_out, int should_wait)
+{
+	g_pub.should_fork = FALSE;
+	execute(root->left, fd_in, fd_out, TRUE);
+	g_pub.should_fork = FALSE;
+	if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
+		|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
+		execute(root->right, fd_in, fd_out, should_wait);
+}
+
+void	exec_pipe(t_tree *root, int fd_in, int fd_out, int should_wait)
+{
+	t_fd	fd_pipe;
+	pid_t	pross;
+
+	fd_pipe = create_pipe();
+	g_pub.should_fork = TRUE;
+	execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
+	close(fd_pipe.fd_wr);
+	g_pub.should_fork = TRUE;
+	pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
+	close(fd_pipe.fd_rd);
+	if (should_wait == TRUE)
+		g_pub.exit_status = wait_pross(pross);
+}
+
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
-	t_fd			fd_pipe;
-	t_fd			fd_red;
-	pid_t			pross;
+	t_fd	fd_red;
+	pid_t	pross;
 
 	if (!root)
 		return (-2);
 	pross = -2;
 	if (root->lst && (root->lst->type == TK_OR || root->lst->type == TK_AND))
-	{
-		g_pub.should_fork = FALSE;
-		execute(root->left, fd_in, fd_out, TRUE);
-		if (pross == FAIL)
-			return (FAIL);
-		g_pub.should_fork = FALSE;
-		if ((root->lst->type == TK_OR && g_pub.exit_status != 0)
-			|| (root->lst->type == TK_AND && g_pub.exit_status == 0))
-		{
-			execute(root->right, fd_in, fd_out, should_wait);
-			if (pross == FAIL)
-				return (FAIL);
-		}
-	}
+		exec_and_or(root, fd_in, fd_out, should_wait);
 	else if (root->lst && root->lst->type == TK_PIPE)
-	{
-		fd_pipe = create_pipe();
-		g_pub.should_fork = TRUE;
-		execute(root->left, fd_in, fd_pipe.fd_wr, FALSE);
-		close(fd_pipe.fd_wr);
-		if (pross == FAIL)
-			return (FAIL);
-		g_pub.should_fork = TRUE;
-		pross = execute(root->right, fd_pipe.fd_rd, fd_out, FALSE);
-		close(fd_pipe.fd_rd);
-		if (pross == FAIL)
-			return (FAIL);
-		if (should_wait == TRUE)
-			g_pub.exit_status = wait_pross(pross);
-	}
+		exec_pipe(root, fd_in, fd_out, should_wait);
 	else
 	{
 		if (expander(root) == FALSE)
 			return (-1);
-		fd_red = run_redirect(root->redirect_mode);
-		if (g_pub.is_sigset == TRUE)
-			return (FAIL);
+		fd_red = run_redirect(root->redirect_mode,
+				(t_fd){.fd_rd = -2, .fd_wr = -2});
 		if (fd_red.fd_rd < 0)
 			fd_red.fd_rd = fd_in;
 		if (fd_red.fd_wr < 0)
 			fd_red.fd_wr = fd_out;
-		pross = run_x(root, fd_red.fd_rd, fd_red.fd_wr, should_wait);
+		pross = exec_cmd(root, fd_red.fd_rd, fd_red.fd_wr, should_wait);
 	}
 	return (pross);
 }

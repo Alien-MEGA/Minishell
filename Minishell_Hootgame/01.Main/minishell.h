@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 05:53:46 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 22:12:24 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,11 @@ typedef struct s_fd
 	int		fd_rd;
 }			t_fd;
 
-t_fd	run_redirect(t_list *redirect);
+t_fd	run_redirect(t_list *redirect, t_fd fd_rd);
 char	**get_cmd(t_list *lst);
 void	dup_fd(int fd_in, int fd_out);
 t_fd	create_pipe(void);
-pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait);
+pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait);
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
 int		run_builtin(char **cmd, int fd_in, int fd_out);
 int		wait_pross(pid_t pross);
