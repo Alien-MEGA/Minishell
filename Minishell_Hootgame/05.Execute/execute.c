@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 03:04:32 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:55:24 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ void	dup_fd(int fd_in, int fd_out)
 		return ;
 	ft_error(dup2(fd_in, STDIN_FILENO), 1);
 	ft_error(dup2(fd_out, STDOUT_FILENO), 1);
-	// close_fd(fd_in, fd_out);
-}
-
-void	close_fd(int fd_in, int fd_out)
-{
-	if (isatty(fd_in) == 0)
-		close(fd_in);
-	if (isatty(fd_out) == 0)
-		close(fd_out);
 }
 
 void	expand_file(char *file, int type)
@@ -160,7 +151,6 @@ pid_t	run_x(t_tree *root, int fd_in, int fd_out, int should_wait)
 		close_all_fd();
 		execute_x(cmd, g_pub.env);
 	}
-	// close_fd(fd_in, fd_out);
 	if (should_wait)
 		g_pub.exit_status = wait_pross(pross);
 	return (pross);

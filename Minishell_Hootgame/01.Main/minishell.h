@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/07 21:41:36 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/08 04:55:12 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ typedef struct s_fd
 	int		fd_rd;
 }			t_fd;
 
-void	close_fd(int fd_in, int fd_out);
 t_fd	run_redirect(t_list *redirect);
 char	**get_cmd(t_list *lst);
 void	dup_fd(int fd_in, int fd_out);
