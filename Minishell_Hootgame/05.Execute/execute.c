@@ -6,116 +6,11 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 22:14:54 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/08 22:28:36 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
-
-void	close_pipe_fd(void)
-{
-	t_list	*fd_lst;
-	int		*fd;
-
-	fd_lst = g_pub.fd_lst;
-	while (fd_lst)
-	{
-		fd = (int *)fd_lst->data;
-		close(*fd);
-		fd_lst = fd_lst->next;
-	}
-}
-
-void	dup_fd(int fd_in, int fd_out)
-{
-	if (fd_in < 0 && fd_out < 0)
-		return ;
-	ft_error(dup2(fd_in, STDIN_FILENO), 1);
-	ft_error(dup2(fd_out, STDOUT_FILENO), 1);
-}
-
-char	*read_file(char *file)
-{
-	int		fd;
-	char	*str;
-	char	*full_str;
-
-	full_str = NULL;
-	str = NULL;
-	fd = open(file, O_RDONLY);
-	ft_error(fd, 1);
-	while (1)
-	{
-		str = get_next_line(fd);
-		if (!str)
-			break ;
-		full_str = ft_strjoin_gnl(full_str, str);
-		free(str);
-	}
-	close(fd);
-	return (full_str);
-}
-
-void	expand_file(char *file, int type)
-{
-	int		fd;
-	char	*full_str;
-	char	*tmp;
-
-	if (type != TK_WORD)
-		return ;
-	full_str = read_file(file);
-	tmp = full_str;
-	full_str = expand_word(full_str, 0, 0);
-	free(tmp);
-	fd = open(file, O_RDWR | O_TRUNC);
-	ft_error(fd, 1);
-	ft_printf(fd, "%s", full_str);
-	close(fd);
-}
-
-t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
-{
-	if (!redirect)
-		return (fd_rd);
-	while (redirect)
-	{
-		if (redirect->type == TK_RD_OUTPUT)
-			fd_rd.fd_wr = open(redirect->next->value,
-					O_RDWR | O_TRUNC | O_CREAT, 0644);
-		else if (redirect->type == TK_RD_OUTPUT_APPEND)
-			fd_rd.fd_wr = open(redirect->next->value,
-					O_RDWR | O_APPEND | O_CREAT, 0644);
-		ft_error(fd_rd.fd_wr, 1);
-		if (redirect->type == TK_RD_INPUT)
-			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
-		else if (redirect->type == TK_HERE_DOC)
-		{
-			expand_file(redirect->next->value, redirect->next->type);
-			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
-		}
-		ft_error(fd_rd.fd_rd, 1);
-		redirect = redirect->next->next;
-	}
-	return (fd_rd);
-}
-
-char	**get_cmd(t_list *lst)
-{
-	char	**cmd;
-	int		i;
-
-	i = 0;
-	cmd = (char **)malloc((ft_lstsize(lst) + 1) * sizeof(char *));
-	while (lst)
-	{
-		if (lst->type != TK_WT_SPACE)
-			cmd[i++] = ft_strdup(lst->value);
-		lst = lst->next;
-	}
-	cmd[i] = NULL;
-	return (cmd);
-}
 
 t_fd	create_pipe(void)
 {
