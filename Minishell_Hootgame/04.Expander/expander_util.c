@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 03:48:43 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:18:20 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void insert_list(t_list **head, t_list *lst)
 	nlst = NULL;
 	if (lst->type == TK_WORD && lst->value[0] != '\0')
 	{
+		t_list	*tmp;
 		nlst = get_list_form_var(lst);
 		if (nlst != NULL)
 		{
@@ -95,8 +96,8 @@ void insert_list(t_list **head, t_list *lst)
 				*head = nlst;
 			else
 			{
-				(*head)->next = nlst;
-				*head = ft_lstlast(*head);
+				tmp = ft_lstlast(*head);
+				tmp->next = nlst;
 			}
 		}
 	}
