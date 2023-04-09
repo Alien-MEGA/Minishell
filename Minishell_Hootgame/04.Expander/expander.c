@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 02:32:08 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 04:47:53 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ static t_list *exapnd_var_list_redir(t_list *lst)
 				lst->value = ft_strtrim(lst->value, " ");
 				if (lst->value[0] == '\0' || indexofchar(lst->value, ' ') != -1)
 					return (free(tmp), ft_lstclear(&new_list), NULL);
+				ft_lstadd_back(&new_list, nd_copy(lst));
 			}
 			else
 				ft_lstadd_back(&new_list, nd_copy(lst));
@@ -128,6 +129,9 @@ static t_list *exapnd_var_list_redir(t_list *lst)
 		}
 		else
 			ft_lstadd_back(&new_list, nd_copy(lst));
+		if (lst->type == TK_HERE_DOC)
+			lst = lst->next->next;
+		else
 		lst = lst->next;
 	}
 	return (new_list);
@@ -138,10 +142,10 @@ int expander(t_tree *node)
 	t_list *tmp;
 
 	tmp = node->redirect_mode;
-	node->redirect_mode = exapnd_var_list_redir(node->redirect_mode);
+	node->redirect_mode = exapnd_var_list_redir(tmp);
 	if (tmp != NULL && node->redirect_mode == NULL)
 	{
-		ft_printf(STDERR_FILENO, "minishell:*: ambiguous redirect \n");
+		ft_printf(STDERR_FILENO, "minishell ambiguous redirect \n");
 		g_pub.exit_status = 1;
 		return (ft_lstclear(&tmp), FALSE);
 	}
