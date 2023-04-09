@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 05:12:43 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:26:44 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_public
 	int				isdef_env;
 	int				is_sigset;
 	int				should_fork;
+	char			*token_error;
 	t_list			*fd_lst;
 }					t_public;
 

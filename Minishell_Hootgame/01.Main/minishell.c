@@ -6,13 +6,20 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:23:07 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:20:12 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
 t_public	g_pub;
+
+static void	syntax_error(char *token)
+{
+	return (ft_printf(2,
+			"Minishell : syntax error near unexpected `%s'\n",
+			RED, token, RESET));
+}
 
 static int	check_line(char *line)
 {
@@ -78,13 +85,16 @@ int	main(int argc, char **argv, char **env)
 		if (check_syntax(lst) == TRUE)
 		{
 			tree = mk_tree(lst);
-			sig_inint(TP_SIG_EMPTY);
+			if (!tree)
+			{
+				syntax_error(g_pub.token_error);
+				continue ;
+			}
 
-			sig_inint(TP_SIG_HRDC);
-			run_here_doc(tree);
 			sig_inint(TP_SIG_EMPTY);
+			run_here_doc(tree);
 			if (g_pub.is_sigset == TRUE)
-				continue;
+				continue ;
 
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 			sig_inint(TP_SIG_MAIN);
