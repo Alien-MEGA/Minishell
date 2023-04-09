@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:00:57 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:27:11 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_public
 	t_list			*fd_lst;
 }					t_public;
 
-t_public	g_pub;
+extern t_public	g_pub;
 
 enum e_token
 {
@@ -76,7 +76,7 @@ typedef struct s_token
 void	add_token(t_list **list, int type, char *value);
 t_list	**create_token_list(t_list **head, char *line);
 void	skip_wt_sapce(t_list **list, char *line, int *i);
-void	skip_quote(t_list **list, char *line, int *i,char quote);
+void	skip_quote(t_list **list, char *line, int *i, char quote);
 void	skip_word(t_list **list, char *line, int *i);
 int		print_error(char *value);
 int		check_syntax(t_list *tokens);

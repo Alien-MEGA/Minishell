@@ -6,11 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:06:28 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:23:07 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
+
+t_public	g_pub;
 
 static int	check_line(char *line)
 {
