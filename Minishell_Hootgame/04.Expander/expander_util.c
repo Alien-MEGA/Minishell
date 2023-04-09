@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 02:41:12 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 03:04:18 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,17 @@ void insert_list(t_list **head, t_list *lst)
 {
 	t_list *nlst;
 
+	// dprintf(2, "\n====> %p <\n", head);
+	// // dprintf(2, "\n====> %p <\n", head);
+	// dprintf(2, "\n====> %p <\n", lst);
 	nlst = NULL;
 	if (lst->type == TK_WORD && lst->value[0] != '\0')
 	{
 		nlst = get_list_form_var(lst);
 		if (nlst != NULL)
 		{
-			if (head == NULL)
-				head = &nlst;
+			if (*head == NULL)
+				*head = nlst;
 			else
 			{
 				(*head)->next = nlst;
