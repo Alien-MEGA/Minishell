@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 03:50:04 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 21:15:10 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	ismatch(char *wd_card, char *word, int lv)
 	if (*wd_card == *word)
 		return (ismatch(wd_card + 1, word + 1, lv + 1));
 	if (*wd_card == '*')
-		return (ismatch(wd_card + 1, word, lv + 1) || ismatch(wd_card, word + 1, lv + 1));
+		return (ismatch(wd_card + 1, word, lv + 1)
+			|| ismatch(wd_card, word + 1, lv + 1));
 	return (FALSE);
 }
 
@@ -109,11 +110,7 @@ int	wildcard_redir(t_list *list)
 		{
 			nlst = wild_card_expand(list->value);
 			if (ft_lstsize(nlst) > 2)
-			{
-				g_pub.exit_status = 1;
-				ft_printf(STDERR_FILENO, "minishell:*: ambiguous redirect \n");
-				return (ft_lstclear(&nlst), FALSE);
-			}
+				return (redir_err(), ft_lstclear(&nlst), FALSE);
 			if (nlst != NULL)
 			{
 				free(list->value);

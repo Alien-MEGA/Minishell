@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
+#    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/09 01:03:46 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/04/09 21:27:25 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = ./01.Main/minishell.c \
 	./04.Expander/expander.c \
 	./04.Expander/expander_util.c \
 	./04.Expander/wildcard.c \
+	./04.Expander/expander_hepler.c\
 	./05.Execute/execute.c \
 	./05.Execute/execute_utils.c \
 	./05.Execute/here_doc.c \

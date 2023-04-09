@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 18:18:20 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 21:38:37 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,24 @@ int iscontain_var(char *word)
 	return (FALSE);
 }
 
-t_list *ft_filter(t_list *lst)
+t_list	*ft_filter(t_list *lst)
 {
-	int prev;
-	int bool;
-	t_list *nlst;
-	t_list *tmp;
+	int		prev;
+	int		bool;
+	t_list	*nlst;
+	t_list	*tmp;
 
 	prev = -1;
 	nlst = NULL;
 	tmp = lst;
 	while (lst)
 	{
-		bool = (!istype(prev, T_W) || !lst->next || !istype(lst->next->type, T_W));
+		bool = (!istype(prev, T_W) || !istype(nxt_type(lst), T_W));
 		if (lst->type == TK_WT_SPACE && bool)
 			prev = -1;
 		else
 		{
-			ft_lstadd_back(&nlst, ft_lstnew(lst->type,
-											ft_strdup(lst->value), 0));
+			ft_lstadd_back(&nlst, nd_copy(lst));
 			prev = lst->type;
 		}
 		lst = lst->next;
@@ -56,11 +55,11 @@ t_list *ft_filter(t_list *lst)
 	return (ft_lstclear(&tmp), nlst);
 }
 
-t_list *get_list_form_var(t_list *lst)
+t_list	*get_list_form_var(t_list *lst)
 {
-	char **words;
-	t_list *nlst;
-	int i;
+	char	**words;
+	t_list	*nlst;
+	int		i;
 
 	i = 0;
 	nlst = NULL;
@@ -73,7 +72,7 @@ t_list *get_list_form_var(t_list *lst)
 		{
 			ft_lstadd_back(&nlst, ft_lstnew(TK_WORD, words[i], NULL));
 			if (words[i + 1] != NULL)
-				ft_lstadd_back(&nlst, ft_lstnew(TK_WT_SPACE, ft_strdup(" "), NULL));
+				ft_lstadd_back(&nlst, ft_lstnew(12, ft_strdup(" "), 0));
 			i++;
 		}
 		free(words);
@@ -82,13 +81,14 @@ t_list *get_list_form_var(t_list *lst)
 	return (NULL);
 }
 
-void insert_list(t_list **head, t_list *lst)
+void	insert_list(t_list **head, t_list *lst)
 {
-	t_list *nlst;
+	t_list	*nlst;
+	t_list	*tmp;
+
 	nlst = NULL;
 	if (lst->type == TK_WORD && lst->value[0] != '\0')
 	{
-		t_list	*tmp;
 		nlst = get_list_form_var(lst);
 		if (nlst != NULL)
 		{

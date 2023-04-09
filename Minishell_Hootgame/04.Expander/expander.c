@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 05:40:11 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 21:47:13 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
-static char *get_next_key(char *word, int *i)
+static char	*get_next_key(char *word, int *i)
 {
-	int start;
+	int	start;
 
 	start = *i;
 	if (word[*i] == '\0')
@@ -33,12 +33,12 @@ static char *get_next_key(char *word, int *i)
 	return (ft_strdup(&word[start]));
 }
 
-char *expand_word(char *word, int start, int i)
+char	*expand_word(char *word, int start, int i)
 {
-	char *key;
-	char *new_word;
-	char *tmp;
-	int num;
+	char	*key;
+	char	*new_word;
+	char	*tmp;
+	int		num;
 
 	num = 0;
 	new_word = ft_strdup("");
@@ -54,8 +54,6 @@ char *expand_word(char *word, int start, int i)
 				new_word = ft_strjoin_gnl(new_word, tmp);
 				free(tmp);
 				tmp = expand_env(key);
-				if (tmp == NULL)
-					tmp = ft_strdup("");
 				new_word = ft_strjoin_gnl(new_word, tmp);
 				free(tmp);
 				start = i;
@@ -70,42 +68,28 @@ char *expand_word(char *word, int start, int i)
 	return (free(tmp), new_word);
 }
 
-static t_list *exapnd_var_list_cmd(t_list *lst)
+static t_list	*exapnd_var_list_cmd(t_list *lst)
 {
-	char *tmp;
-	t_list *new_list;
+	t_list	*new_list;
+	t_list	*tmp;
 
+	tmp = lst;
 	new_list = NULL;
 	while (lst)
 	{
-		if (lst->type == TK_WORD && ft_strcmp("$", lst->value) == 0)
-			lst->value[0] = '\0';
 		if (lst->type != TK_SINGLE_QUOTE && iscontain_var(lst->value))
-		{
-			tmp = lst->value;
-			lst->value = expand_word(lst->value, 0, 0);
-			if (lst->type == TK_WORD)
-			{
-				free(tmp);
-				tmp = lst->value;
-				lst->value = ft_strtrim(lst->value, " ");
-				insert_list(&new_list, lst);
-			}
-			else
-				ft_lstadd_back(&new_list, nd_copy(lst));
-			free(tmp);
-		}
+			expand_cmd_helper(&new_list, lst);
 		else
 			ft_lstadd_back(&new_list, nd_copy(lst));
 		lst = lst->next;
 	}
-	return (new_list);
+	return (ft_lstclear(&tmp), new_list);
 }
 
-static t_list *exapnd_var_list_redir(t_list *lst)
+static t_list	*exapnd_var_list_redir(t_list *lst)
 {
-	char *tmp;
-	t_list *new_list;
+	char	*tmp;
+	t_list	*new_list;
 
 	new_list = NULL;
 	while (lst)
@@ -140,20 +124,14 @@ static t_list *exapnd_var_list_redir(t_list *lst)
 	return (new_list);
 }
 
-int		expander(t_tree *node)
+int	expander(t_tree *node)
 {
-	t_list		*tmp;
-
-	tmp = node->redirect_mode;
-	node->redirect_mode = exapnd_var_list_redir(tmp);
-	if (tmp != NULL && node->redirect_mode == NULL)
+	if (node->redirect_mode != NULL)
 	{
-		ft_printf(STDERR_FILENO, "minishell ambiguous redirect \n");
-		g_pub.exit_status = 1;
-		return (ft_lstclear(&tmp), FALSE);
+		node->redirect_mode = exapnd_var_list_redir(node->redirect_mode);
+		if (node->redirect_mode == NULL)
+			return (redir_err(), FALSE);
 	}
-	ft_lstclear(&tmp);
-	tmp = node->lst;
 	node->lst = exapnd_var_list_cmd(node->lst);
 	node->redirect_mode = concater(node->redirect_mode);
 	node->lst = concater(node->lst);
