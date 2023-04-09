@@ -3,36 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 02:32:08 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
-int	iscontain_var(char *word)
+static char *get_next_key(char *word, int *i)
 {
-	int	i;
-	int	bool;
-
-	i = 0;
-	if (!word || indexofchar(word, '$') == -1)
-		return (FALSE);
-	while (word[i])
-	{
-		bool = word[i + 1] == '_' || (ft_isalpha(word[i + 1] ) || word[i + 1] == '?');
-		if (word[i] == '$' && bool)
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
-
-static char	*get_next_key(char *word, int *i)
-{
-	int	start;
+	int start;
 
 	start = *i;
 	if (word[*i] == '\0')
@@ -51,12 +33,12 @@ static char	*get_next_key(char *word, int *i)
 	return (ft_strdup(&word[start]));
 }
 
-char	*expand_word(char *word, int start, int i)
+char *expand_word(char *word, int start, int i)
 {
-	char	*key;
-	char	*new_word;
-	char	*tmp;
-	int		num;
+	char *key;
+	char *new_word;
+	char *tmp;
+	int num;
 
 	num = 0;
 	new_word = ft_strdup("");
@@ -88,41 +70,91 @@ char	*expand_word(char *word, int start, int i)
 	return (free(tmp), new_word);
 }
 
-void	exapnd_var_list(t_list *lst)
+static t_list *exapnd_var_list_cmd(t_list *lst)
 {
-	char	*tmp;
+	char *tmp;
+	t_list *new_list;
 
+	new_list = NULL;
 	while (lst)
 	{
 		if (lst->type == TK_WORD && ft_strcmp("$", lst->value) == 0)
 			lst->value[0] = '\0';
-		if (lst->type == TK_HERE_DOC)
-		{
-			lst = lst->next;
-			while (lst && istype(lst->type, T_W))
-				lst = lst->next;
-			if (lst == NULL)
-				break ;
-		}
-		else if (lst->type != TK_SINGLE_QUOTE && iscontain_var(lst->value))
+		if (lst->type != TK_SINGLE_QUOTE && iscontain_var(lst->value))
 		{
 			tmp = lst->value;
-			lst->value = expand_word(tmp, 0, 0);
-			expand_var_insert(lst);
+			lst->value = expand_word(lst->value, 0, 0);
+			if (lst->type == TK_WORD)
+			{
+				free(tmp);
+				tmp = lst->value;
+				lst->value = ft_strtrim(lst->value, " ");
+				insert_list(&new_list, lst);
+			}
+			else
+				ft_lstadd_back(&new_list, nd_copy(lst));
 			free(tmp);
 		}
+		else
+			ft_lstadd_back(&new_list, nd_copy(lst));
 		lst = lst->next;
 	}
+	return (new_list);
 }
 
-int	expander(t_tree *node)
+static t_list *exapnd_var_list_redir(t_list *lst)
 {
-	exapnd_var_list(node->redirect_mode);
-	exapnd_var_list(node->lst);
+	char *tmp;
+	t_list *new_list;
+
+	new_list = NULL;
+	while (lst)
+	{
+		if (lst->type != TK_SINGLE_QUOTE && iscontain_var(lst->value))
+		{
+			tmp = lst->value;
+			lst->value = expand_word(lst->value, 0, 0);
+			if (lst->type == TK_WORD)
+			{
+				free(tmp);
+				tmp = lst->value;
+				lst->value = ft_strtrim(lst->value, " ");
+				if (lst->value[0] == '\0' || indexofchar(lst->value, ' ') != -1)
+					return (free(tmp), ft_lstclear(&new_list), NULL);
+			}
+			else
+				ft_lstadd_back(&new_list, nd_copy(lst));
+			free(tmp);
+		}
+		else
+			ft_lstadd_back(&new_list, nd_copy(lst));
+		lst = lst->next;
+	}
+	return (new_list);
+}
+
+int expander(t_tree *node)
+{
+	t_list *tmp;
+
+	tmp = node->redirect_mode;
+	node->redirect_mode = exapnd_var_list_redir(node->redirect_mode);
+	if (tmp != NULL && node->redirect_mode == NULL)
+	{
+		ft_printf(STDERR_FILENO, "minishell:*: ambiguous redirect \n");
+		g_pub.exit_status = 1;
+		return (ft_lstclear(&tmp), FALSE);
+	}
+	ft_lstclear(&tmp);
+	tmp = node->lst;
+	node->lst = exapnd_var_list_cmd(node->lst);
 	node->redirect_mode = concater(node->redirect_mode);
 	node->lst = concater(node->lst);
 	if (wildcard_redir(node->redirect_mode) == FALSE)
+	{
+		g_pub.exit_status = 1;
 		return (FALSE);
+	}
 	wildcard_cmd(node->lst);
 	return (TRUE);
 }

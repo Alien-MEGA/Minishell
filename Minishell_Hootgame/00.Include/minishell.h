@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:27:11 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 02:30:33 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,9 @@ int		iscontain_var(char *word);
 char	*expand_word(char *word, int start, int i);
 void	ft_insert(t_list **head, t_list *newlst);
 void	expand_var_insert(t_list *lst);
+void	ft_insert(t_list **head, t_list *newlst);
+t_list	*get_list_form_var(t_list *lst);
+t_list	*nd_copy(t_list *lst);
+void	insert_list(t_list **head, t_list *lst);
 
 #endif
