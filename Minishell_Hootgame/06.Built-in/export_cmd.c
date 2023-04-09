@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 20:01:49 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/03 18:35:29 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../01.Main/minishell.h"
+#include "../00.Include/minishell.h"
 
 void	export(void)
 {

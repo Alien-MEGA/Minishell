@@ -6,11 +6,11 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:40:46 by reben-ha          #+#    #+#             */
-/*   Updated: 2022/10/29 20:27:23 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:05:44 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../00.Include/libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {

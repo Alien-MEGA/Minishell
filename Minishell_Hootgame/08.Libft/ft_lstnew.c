@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 15:14:15 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/03/06 14:37:03 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:05:44 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../00.Include/libft.h"
 
 t_list	*ft_lstnew(int type, char *value, void *data)
 {

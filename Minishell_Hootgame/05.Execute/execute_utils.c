@@ -6,11 +6,11 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 00:50:54 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../01.Main/minishell.h"
+#include "../00.Include/minishell.h"
 
 static int	handle_sig(int status)
 {

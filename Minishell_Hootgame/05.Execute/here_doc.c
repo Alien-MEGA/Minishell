@@ -6,11 +6,11 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 00:41:28 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../01.Main/minishell.h"
+#include "../00.Include/minishell.h"
 
 static char	*generator_tmp(void)
 {

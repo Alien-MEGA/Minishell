@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/09 00:05:45 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/04/09 01:03:46 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -146,7 +146,7 @@ all : $(NAME)
 $(NAME) : $(OBJ) $(LIBFT)
 	$(CC) $(FLAGS) $(LIB) $(OBJ) -o $(NAME)
 
-%.o: %.c
+%.o: %.c 00.Include/minishell.h 00.Include/const.h 00.Include/libft.h
 	$(CC) $(FLAGS) -I $(RL_PATH)/include -c $< -o $@
 
 clean :

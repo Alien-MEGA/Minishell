@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 00:55:52 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:00:57 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "readline/history.h"
 
 # include "const.h"
-# include "../08.Libft/libft.h"
+# include "libft.h"
 
 typedef struct s_public
 {

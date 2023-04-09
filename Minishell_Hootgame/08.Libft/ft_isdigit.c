@@ -6,11 +6,11 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:40:40 by reben-ha          #+#    #+#             */
-/*   Updated: 2022/11/02 18:06:54 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:05:44 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../00.Include/libft.h"
 
 int	ft_isdigit(int c)
 {
