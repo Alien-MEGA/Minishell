@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 04:53:23 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:25:45 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_tree	*bracket_handle(t_list **lst)
 	return (tree);
 }
 
-t_tree	*pipeline(t_list **lst)
+static t_tree	*pipeline(t_list **lst)
 {
 	t_tree	*tree;
 
@@ -44,7 +44,7 @@ t_tree	*pipeline(t_list **lst)
 	return (tree);
 }
 
-t_tree	*or_and(t_list **lst)
+static t_tree	*or_and(t_list **lst)
 {
 	t_tree	*tree;
 

@@ -6,13 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 05:45:44 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:24:32 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-void	search_rd(t_list **new_rd, t_list **lst)
+static void	search_rd(t_list **new_rd, t_list **lst)
 {
 	while ((*lst) && (*lst)->type >= TK_HERE_DOC
 		&& (*lst)->type <= TK_RD_OUTPUT_APPEND)
@@ -22,7 +22,7 @@ void	search_rd(t_list **new_rd, t_list **lst)
 	}
 }
 
-void	create_cmd(t_list **lst, t_list **new_lst)
+static void	create_cmd(t_list **lst, t_list **new_lst)
 {
 	while ((*lst)
 		&& !((*lst)->type >= TK_PIPE
@@ -72,7 +72,7 @@ t_tree	*create_operator(t_list **lst)
 	return (operator);
 }
 
-t_list	*create_redirect(t_list **lst)
+static t_list	*create_redirect(t_list **lst)
 {
 	t_list	*new_node;
 

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 22:12:24 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:30:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,11 @@ typedef struct s_tree
 	struct s_tree	*right;
 }					t_tree;
 
-void	syntax_error(char *token);
-t_tree	*bracket_handle(t_list **lst);
-t_tree	*pipeline(t_list **lst);
-t_tree	*or_and(t_list **lst);
 t_tree	*mk_tree(t_list *lst);
-void	skip_space(t_list **lst);
-void	search_rd(t_list **new_rd, t_list **lst);
+t_tree	*bracket_handle(t_list **lst);
 t_tree	*create_command(t_list **lst);
 t_tree	*create_operator(t_list **lst);
-t_list	*create_redirect(t_list **lst);
 t_tree	*ft_treenew(t_list *lst);
-t_tree	*ft_treelast(t_tree *tree, int option);
-void	ft_treeadd_back(t_tree **tree, t_tree *new, int option);
 void	ft_treeswap_root(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
 
