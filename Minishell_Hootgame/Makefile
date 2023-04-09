@@ -6,7 +6,7 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/08 04:45:50 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/04/09 00:05:45 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SRC = ./01.Main/minishell.c \
 	./04.Expander/expander_util.c \
 	./04.Expander/wildcard.c \
 	./05.Execute/execute.c \
+	./05.Execute/execute_utils.c \
 	./05.Execute/here_doc.c \
+	./05.Execute/redirection_utils.c \
 	./05.Execute/run_utils.c \
 	./06.Built-in/cd_cmd.c \
 	./06.Built-in/echo_cmd.c \

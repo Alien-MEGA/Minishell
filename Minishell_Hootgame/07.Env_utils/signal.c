@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/05 15:03:50 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:20:32 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	sigint_handler(int sig)
 	if (isatty(0))
 		ft_printf(1, prompt);
 	rl_replace_line("", 0);
+	// rl_on_new_line();
 	rl_redisplay();
 	free(prompt);
 }
