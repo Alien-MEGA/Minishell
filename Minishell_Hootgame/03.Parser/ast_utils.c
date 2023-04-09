@@ -6,11 +6,29 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 00:24:32 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:54:53 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
+
+static t_list	*create_redirect(t_list **lst)
+{
+	t_list	*new_node;
+
+	new_node = NULL;
+	ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
+		(*lst) = (*lst)->next;
+	skip_space(lst);
+	while ((*lst)
+		&& !((*lst)->type >= TK_PIPE
+			&& (*lst)->type <= TK_WT_SPACE))
+	{
+		ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
+		(*lst) = (*lst)->next;
+	}
+	return (new_node);
+}
 
 static void	search_rd(t_list **new_rd, t_list **lst)
 {
@@ -70,22 +88,4 @@ t_tree	*create_operator(t_list **lst)
 	operator = ft_treenew(ft_lstnew((*lst)->type, (*lst)->value, NULL));
 		(*lst) = (*lst)->next;
 	return (operator);
-}
-
-static t_list	*create_redirect(t_list **lst)
-{
-	t_list	*new_node;
-
-	new_node = NULL;
-	ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
-		(*lst) = (*lst)->next;
-	skip_space(lst);
-	while ((*lst)
-		&& !((*lst)->type >= TK_PIPE
-			&& (*lst)->type <= TK_WT_SPACE))
-	{
-		ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
-		(*lst) = (*lst)->next;
-	}
-	return (new_node);
 }

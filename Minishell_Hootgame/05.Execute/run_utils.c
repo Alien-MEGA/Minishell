@@ -6,13 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 22:27:51 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:45:09 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-int	find_path(char **paths)
+static int	find_path(char **paths)
 {
 	int	i;
 
@@ -24,14 +24,14 @@ int	find_path(char **paths)
 	return (FAIL);
 }
 
-void	ft_apply_now(char *path, char **cmd, char **env)
+static void	ft_apply_now(char *path, char **cmd, char **env)
 {
 	ft_error(access(path, F_OK), 1);
 	ft_error(access(path, X_OK), 1);
 	ft_error(execve(path, cmd, env), 1);
 }
 
-char	**ft_path(char *cmd)
+static char	**ft_path(char *cmd)
 {
 	char	**paths;
 	char	*path;

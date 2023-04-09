@@ -6,13 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 22:28:40 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:45:20 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-char	*read_file(char *file)
+static char	*read_file(char *file)
 {
 	int		fd;
 	char	*str;
@@ -34,7 +34,7 @@ char	*read_file(char *file)
 	return (full_str);
 }
 
-void	expand_file(char *file, int type)
+static void	expand_file(char *file, int type)
 {
 	int		fd;
 	char	*full_str;

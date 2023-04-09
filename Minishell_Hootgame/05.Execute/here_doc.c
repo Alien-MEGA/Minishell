@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/07 21:37:00 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:41:28 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_read_tmp(char *tmp_file, char *limiter)
 	close(fd_tmp);
 }
 
-char	*here_doc(char *delimiter)
+static char	*here_doc(char *delimiter)
 {
 	char	*tmp_file;
 
@@ -56,7 +56,7 @@ char	*here_doc(char *delimiter)
 	return (tmp_file);
 }
 
-void	change_value(t_list *lst, char *new_value)
+static void	change_value(t_list *lst, char *new_value)
 {
 	char	*tmp;
 

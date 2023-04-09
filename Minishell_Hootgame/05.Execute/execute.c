@@ -6,13 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/08 22:29:31 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:51:19 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01.Main/minishell.h"
 
-t_fd	create_pipe(void)
+static t_fd	create_pipe(void)
 {
 	int		fd[2];
 	int		*fd_in;
@@ -30,7 +30,7 @@ t_fd	create_pipe(void)
 	return (fd_pipe);
 }
 
-pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait)
+static pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	pid_t	pross;
 	char	**cmd;
@@ -55,7 +55,7 @@ pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait)
 	return (pross);
 }
 
-void	exec_and_or(t_tree *root, int fd_in, int fd_out, int should_wait)
+static void	exec_and_or(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	g_pub.should_fork = FALSE;
 	execute(root->left, fd_in, fd_out, TRUE);
@@ -65,7 +65,7 @@ void	exec_and_or(t_tree *root, int fd_in, int fd_out, int should_wait)
 		execute(root->right, fd_in, fd_out, should_wait);
 }
 
-void	exec_pipe(t_tree *root, int fd_in, int fd_out, int should_wait)
+static void	exec_pipe(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	t_fd	fd_pipe;
 	pid_t	pross;
@@ -107,5 +107,3 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	}
 	return (pross);
 }
-
-// Add to Header

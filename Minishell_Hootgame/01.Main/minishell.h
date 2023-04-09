@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 00:30:49 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:55:52 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,12 @@ typedef struct s_tree
 }					t_tree;
 
 t_tree	*mk_tree(t_list *lst);
+t_tree	*pipeline(t_list **lst);
+t_tree	*or_and(t_list **lst);
 t_tree	*bracket_handle(t_list **lst);
 t_tree	*create_command(t_list **lst);
 t_tree	*create_operator(t_list **lst);
+void	skip_space(t_list **lst);
 t_tree	*ft_treenew(t_list *lst);
 void	ft_treeswap_root(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
@@ -128,21 +131,15 @@ typedef struct s_fd
 	int		fd_rd;
 }			t_fd;
 
-t_fd	run_redirect(t_list *redirect, t_fd fd_rd);
-char	**get_cmd(t_list *lst);
-void	dup_fd(int fd_in, int fd_out);
-t_fd	create_pipe(void);
-pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait);
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
-int		run_builtin(char **cmd, int fd_in, int fd_out);
-int		wait_pross(pid_t pross);
-int		find_path(char **paths);
-void	ft_apply_now(char *path, char **cmd, char **env);
-char	**ft_path(char *cmd);
-void	execute_x(char **cmd, char **env);
-char	*here_doc(char *delimiter);
 void	close_pipe_fd(void);
+void	dup_fd(int fd_in, int fd_out);
+int		wait_pross(pid_t pross);
 void	run_here_doc(t_tree *tree);
+t_fd	run_redirect(t_list *redirect, t_fd fd_rd);
+int		run_builtin(char **cmd, int fd_in, int fd_out);
+char	**get_cmd(t_list *lst);
+void	execute_x(char **cmd, char **env);
 
 /*###############################################################################
 #                                 BUILT-IN                                      #
@@ -191,7 +188,6 @@ char	**mat_join(char **s1, char **s2);
 int		ft_strcmp(char *str1, char *str2);
 int		iscontain_var(char *word);
 char	*expand_word(char *word, int start, int i);
-int		get_exit_status(int status);
 void	ft_insert(t_list **head, t_list *newlst);
 void	expand_var_insert(t_list *lst);
 
