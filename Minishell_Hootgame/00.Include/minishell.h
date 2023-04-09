@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 21:14:02 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 22:15:00 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # include "const.h"
 # include "libft.h"
 
+typedef struct s_fd
+{
+	int		fd_wr;
+	int		fd_rd;
+}			t_fd;
+
 typedef struct s_public
 {
 	unsigned int	exit_status;
@@ -42,6 +48,7 @@ typedef struct s_public
 	int				should_fork;
 	char			*token_error;
 	t_list			*fd_lst;
+	t_fd			std_fd;
 }					t_public;
 
 extern t_public	g_pub;
@@ -126,12 +133,6 @@ t_list	*concater(t_list *lst);
 #                                 EXECUTE                                       #
 ###############################################################################*/
 
-typedef struct s_fd
-{
-	int		fd_wr;
-	int		fd_rd;
-}			t_fd;
-
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
 void	close_pipe_fd(void);
 void	dup_fd(int fd_in, int fd_out);
@@ -141,6 +142,7 @@ t_fd	run_redirect(t_list *redirect, t_fd fd_rd);
 int		run_builtin(char **cmd, int fd_in, int fd_out);
 char	**get_cmd(t_list *lst);
 void	execute_x(char **cmd, char **env);
+void	reset_std_fd(void);
 
 /*###############################################################################
 #                                 BUILT-IN                                      #
