@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   concater.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 11:29:58 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 05:14:02 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:42:15 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,19 @@ t_list	*concater(t_list *lst)
 	return (newlist);
 }
 
-t_list *concater_hrdc(t_list *lst)
+t_list	*concater_heredoc(t_list *lst)
 {
-	t_list *newlist;
-	char *new_value;
-	int tp;
-	int prev;
+	t_list	*newlist;
+	char	*new_value;
+	int		tp;
+	int		prev;
 
 	newlist = NULL;
 	while (lst)
 	{
 		tp = TK_WORD;
-		if (prev == TK_HERE_DOC && istype(lst->type, T_W) && (lst->next && istype(lst->next->type, T_W)))
+		if (prev == TK_HERE_DOC && istype(lst->type, T_W)
+			&& (lst->next && istype(lst->next->type, T_W)))
 		{
 			new_value = getword(&lst, &tp, prev);
 			ft_lstadd_back(&newlist, ft_lstnew(tp, new_value, NULL));
