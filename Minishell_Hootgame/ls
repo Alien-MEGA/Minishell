@@ -1,26 +1,0 @@
-
-[?2004h
-[34;1m┌──(Mini㉿Shell)-[Minishell_Hootgame]-[[0;37m0[34;1m]
-└─$ [0mlsls
-[?2004l[?2004h
-[34;1m┌──(Mini㉿Shell)-[Minishell_Hootgame]-[[31;3m127[34;1m]
-└─$ [0mls
-[?2004l00.Include
-01.Main
-02.Lexer
-03.Parser
-04.Expander
-05.Execute
-06.Built-in
-07.Env_utils
-08.Libft
-Docs
-Makefile
-ls
-minishell
-[?2004h
-[34;1m┌──(Mini㉿Shell)-[Minishell_Hootgame]-[[0;37m0[34;1m]
-└─$ [0m
-[?2004l[?2004h
-[34;1m┌──(Mini㉿Shell)-[Minishell_Hootgame]-[[0;37m0[34;1m]
-└─$ [0m[?2004l
