@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:52:43 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	run_here_doc(t_tree *tree)
 	run_here_doc(tree->right);
 	if (!tree->redirect_mode)
 		return ;
+	tree->redirect_mode = concater_heredoc(tree->redirect_mode);
 	lst = tree->redirect_mode;
 	while (lst)
 	{
