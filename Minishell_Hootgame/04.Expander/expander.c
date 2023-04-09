@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 04:47:53 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:40:11 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,16 +130,19 @@ static t_list *exapnd_var_list_redir(t_list *lst)
 		else
 			ft_lstadd_back(&new_list, nd_copy(lst));
 		if (lst->type == TK_HERE_DOC)
+		{
+			ft_lstadd_back(&new_list, nd_copy(lst->next));
 			lst = lst->next->next;
+		}
 		else
 		lst = lst->next;
 	}
 	return (new_list);
 }
 
-int expander(t_tree *node)
+int		expander(t_tree *node)
 {
-	t_list *tmp;
+	t_list		*tmp;
 
 	tmp = node->redirect_mode;
 	node->redirect_mode = exapnd_var_list_redir(tmp);
