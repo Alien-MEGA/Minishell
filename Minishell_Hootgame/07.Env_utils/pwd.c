@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/10 02:39:31 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 22:05:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*get_prompt(char *pwd)
 		tmp = get_prompt_ex_st();
 		prompt = ft_strjoin_gnl(prompt, tmp);
 		prompt = ft_strjoin_gnl(prompt, PROMPT_P3);
-		return (free(pwd), prompt);
+		return (free(pwd), free(tmp), prompt);
 	}
 	return (free(pwd), PROMPT);
 }
