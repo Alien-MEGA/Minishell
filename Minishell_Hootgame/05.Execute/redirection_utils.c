@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 03:54:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:46:43 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,17 @@ static void	expand_file(char *file, int type)
 	if (type != TK_WORD)
 		return ;
 	full_str = read_file(file);
-	tmp = full_str;
-	full_str = expand_word(full_str, 0, 0);
-	free(tmp);
-	fd = open(file, O_RDWR | O_TRUNC);
-	ft_error(fd, 1);
-	ft_printf(fd, "%s", full_str);
-	close(fd);
+	if (full_str)
+	{
+		tmp = full_str;
+		full_str = expand_word(full_str, 0, 0);
+		free(tmp);
+		fd = open(file, O_RDWR | O_TRUNC);
+		ft_error(fd, 1);
+		ft_printf(fd, "%s", full_str);
+		free(full_str);
+		close(fd);
+	}
 }
 
 t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
