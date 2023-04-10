@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 11:29:58 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 21:56:45 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 01:08:07 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,16 @@ t_list	*concater(t_list *lst)
 	{
 		tp = TK_WORD;
 		if (istype(lst->type, T_W) && istype(nxt_type(lst), T_W))
-		ft_lstadd_back(&newlist, ft_lstnew(tp, getword(&lst, &tp, prev), NULL));
+			ft_lstadd_back(&newlist, ft_lstnew(tp,
+					getword(&lst, &tp, prev), NULL));
 		else
 		{
-			ft_lstadd_back(&newlist,nd_copy(lst));
+			ft_lstadd_back(&newlist, nd_copy(lst));
 			prev = lst->type;
 			lst = lst->next;
 		}
 	}
-	return (ft_lstclear(&tmp) ,newlist);
+	return (ft_lstclear(&tmp), newlist);
 }
 
 t_list	*concater_heredoc(t_list *lst)
@@ -72,12 +73,15 @@ t_list	*concater_heredoc(t_list *lst)
 	char	*new_value;
 	int		tp;
 	int		prev;
+	t_list	*tmp;
 
+	tmp = lst;
 	newlist = NULL;
 	while (lst)
 	{
 		tp = TK_WORD;
-		if (prev == TK_HERE_DOC && istype(lst->type, T_W) && istype(nxt_type(lst), T_W))
+		if (prev == TK_HERE_DOC && istype(lst->type, T_W)
+			&& istype(nxt_type(lst), T_W))
 		{
 			new_value = getword(&lst, &tp, prev);
 			ft_lstadd_back(&newlist, ft_lstnew(tp, new_value, NULL));
@@ -89,5 +93,5 @@ t_list	*concater_heredoc(t_list *lst)
 			lst = lst->next;
 		}
 	}
-	return (newlist);
+	return (ft_lstclear(&tmp), newlist);
 }

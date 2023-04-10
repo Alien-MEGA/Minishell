@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:23:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 21:15:10 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 01:11:08 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	ismatch(char *wd_card, char *word, int lv)
 	}
 	if (*wd_card == '*' && *(wd_card + 1) != '\0' && *word == '\0')
 		return (FALSE);
+	if (*word == '*' && *wd_card == *word)
+		return (ismatch(wd_card, word + 1, lv + 1));
 	if (*wd_card == *word)
 		return (ismatch(wd_card + 1, word + 1, lv + 1));
 	if (*wd_card == '*')

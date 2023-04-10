@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:52:39 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 00:21:08 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 01:08:25 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	expand_redi_helper(t_list **new_list, t_list *lst)
 	return (TRUE);
 }
 
-void	redir_err()
+void	redir_err(void)
 {
 	g_pub.exit_status = 1;
 	ft_printf(STDERR_FILENO, "minishell : ambiguous redirect \n");
