@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 21:47:13 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 00:20:42 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,28 +88,18 @@ static t_list	*exapnd_var_list_cmd(t_list *lst)
 
 static t_list	*exapnd_var_list_redir(t_list *lst)
 {
-	char	*tmp;
 	t_list	*new_list;
+	t_list	*tmp;
 
 	new_list = NULL;
+	tmp = lst;
 	while (lst)
 	{
 		if (lst->type != TK_SINGLE_QUOTE && iscontain_var(lst->value))
 		{
-			tmp = lst->value;
-			lst->value = expand_word(lst->value, 0, 0);
-			if (lst->type == TK_WORD)
-			{
-				free(tmp);
-				tmp = lst->value;
-				lst->value = ft_strtrim(lst->value, " ");
-				if (lst->value[0] == '\0' || indexofchar(lst->value, ' ') != -1)
-					return (free(tmp), ft_lstclear(&new_list), NULL);
-				ft_lstadd_back(&new_list, nd_copy(lst));
-			}
-			else
-				ft_lstadd_back(&new_list, nd_copy(lst));
-			free(tmp);
+			if (expand_redi_helper(&new_list, lst) == FALSE)
+				return (ft_lstclear(&tmp), NULL);
+
 		}
 		else
 			ft_lstadd_back(&new_list, nd_copy(lst));
@@ -121,7 +111,7 @@ static t_list	*exapnd_var_list_redir(t_list *lst)
 		else
 		lst = lst->next;
 	}
-	return (new_list);
+	return (ft_lstclear(&tmp), new_list);
 }
 
 int	expander(t_tree *node)

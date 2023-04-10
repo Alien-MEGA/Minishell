@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:52:39 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 21:40:48 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 00:21:08 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,27 @@ void	expand_cmd_helper(t_list **new_list, t_list *lst)
 	else
 		ft_lstadd_back(new_list, nd_copy(lst));
 	free(tmp);
+}
+
+int	expand_redi_helper(t_list **new_list, t_list *lst)
+{
+	char	*tmp;
+
+	tmp = lst->value;
+	lst->value = expand_word(lst->value, 0, 0);
+	if (lst->type == TK_WORD)
+	{
+		free(tmp);
+		tmp = lst->value;
+		lst->value = ft_strtrim(lst->value, " ");
+		if (lst->value[0] == '\0' || indexofchar(lst->value, ' ') != -1)
+			return (free(tmp), ft_lstclear(new_list), FALSE);
+		ft_lstadd_back(new_list, nd_copy(lst));
+	}
+	else
+		ft_lstadd_back(new_list, nd_copy(lst));
+	free(tmp);
+	return (TRUE);
 }
 
 void	redir_err()

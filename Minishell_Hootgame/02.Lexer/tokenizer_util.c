@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:29:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 00:26:40 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void skip_word(t_list **list, char *line, int *i)
 	int count;
 	count = 0;
 
-	while (indexofchar(SP_CHAR, line[*i]) == -1 || check_and(line[*i], line[*i + 1]))
+	while (check_and(line[*i], line[*i + 1]) || indexofchar(SP_CHAR, line[*i]) == -1)
 	{
 		count++;
 		*i += 1;
