@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_hepler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:52:39 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 01:08:25 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:54:54 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	expand_cmd_helper(t_list **new_list, t_list *lst)
 		free(tmp);
 		tmp = lst->value;
 		lst->value = ft_strtrim(lst->value, " ");
-		printf("%s +\n", lst->value);
 		insert_list(new_list, lst);
 	}
 	else
