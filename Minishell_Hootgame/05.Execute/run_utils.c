@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 22:09:51 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 22:19:16 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ void	execute_x(char **cmd, char **env)
 	char	*path;
 
 	if (run_builtin(cmd, -1, -1) == SUCCESS)
-		exit(g_pub.exit_status);
+		return (ft_free(cmd), exit(g_pub.exit_status));
 	if (ft_strchr_check(cmd[0], '/'))
 		ft_apply_now(cmd[0], cmd, env);
 	paths = ft_path(cmd[0]);
 	if (find_path(paths) == FAIL)
 		return (ft_printf(2, "Minishell : %s : command not found\n"
-				, cmd[0]), exit(127));
+				, cmd[0]), ft_free(paths), ft_free(cmd), exit(127));
 	path = ft_strdup(paths[find_path(paths)]);
 	ft_free(paths);
 	ft_error(execve(path, cmd, env), 0);
