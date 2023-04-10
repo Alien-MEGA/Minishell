@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:39:31 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
-static char *get_prompt_ex_st()
+static char	*get_prompt_ex_st(void)
 {
 	char	*status;
-	char *tmp;
+	char	*tmp;
 
 	status = NULL;
 	if (g_pub.exit_status == 130)
-		return (ft_strjoin( RED, "SIGINT"));
+		return (ft_strjoin(RED, "SIGINT"));
 	else if (g_pub.exit_status == 131)
-		return (ft_strjoin( RED, "SIGQUIT"));
+		return (ft_strjoin(RED, "SIGQUIT"));
 	else if (g_pub.exit_status == 137)
-		return (ft_strjoin( RED, "SIGKILL"));
+		return (ft_strjoin(RED, "SIGKILL"));
 	else if (g_pub.exit_status == 143)
-		return (ft_strjoin( RED, "SIGTERM"));
+		return (ft_strjoin(RED, "SIGTERM"));
 	else if (g_pub.exit_status == 0)
 		return (ft_strjoin(WHITE, "0"));
 	else
@@ -49,10 +49,11 @@ char	*get_prompt(char *pwd)
 {
 	char	*prompt;
 	char	*tmp;
-	if(strcmp(pwd,"/") == 0)
+
+	if (strcmp(pwd, "/") == 0)
 	{
 		free(pwd);
-			pwd = strdup("/☣️ ROOT");
+		pwd = strdup("/☣️ ROOT");
 	}
 	if (ft_strrchr(pwd, '/') != NULL)
 	{
@@ -106,7 +107,7 @@ t_list	*get_ls(void)
 		ent = readdir(op_dir);
 		if (ent == NULL)
 			break ;
-			ft_lstadd_back(&list, ft_lstnew(0, ft_strdup(ent->d_name), NULL));
+		ft_lstadd_back(&list, ft_lstnew(0, ft_strdup(ent->d_name), NULL));
 	}
 	closedir(op_dir);
 	if (list != NULL)

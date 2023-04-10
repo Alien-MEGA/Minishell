@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:57:50 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:02:06 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	print_error(char *value)
 {
-	ft_printf(2, 
+	ft_printf(2,
 		"Minishell : syntax error near unexpected token `%s'\n",
-			value);
+		value);
 	return (FALSE);
 }
 
@@ -24,7 +24,8 @@ int	check_syntax(t_list *tokens)
 {
 	if (check_quote(tokens) == FALSE)
 	{
-		ft_printf(2, "%sminishell:lexer:%sopen quote or double qoute%s\n", RED, GREEN, RESET);
+		ft_printf(2, "%sminishell:lexer:%sopen quote or double qoute%s\n",
+			RED, GREEN, RESET);
 		return (FALSE);
 	}
 	if (check_brace(tokens) == FALSE || check_quote(tokens) == FALSE)

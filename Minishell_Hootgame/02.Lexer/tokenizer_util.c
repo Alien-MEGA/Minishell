@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:29:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 00:26:40 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:06:04 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,17 @@ void	skip_wt_sapce(t_list **list, char *line, int *i)
 	*i -= 1;
 }
 
-void	skip_quote(t_list **list, char *line, int *i,char quote)
+void	skip_quote(t_list **list, char *line, int *i, char quote)
 {
-	int ind_of_quote;
+	int	ind_of_quote;
 
 	ind_of_quote = indexofchar(&line[*i + 1], quote);
-
 	if (ind_of_quote < 0)
 		add_token(list, TK_OPEN_QUOTE, "'");
 	else if (quote == '\'')
 		add_token(list, TK_SINGLE_QUOTE, ft_substr(line,*i + 1, ind_of_quote));
 	else if (quote == '"')
-		add_token(list, TK_DOUBLE_QUOTE, ft_substr(line, *i + 1,ind_of_quote ));
+		add_token(list, TK_DOUBLE_QUOTE, ft_substr(line, *i + 1, ind_of_quote));
 	if (ind_of_quote < 0)
 	*i = ft_strlen(line) - 1;
 	else
@@ -45,19 +44,19 @@ static int	check_and(char c1, char c2)
 	return (FALSE);
 }
 
-void skip_word(t_list **list, char *line, int *i)
+void	skip_word(t_list **list, char *line, int *i)
 {
-	int count;
-	count = 0;
+	int	count;
 
-	while (check_and(line[*i], line[*i + 1]) || indexofchar(SP_CHAR, line[*i]) == -1)
+	count = 0;
+	while (check_and(line[*i], line[*i + 1])
+		||indexofchar(SP_CHAR, line[*i]) == -1)
 	{
 		count++;
 		*i += 1;
 		if (line[*i] == 0)
-			break;
-}
+			break ;
+	}
 	add_token(list, TK_WORD, ft_substr(line, *i - count, count));
 	*i -= 1;
 }
-

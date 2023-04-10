@@ -6,24 +6,28 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 21:38:37 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:21:42 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
-int iscontain_var(char *word)
+int	iscontain_var(char *word)
 {
-	int i;
-	int bool;
+	int	i;
+	int	bool1;
+	int	bool2;
+	int	bool3;
 
 	i = 0;
 	if (!word || indexofchar(word, '$') == -1)
 		return (FALSE);
 	while (word[i])
 	{
-		bool = word[i + 1] == '_' || (ft_isalpha(word[i + 1]) || word[i + 1] == '?');
-		if (word[i] == '$' && bool)
+		bool1 = word[i + 1] == '_';
+		bool2 = word[i + 1] == '?';
+		bool3 = ft_isalpha(word[i + 1]);
+		if (word[i] == '$' && (bool1 || bool2 || bool3))
 			return (TRUE);
 		i++;
 	}

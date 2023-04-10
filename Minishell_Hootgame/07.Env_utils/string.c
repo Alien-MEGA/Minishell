@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:53:30 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:40:48 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	indexofchar(char *line, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (line == 0)
@@ -25,11 +25,10 @@ int	indexofchar(char *line, char c)
 			return (i);
 		i++;
 	}
-
 	return (-1);
 }
 
-static void	mat_copy_free(char **res, char **s1,char **s2)
+static void	mat_copy_free(char **res, char **s1, char **s2)
 {
 	int		i;
 	int		j;
@@ -64,14 +63,11 @@ char	**mat_join(char **s1, char **s2)
 	pt2 = ft_matrixdup(s2);
 	res = (char **)malloc((ft_matlen(s1) + ft_matlen(s2) + 1) * sizeof(char *));
 	ft_error_str(res, 1);
-	printf("bfore copy and free \n");
 	mat_copy_free(res, pt1, pt2);
-	printf("after copy and free \n");
-
 	return (res);
 }
 
-int	ft_strcmp( char *str1,  char *str2)
+int	ft_strcmp( char *str1, char *str2)
 {
 	size_t			i;
 	unsigned char	*s1x;

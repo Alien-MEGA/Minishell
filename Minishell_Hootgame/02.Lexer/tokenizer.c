@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:08:45 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	add_token(t_list **list, int type, char *value)
 		free(value);
 }
 
-static int check_teken1(char *line, int *i, t_list **list)
+static int	check_teken1(char *line, int *i, t_list **list)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(line);
 	if (line[*i] == '|' && *i < len - 1 && line[*i + 1] == '|')
@@ -41,7 +41,7 @@ static int check_teken1(char *line, int *i, t_list **list)
 	return (TRUE);
 }
 
-static int check_teken2(char *line, int i, t_list **list)
+static int	check_teken2(char *line, int i, t_list **list)
 {
 	if (line[i] == '|')
 		add_token(list, TK_PIPE, "|");
@@ -53,23 +53,21 @@ static int check_teken2(char *line, int i, t_list **list)
 		add_token(list, TK_OPEN_BRACE, "(");
 	else if (line[i] == ')')
 		add_token(list, TK_CLOSE_BRACE, ")");
-	else return (FALSE);
+	else
+		return (FALSE);
 	return (TRUE);
 }
 
 t_list	**create_token_list(t_list **head, char *line)
 {
 	int		i;
-	int		len;
 	int		bool;
 	t_list	*lsit;
 
-	lsit = 0;
-	len = ft_strlen(line);
+	lsit = NULL;
 	i = 0;
-	while (i < len)
+	while (i < ft_strlen(line))
 	{
-
 		bool = check_teken1(line, &i, head);
 		if (bool == FALSE)
 		bool = check_teken2(line, i, head);

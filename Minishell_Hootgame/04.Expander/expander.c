@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 00:20:42 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 02:30:11 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static t_list	*exapnd_var_list_redir(t_list *lst)
 		{
 			if (expand_redi_helper(&new_list, lst) == FALSE)
 				return (ft_lstclear(&tmp), NULL);
-
 		}
 		else
 			ft_lstadd_back(&new_list, nd_copy(lst));
@@ -126,10 +125,7 @@ int	expander(t_tree *node)
 	node->redirect_mode = concater(node->redirect_mode);
 	node->lst = concater(node->lst);
 	if (wildcard_redir(node->redirect_mode) == FALSE)
-	{
-		g_pub.exit_status = 1;
 		return (FALSE);
-	}
 	wildcard_cmd(node->lst);
 	return (TRUE);
 }
