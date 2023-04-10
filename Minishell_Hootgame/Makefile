@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
+#    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/10 00:42:39 by ebennamr         ###   ########.fr        #
+#    Updated: 2023/04/10 05:05:50 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = gcc -g -fsanitize=address
+CC = gcc -g #-fsanitize=address
 
 FLAGS = #-Wall -Werror -Wextra
 

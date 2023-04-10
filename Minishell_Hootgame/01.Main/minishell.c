@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 03:11:39 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 05:07:45 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,14 @@ static void	init(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 }
 
+void	leaks(void)
+{
+	system("leaks minishell");
+}
+
 int	main(int argc, char **argv, char **env)
 {
+	atexit(leaks);
 	t_list	*lst;
 	int		line_status;
 	t_tree	*tree;
@@ -104,6 +110,8 @@ int	main(int argc, char **argv, char **env)
 				continue ;
 			sig_inint(TP_SIG_EMPTY);
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
+			ft_treeclear(&tree);
 		}
+		// ft_lstclear(&lst);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 04:36:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ void	ft_treeswap_root(t_tree **tree, t_tree *new, int option)
 
 void	ft_treeclear(t_tree **tree)
 {
-	if ((*tree)->left != NULL)
-		ft_treeclear(&(*tree)->left);
-	if ((*tree)->right != NULL)
-		ft_treeclear(&(*tree)->right);
+	if (!tree || !(*tree))
+		return ;
+	ft_treeclear(&(*tree)->left);
+	ft_treeclear(&(*tree)->right);
+	ft_lstclear(&(*tree)->lst);
+	ft_lstclear(&(*tree)->redirect_mode);
 	free(*tree);
 }
