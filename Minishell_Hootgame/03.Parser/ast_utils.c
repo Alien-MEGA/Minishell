@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:47:51 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ t_tree	*create_command(t_list **lst)
 		return (bracket_handle(lst));
 	search_rd(&new_rd, lst);
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
-		return (printf("Error syntax\n"), exit(228), NULL);
+		return (g_pub.token_error = ft_strdup("("), NULL);
 	create_cmd(lst, &new_lst);
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
-		return (printf("Error syntax\n"), exit(228), NULL);
+		return (g_pub.token_error = ft_strdup("("), NULL);
 	search_rd(&new_rd, lst);
 	if ((*lst) && (*lst)->type == TK_OPEN_BRACE)
-		return (printf("Error syntax\n"), exit(228), NULL);
+		return (g_pub.token_error = ft_strdup("("), NULL);
 	new_tree = ft_treenew(new_lst);
 	new_tree->redirect_mode = new_rd;
 	return (new_tree);

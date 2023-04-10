@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 22:11:14 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:55:22 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	syntax_error(char *token)
 {
 	return (ft_printf(2,
 			"Minishell : syntax error near unexpected `%s'\n",
-			RED, token, RESET));
+			token));
 }
 
 static int	check_line(char *line)
@@ -62,6 +62,7 @@ static void	init(int argc, char **argv, char **env)
 	g_pub.exp_list[0] = NULL;
 	g_pub.exit_status = 0;
 	g_pub.is_sigset = FALSE;
+	g_pub.token_error = NULL;
 	g_pub.std_fd.fd_rd = dup(STDIN_FILENO);
 	ft_error(g_pub.std_fd.fd_rd, 1);
 	g_pub.std_fd.fd_wr = dup(STDOUT_FILENO);
