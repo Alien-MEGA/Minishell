@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 23:55:22 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 03:11:39 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_public	g_pub;
 
 static void	syntax_error(char *token)
 {
+	g_pub.exit_status = 258;
 	return (ft_printf(2,
 			"Minishell : syntax error near unexpected `%s'\n",
 			token));
@@ -81,7 +82,9 @@ int	main(int argc, char **argv, char **env)
 	init(argc, argv, env);
 	while (1)
 	{
-		int fd = dup(0);
+		sig_inint(TP_SIG_MAIN);
+		reset_std_fd();
+		g_pub.is_sigset = FALSE;
 		lst = NULL;
 		line_status = prompt(&lst);
 		if (line_status == FALSE)
@@ -95,21 +98,12 @@ int	main(int argc, char **argv, char **env)
 				syntax_error(g_pub.token_error);
 				continue ;
 			}
-
-			sig_inint(TP_SIG_EMPTY);
+			sig_inint(TP_SIG_HRDC);
 			run_here_doc(tree);
 			if (g_pub.is_sigset == TRUE)
 				continue ;
-
+			sig_inint(TP_SIG_EMPTY);
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
-			sig_inint(TP_SIG_MAIN);
-			g_pub.is_sigset = FALSE;
-			dup2(fd, 0);
-			close(fd);
-			sig_inint(TP_SIG_MAIN);
 		}
-		else
-			g_pub.exit_status = 258;
-		// ft_lstclear(&lst);
 	}
 }
