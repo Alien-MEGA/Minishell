@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/10 21:46:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 22:11:00 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static char	*read_file(char *file)
 	return (full_str);
 }
 
-static void	expand_file(char *file, int type)
+static char	*expand_file(char *file, int type)
 {
 	int		fd;
 	char	*full_str;
 	char	*tmp;
 
 	if (type != TK_WORD)
-		return ;
+		return (file);
 	full_str = read_file(file);
 	if (full_str)
 	{
@@ -54,6 +54,7 @@ static void	expand_file(char *file, int type)
 		free(full_str);
 		close(fd);
 	}
+	return (file);
 }
 
 t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
@@ -75,10 +76,8 @@ t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
 		if (redirect->type == TK_RD_INPUT)
 			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
 		else if (redirect->type == TK_HERE_DOC)
-		{
-			expand_file(redirect->next->value, redirect->next->type);
-			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
-		}
+			fd_rd.fd_rd = open(expand_file(redirect->next->value,
+						redirect->next->type), O_RDONLY);
 		ft_error(fd_rd.fd_rd, 1);
 		redirect = redirect->next->next;
 	}

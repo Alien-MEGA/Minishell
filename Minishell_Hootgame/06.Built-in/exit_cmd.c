@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:55 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 18:18:24 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 22:18:59 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ void	exit_cmd(char **cmd)
 	{
 		getexit_number(cmd[1]);
 		ft_printf(2, "exit\nMinishell : exit: too many arguments\n");
-		if (g_pub.should_fork == TRUE)
-			exit(1);
-		else
 		g_pub.exit_status = 1;
 	}
 	else
