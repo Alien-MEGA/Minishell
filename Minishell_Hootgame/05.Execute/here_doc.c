@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 00:47:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:50:25 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	change_value(t_list *lst, char *new_value)
 	free(tmp);
 }
 
-// Note : I think there is a problem if : << li"m" need expand before
 void	run_here_doc(t_tree *tree)
 {
 	t_list	*lst;
