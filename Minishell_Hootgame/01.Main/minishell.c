@@ -6,13 +6,18 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 05:07:45 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 23:54:18 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
 t_public	g_pub;
+
+void	paddress(void *address)
+{
+	fprintf(stderr, "%p\n", address);
+}
 
 static void	syntax_error(char *token)
 {

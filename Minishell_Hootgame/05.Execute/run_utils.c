@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/10 22:19:16 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/10 23:58:48 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	**ft_path(char *cmd)
 	path = expand_env("PATH");
 	if (!path)
 		return (ft_printf(2, "Minishell : %s : No such file or directory\n"
-				, cmd), exit(127), NULL);
+				, cmd), free(path), exit(127), NULL);
 	paths = ft_split(path, ':');
 	i = -1;
 	while (paths[++i] != NULL)
@@ -55,7 +55,7 @@ static char	**ft_path(char *cmd)
 		paths[i] = ft_strjoin_gnl(paths[i], "/");
 		paths[i] = ft_strjoin_gnl(paths[i], cmd);
 	}
-	return (paths);
+	return (free(path), paths);
 }
 
 void	execute_x(char **cmd, char **env)

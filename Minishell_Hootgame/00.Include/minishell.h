@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/10 02:44:45 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/10 23:57:09 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,4 +202,7 @@ int		nxt_type(t_list *lst);
 void	expand_cmd_helper(t_list **new_list, t_list *lst);
 int		expand_redi_helper(t_list **new_list, t_list *lst);
 void	redir_err(void);
+
+void	paddress(void *address);
+
 #endif
