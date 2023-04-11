@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 23:54:18 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:01:04 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,6 @@ int	main(int argc, char **argv, char **env)
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 			ft_treeclear(&tree);
 		}
-		// ft_lstclear(&lst);
+		ft_lstclear(&lst);
 	}
 }
