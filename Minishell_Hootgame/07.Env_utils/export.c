@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:31:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 02:36:30 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 02:13:35 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	export_to_explist(char *arg)
 	if (g_pub.isdef_env == TRUE)
 	{
 		g_pub.isdef_env = FALSE;
-		export_to_env("PATH", ft_strdup(g_pub.path), OPT_CREAT);
+		export_to_env("PATH", g_pub.path, OPT_CREAT);
 		free(g_pub.path);
 	}
 	while (g_pub.exp_list[i])

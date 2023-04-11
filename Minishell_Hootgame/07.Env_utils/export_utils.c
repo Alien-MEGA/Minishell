@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:33:01 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 02:10:48 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	unset_from_exp(char *key)
 	len = ft_matlen(g_pub.exp_list);
 	if (g_pub.exp_list[0] == NULL)
 		return ;
-	while (g_pub.env[i] != NULL && ft_strcmp(key, g_pub.exp_list[i]) != 0)
+	while (g_pub.exp_list[i] != NULL && ft_strcmp(key, g_pub.exp_list[i]) != 0)
 	{
 		i++;
 	}

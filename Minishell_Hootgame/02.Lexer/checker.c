@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:57:50 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 02:02:06 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 02:17:14 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	print_error(char *value)
 	ft_printf(2,
 		"Minishell : syntax error near unexpected token `%s'\n",
 		value);
+	g_pub.exit_status = 258;
 	return (FALSE);
 }
 
@@ -26,11 +27,13 @@ int	check_syntax(t_list *tokens)
 	{
 		ft_printf(2, "%sminishell:lexer:%sopen quote or double qoute%s\n",
 			RED, GREEN, RESET);
+			g_pub.exit_status = 258;
 		return (FALSE);
 	}
 	if (check_brace(tokens) == FALSE || check_quote(tokens) == FALSE)
 	{
 		ft_printf(2, "%sminishell:lexer:%sbrace error\n%s\n", RED, GREEN, RESET);
+		g_pub.exit_status = 258;
 		return (FALSE);
 	}
 	return (check_tokens(tokens));
