@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 00:50:25 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 01:10:21 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 static char	*generator_tmp(void)
 {
 	char		*gen_tmp;
+	char		*tmp;
 	int			*num;
 
 	num = malloc(4);
 	read(open("/dev/urandom", O_RDONLY), num, 4);
-	gen_tmp = ft_strjoin("/tmp/tmp-", ft_itoa(*num));
-	return (free(num), gen_tmp);
+	tmp = ft_itoa(*num);
+	gen_tmp = ft_strjoin("/tmp/tmp-", tmp);
+	return (free(num), free(tmp), gen_tmp);
 }
 
 static void	ft_read_tmp(char *tmp_file, char *limiter)
