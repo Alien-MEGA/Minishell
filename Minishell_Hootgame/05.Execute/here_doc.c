@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 01:10:21 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:46:09 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	ft_read_tmp(char *tmp_file, char *limiter)
 		free(str);
 	}
 	free(limiter);
+	free(str);
 	close(fd_tmp);
 }
 
@@ -79,7 +80,7 @@ void	run_here_doc(t_tree *tree)
 		return ;
 	tree->redirect_mode = concater_heredoc(tree->redirect_mode);
 	lst = tree->redirect_mode;
-	while (lst)
+	while (lst && !g_pub.is_sigset)
 	{
 		if (lst->type == TK_HERE_DOC)
 		{
