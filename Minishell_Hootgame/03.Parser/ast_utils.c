@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:27:22 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 23:47:51 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:07:32 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static t_list	*create_redirect(t_list **lst)
 	t_list	*new_node;
 
 	new_node = NULL;
-	ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
+	ft_lstadd_back(&new_node, nd_copy(*lst));
 		(*lst) = (*lst)->next;
 	skip_space(lst);
 	while ((*lst)
 		&& !((*lst)->type >= TK_PIPE
 			&& (*lst)->type <= TK_WT_SPACE))
 	{
-		ft_lstadd_back(&new_node, ft_lstnew((*lst)->type, (*lst)->value, NULL));
+		ft_lstadd_back(&new_node, nd_copy(*lst));
 		(*lst) = (*lst)->next;
 	}
 	return (new_node);
@@ -47,7 +47,7 @@ static void	create_cmd(t_list **lst, t_list **new_lst)
 			&& (*lst)->type <= TK_CLOSE_BRACE))
 	{
 		ft_lstadd_back(new_lst,
-			ft_lstnew((*lst)->type, (*lst)->value, NULL));
+			nd_copy(*lst));
 			(*lst) = (*lst)->next;
 		if ((*lst) && (*lst)->next
 			&& (*lst)->type >= TK_PIPE
@@ -85,7 +85,7 @@ t_tree	*create_operator(t_list **lst)
 {
 	t_tree	*operator;
 
-	operator = ft_treenew(ft_lstnew((*lst)->type, (*lst)->value, NULL));
+	operator = ft_treenew(nd_copy(*lst));
 		(*lst) = (*lst)->next;
 	return (operator);
 }
