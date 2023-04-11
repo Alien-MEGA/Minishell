@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/10 04:36:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:18:55 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	ft_treeclear(t_tree **tree)
 	ft_lstclear(&(*tree)->lst);
 	ft_lstclear(&(*tree)->redirect_mode);
 	free(*tree);
+	*tree = NULL;
 }

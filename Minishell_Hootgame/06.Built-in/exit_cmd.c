@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:55 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:18:24 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
-static long result(const char *str, int i, int sg)
+static long	result(const char *str, int i, int sg)
 {
-	long nb;
+	long	nb;
 
 	nb = 0;
 	while (str[i])
@@ -34,10 +34,10 @@ static long result(const char *str, int i, int sg)
 	return (nb * sg);
 }
 
-static long long getexit_number(const char *str)
+static long long	getexit_number(const char *str)
 {
-	long i;
-	int sg;
+	long	i;
+	int		sg;
 
 	sg = 1;
 	i = 0;
@@ -61,9 +61,16 @@ void	exit_cmd(char **cmd)
 	}
 	else if (cmd[1] != NULL)
 	{
-		ft_printf(2,"exit\nMinishell : exit: too many arguments\n");
-		exit(255);
+		getexit_number(cmd[1]);
+		ft_printf(2, "exit\nMinishell : exit: too many arguments\n");
+		if (g_pub.should_fork == TRUE)
+			exit(1);
+		else
+		g_pub.exit_status = 1;
 	}
-	ft_printf(2, "exit\n");
-	exit(getexit_number(cmd[0]));
+	else
+	{
+		ft_printf(2, "exit\n");
+		exit(getexit_number(cmd[0]));
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/11 01:37:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:10:57 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,8 @@ static int	check_line(char *line)
 static int	prompt(t_list **lst)
 {
 	char	*line;
-	char	*prompt;
 
-	prompt = get_prompt(get_pwd());
-	line = readline(prompt);
-	free(prompt);
+	line = readline(PROMPT);
 	if (line != NULL)
 		add_history(line);
 	if (line == NULL)
@@ -78,12 +75,6 @@ static void	init(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 }
 
-void	leaks(void)
-{
-	system("leaks minishell");
-}
-void at(){}
-
 int	main(int argc, char **argv, char **env)
 {
 	int		line_status;
@@ -95,7 +86,6 @@ int	main(int argc, char **argv, char **env)
 	init(argc, argv, env);
 	while (1)
 	{
-		atexit(leaks);
 		ft_treeclear(&tree);
 		ft_lstclear(&lst);
 		sig_inint(TP_SIG_MAIN);
@@ -119,7 +109,6 @@ int	main(int argc, char **argv, char **env)
 			if (g_pub.is_sigset == TRUE)
 				continue ;
 			sig_inint(TP_SIG_EMPTY);
-			atexit(at);
 			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 		}
 	}

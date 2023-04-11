@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   echo_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:53 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:39:14 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
+
+static int	isoption(char *word)
+{
+	int	len;
+	int	i;
+
+	if (word == NULL)
+		return (FALSE);
+	len = ft_strlen(word);
+	if (len < 2 || word[0] != '-')
+		return (FALSE);
+	if (word[1] != 'n')
+		return (FALSE);
+	i = 2;
+	while (word[i])
+	{
+		if (word[i] != 'n')
+			return (FALSE);
+			i++;
+	}
+	return (TRUE);
+}
 
 void	echo_cmd(char **cmd)
 {
@@ -19,10 +41,10 @@ void	echo_cmd(char **cmd)
 
 	i = 0;
 	flag = TRUE;
-	if (ft_strcmp(cmd[0], "-n") == 0)
+	while (isoption(cmd[i]))
 	{
 		flag = FALSE;
-		i = 1;
+		i ++;
 	}
 	while (cmd[i])
 	{

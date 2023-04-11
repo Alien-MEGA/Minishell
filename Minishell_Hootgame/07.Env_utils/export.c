@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:31:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/11 02:13:35 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:26:58 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	export_to_explist(char *arg)
 	int	i;
 
 	i = 0;
-	if (g_pub.isdef_env == TRUE)
+	if (g_pub.isdef_env == TRUE && ft_strcmp("PATH", arg) == 0)
 	{
 		g_pub.isdef_env = FALSE;
 		export_to_env("PATH", g_pub.path, OPT_CREAT);

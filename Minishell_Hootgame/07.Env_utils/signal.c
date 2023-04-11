@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 02:39:42 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:17:11 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 static void	sigint_handler(int sig)
 {
-	char	*prompt;
-
 	g_pub.exit_status = 1;
 	(void)sig;
-	prompt = get_prompt(get_pwd());
 	printf("\n");
-	if (isatty(0))
-		ft_printf(1, prompt);
+	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	free(prompt);
 }
 
 void	sig_empty(int sig)

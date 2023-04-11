@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:06:35 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/11 04:35:17 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 04:49:29 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char	*expand_word(char *word, int start, int i)
 			key = get_next_key(word, &i);
 			if (key)
 			{
-				new_word = join_free(new_word, ft_substr(word, start, num - start));
+				new_word = join_free(new_word,
+						ft_substr(word, start, num - start));
 				new_word = join_free(new_word, expand_env(key));
 				start = i;
 			}
@@ -58,8 +59,7 @@ char	*expand_word(char *word, int start, int i)
 		else
 			i++;
 	}
-	new_word = join_free(new_word,ft_substr(word, start, i - start));
-	return (new_word);
+	return (join_free(new_word, ft_substr(word, start, i - start)));
 }
 
 static t_list	*exapnd_var_list_cmd(t_list *lst)

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:53:30 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/11 04:43:21 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 04:47:57 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	ft_strcmp( char *str1, char *str2)
 char	*join_free(char *s1, char *s2)
 {
 	char	*tmp;
+
 	tmp = ft_strjoin(s1, s2);
 	free(s1);
 	free(s2);

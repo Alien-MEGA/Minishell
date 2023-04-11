@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:04:18 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 02:21:42 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:14:40 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ int	iscontain_var(char *word)
 	return (FALSE);
 }
 
+void	dolar_remov(t_list *lst)
+{
+	int	prev;
+
+	prev = -1;
+	while (lst)
+	{
+		if (ft_strcmp("$", lst->value) == 0)
+		{
+			if (!istype(prev, T_W) && istype(nxt_type(lst), T_W))
+			{
+				lst->value[0] = '\0';
+			}
+		}
+		prev = lst->type;
+		lst = lst->next;
+	}
+}
+
 t_list	*ft_filter(t_list *lst)
 {
 	int		prev;
@@ -56,6 +75,7 @@ t_list	*ft_filter(t_list *lst)
 		}
 		lst = lst->next;
 	}
+	dolar_remov(nlst);
 	return (ft_lstclear(&tmp), nlst);
 }
 

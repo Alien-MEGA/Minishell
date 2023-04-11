@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 22:49:52 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/10 00:27:11 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:59:07 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /* ==============> Tools <============== */
 # define SP_CHAR "'\"<>()| \t&"
 # define CL_DEFAULT "\e[0m"
-# define PROMPT "\e[1;32m┌──(Minishell㉿Aliens)\n└─$ \e[0m"
+# define PROMPT "\e[1;32mminishell-1.0$ \e[0m"
 # define PROMPT_1 "\e[1;32m┌──(Minishell㉿Aliens)\n"
 # define PROMPT_2 "\e[1;32m└─$ \e[0m"
 # define PROMPT_ONE "\n\e[1;32m┌──(Minishell㉿Aliens)-[/"
