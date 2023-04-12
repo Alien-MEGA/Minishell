@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 22:11:00 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:28:02 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
 		return (fd_rd);
 	while (redirect)
 	{
-		if (!redirect->next)
-			return (ft_printf(2, "Error : NULL After Redirection Token\n")
-				, exit(258), fd_rd);
 		if (redirect->type == TK_RD_OUTPUT)
 			fd_rd.fd_wr = open(redirect->next->value,
 					O_RDWR | O_TRUNC | O_CREAT, 0644);
