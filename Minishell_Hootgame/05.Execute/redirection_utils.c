@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 21:43:15 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:03:09 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static char	*expand_file(char *file, int type)
 	return (file);
 }
 
-void	run_redirect(t_list *redirect, t_fd fd_rd, int *fd_in, int *fd_out)
+int	run_redirect(t_list *redirect, t_fd fd_rd, int *fd_in, int *fd_out)
 {
 	if (!redirect)
-		return ;
+		return (SUCCESS);
 	while (redirect)
 	{
 		if (redirect->type == TK_RD_OUTPUT)
@@ -69,19 +69,20 @@ void	run_redirect(t_list *redirect, t_fd fd_rd, int *fd_in, int *fd_out)
 		else if (redirect->type == TK_RD_OUTPUT_APPEND)
 			fd_rd.fd_wr = open(redirect->next->value,
 					O_RDWR | O_APPEND | O_CREAT, 0644);
-		ft_error(fd_rd.fd_wr, 1);
-		if (redirect->type == TK_RD_INPUT)
+		else if (redirect->type == TK_RD_INPUT)
 			fd_rd.fd_rd = open(redirect->next->value, O_RDONLY);
 		else if (redirect->type == TK_HERE_DOC)
 			fd_rd.fd_rd = open(expand_file(redirect->next->value,
 						redirect->next->type), O_RDONLY);
-		ft_error(fd_rd.fd_rd, 1);
+		if (fd_rd.fd_wr == FAIL || fd_rd.fd_rd == FAIL)
+			return (perror("Error "), FAIL);
 		redirect = redirect->next->next;
 	}
 	if (fd_rd.fd_rd >= 0)
 		*fd_in = fd_rd.fd_rd;
 	if (fd_rd.fd_wr >= 0)
 		*fd_out = fd_rd.fd_wr;
+	return (SUCCESS);
 }
 
 int	run_builtin(char **cmd, int fd_in, int fd_out)

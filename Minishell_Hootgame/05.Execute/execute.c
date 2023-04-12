@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 21:41:58 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:03:42 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ static pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait)
 	if (pross == 0)
 	{
 		sig_inint(TP_SIG_CHILD);
-		run_redirect(root->redirect_mode,
-			(t_fd){.fd_rd = -2, .fd_wr = -2},
-			&fd_in, &fd_out);
 		dup_fd(fd_in, fd_out);
 		close_pipe_fd();
 		execute_x(cmd, g_pub.env);
@@ -87,6 +84,7 @@ static void	exec_pipe(t_tree *root, int fd_in, int fd_out, int should_wait)
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
 	pid_t	pross;
+	int		status;
 
 	if (!root)
 		return (-2);
@@ -98,7 +96,12 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	else
 	{
 		if (expander(root) == FALSE)
-			return (-1);
+			return (FAIL);
+		status = run_redirect(root->redirect_mode,
+				(t_fd){.fd_rd = -2, .fd_wr = -2},
+				&fd_in, &fd_out);
+		if (status == FAIL)
+			return (FAIL);
 		pross = exec_cmd(root, fd_in, fd_out, should_wait);
 	}
 	return (pross);
