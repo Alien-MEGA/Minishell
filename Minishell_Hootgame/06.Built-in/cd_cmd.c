@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:38:13 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:59:19 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ void	cd_cmd(char *path)
 	oldpwd = get_pwd();
 	g_pub.exit_status = 1;
 	if (path == NULL)
+	{
+		free(oldpwd);
 		cd_to_home();
+	}
 	else if (chdir(path) == FAIL)
+	{
+		free(oldpwd);
 		perror("minishell : cd");
+	}
 	else
 	{
 		pwd = get_pwd();

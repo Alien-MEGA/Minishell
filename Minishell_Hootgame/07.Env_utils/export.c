@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 17:31:34 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/11 17:26:58 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:26:41 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	export_to_explist(char *arg)
 	while (g_pub.exp_list[i])
 	{
 		if (ft_strcmp(g_pub.exp_list[i], arg) == 0)
+		{
+			free(arg);
 			return ;
+		}
 			i++;
 	}
 	add_to_export(arg);
