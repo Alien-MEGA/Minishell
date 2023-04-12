@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 02:18:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 05:50:32 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_public
 	char			*path;
 	int				isdef_env;
 	int				is_sigset;
+	int				is_built_in;
 	int				should_fork;
 	char			*token_error;
 	t_list			*fd_lst;
@@ -139,7 +140,7 @@ void	dup_fd(int fd_in, int fd_out);
 int		wait_pross(pid_t pross);
 void	run_here_doc(t_tree *tree);
 void	run_redirect(t_list *redirect, t_fd fd_rd, int *fd_in, int *fd_out);
-int		run_builtin(char **cmd, int fd_in, int fd_out);
+int		run_builtin(t_tree *root, char **cmd, int fd_in, int fd_out);
 char	**get_cmd(t_list *lst);
 void	execute_x(char **cmd, char **env);
 void	reset_io(void);

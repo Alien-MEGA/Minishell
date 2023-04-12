@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 01:26:23 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 05:01:26 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	execute_x(char **cmd, char **env)
 	char	**paths;
 	char	*path;
 
-	if (run_builtin(cmd, -1, -1) == SUCCESS)
+	if (run_builtin(NULL, cmd, -1, -1) == SUCCESS)
 		return (ft_free(cmd), exit(g_pub.exit_status));
 	if (ft_strchr_check(cmd[0], '/'))
 		ft_apply_now(cmd[0], cmd, env);
