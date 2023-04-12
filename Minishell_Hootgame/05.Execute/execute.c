@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/10 22:09:50 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:26:22 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static pid_t	exec_cmd(t_tree *root, int fd_in, int fd_out, int should_wait)
 	cmd = get_cmd(root->lst);
 	if (g_pub.should_fork != TRUE)
 		if (run_builtin(cmd, fd_in, fd_out) == SUCCESS)
-			return (ft_free(cmd), reset_std_fd(), -1);
+			return (ft_free(cmd), reset_io(), -1);
 	pross = fork();
 	ft_error(pross, 1);
 	if (pross == 0)

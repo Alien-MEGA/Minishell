@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 04:31:48 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:26:20 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ t_fd	run_redirect(t_list *redirect, t_fd fd_rd);
 int		run_builtin(char **cmd, int fd_in, int fd_out);
 char	**get_cmd(t_list *lst);
 void	execute_x(char **cmd, char **env);
-void	reset_std_fd(void);
+void	reset_io(void);
 
 /*###############################################################################
 #                                 BUILT-IN                                      #

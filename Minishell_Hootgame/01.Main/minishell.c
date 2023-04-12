@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/11 18:10:57 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:31:06 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ static int	prompt(t_list **lst)
 	return (free(line), TRUE);
 }
 
-static void	init(int argc, char **argv, char **env)
+static void	init(char **argv, char **env, t_list **lst, t_tree **tree)
 {
-	(void)argc;
+	*lst = NULL;
+	*tree = NULL;
 	g_pub.env = NULL;
 	g_pub.fd_lst = NULL;
 	g_pub.exp_list = malloc(sizeof(char *));
@@ -75,23 +76,28 @@ static void	init(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 }
 
+void	reset_loop(t_list **lst, t_tree **tree)
+{
+	g_pub.is_sigset = FALSE;
+	g_pub.should_fork = FALSE;
+	ft_treeclear(tree);
+	ft_lstclear(lst);
+	*lst = NULL;
+	sig_inint(TP_SIG_MAIN);
+	reset_io();
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	int		line_status;
 	t_list	*lst;
 	t_tree	*tree;
 
-	lst = NULL;
-	tree = NULL;
-	init(argc, argv, env);
+	(void)argc;
+	init(argv, env, &lst, &tree);
 	while (1)
 	{
-		ft_treeclear(&tree);
-		ft_lstclear(&lst);
-		sig_inint(TP_SIG_MAIN);
-		reset_std_fd();
-		g_pub.is_sigset = FALSE;
-		lst = NULL;
+		reset_loop(&lst, &tree);
 		line_status = prompt(&lst);
 		if (line_status == FALSE)
 			continue ;

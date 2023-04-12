@@ -6,13 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 21:31:12 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:26:23 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
-void	reset_std_fd(void)
+void	reset_io(void)
 {
 	ft_error(dup2(g_pub.std_fd.fd_rd, 0), 1);
 	ft_error(dup2(g_pub.std_fd.fd_wr, 1), 1);
