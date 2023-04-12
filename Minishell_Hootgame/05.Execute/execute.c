@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 22:03:42 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:24:28 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 static t_fd	create_pipe(void)
 {
 	int		fd[2];
-	int		*fd_in;
+	int		*fd_tmp;
 	t_fd	fd_pipe;
 
 	ft_error(pipe(fd), 1);
 	fd_pipe.fd_rd = fd[0];
 	fd_pipe.fd_wr = fd[1];
-	fd_in = (int *)malloc(sizeof(int));
-	*fd_in = fd[0];
-	ft_lstadd_back(&g_pub.fd_lst, ft_lstnew(-1, NULL, fd_in));
-	fd_in = (int *)malloc(sizeof(int));
-	*fd_in = fd[1];
-	ft_lstadd_back(&g_pub.fd_lst, ft_lstnew(-1, NULL, fd_in));
+	fd_tmp = (int *)malloc(sizeof(int));
+	*fd_tmp = fd[0];
+	ft_lstadd_back(&g_pub.fd_lst, ft_lstnew(-1, NULL, fd_tmp));
+	fd_tmp = (int *)malloc(sizeof(int));
+	*fd_tmp = fd[1];
+	ft_lstadd_back(&g_pub.fd_lst, ft_lstnew(-1, NULL, fd_tmp));
 	return (fd_pipe);
 }
 
