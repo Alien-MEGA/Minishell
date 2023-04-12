@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 05:53:57 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 21:43:15 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,11 @@ void	run_redirect(t_list *redirect, t_fd fd_rd, int *fd_in, int *fd_out)
 		*fd_out = fd_rd.fd_wr;
 }
 
-int	run_builtin(t_tree *root, char **cmd, int fd_in, int fd_out)
+int	run_builtin(char **cmd, int fd_in, int fd_out)
 {
 	int	i;
 
 	i = -1;
-	if (root && !g_pub.should_fork)
-		run_redirect(root->redirect_mode,
-			(t_fd){.fd_rd = -2, .fd_wr = -2},
-			&fd_in, &fd_out);
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		return (dup_fd(fd_in, fd_out), echo_cmd(&cmd[1]), SUCCESS);
 	else if (ft_strcmp(cmd[0], "cd") == 0)
