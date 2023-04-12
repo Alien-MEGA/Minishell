@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 02:19:46 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 02:25:48 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 		if (expander(root) == FALSE)
 			return (-1);
 		run_redirect(root->redirect_mode,
-				(t_fd){.fd_rd = -2, .fd_wr = -2},
-				&fd_in, &fd_out);
+			(t_fd){.fd_rd = -2, .fd_wr = -2},
+			&fd_in, &fd_out);
 		pross = exec_cmd(root, fd_in, fd_out, should_wait);
 	}
 	return (pross);
