@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 21:46:09 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:32:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,14 @@ static void	ft_read_tmp(char *tmp_file, char *limiter)
 
 	fd_tmp = open(tmp_file, O_RDWR | O_TRUNC | O_CREAT, 0600);
 	ft_error(fd_tmp, 1);
-	limiter = ft_strjoin(limiter, "\n");
 	while (1)
 	{
-		ft_printf(1, "Heredoc > ");
-		str = get_next_line(0);
-		if (!str || ft_strncmp(str, limiter, ft_strlen(limiter)) == 0)
+		str = readline("Heredoc > ");
+		if (!str || ft_strcmp(str, limiter) == 0)
 			break ;
-		ft_printf(fd_tmp, "%s", str);
+		ft_printf(fd_tmp, "%s\n", str);
 		free(str);
 	}
-	free(limiter);
 	free(str);
 	close(fd_tmp);
 }
