@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/12 01:43:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 04:57:06 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	reset_loop(t_list **lst, t_tree **tree)
 {
 	g_pub.is_sigset = FALSE;
 	g_pub.should_fork = FALSE;
+	free(g_pub.token_error);
+	g_pub.token_error = NULL;
+	ft_lstclear(&g_pub.fd_lst);
+	g_pub.fd_lst = NULL;
 	ft_treeclear(tree);
 	ft_lstclear(lst);
 	*lst = NULL;
