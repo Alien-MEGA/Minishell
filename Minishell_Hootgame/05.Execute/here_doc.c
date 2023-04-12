@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:53:56 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 00:32:29 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:50:42 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void	run_here_doc(t_tree *tree)
 			tmp_file = here_doc(lst->next->value);
 			change_value(lst->next, tmp_file);
 		}
-		lst = lst->next->next;
+		lst = lst->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 01:26:20 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 02:18:29 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	close_pipe_fd(void);
 void	dup_fd(int fd_in, int fd_out);
 int		wait_pross(pid_t pross);
 void	run_here_doc(t_tree *tree);
-t_fd	run_redirect(t_list *redirect, t_fd fd_rd);
+void	run_redirect(t_list *redirect, t_fd fd_rd, int *fd_in, int *fd_out);
 int		run_builtin(char **cmd, int fd_in, int fd_out);
 char	**get_cmd(t_list *lst);
 void	execute_x(char **cmd, char **env);

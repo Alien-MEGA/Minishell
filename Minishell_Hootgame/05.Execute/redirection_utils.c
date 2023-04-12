@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 22:23:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 00:28:02 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 02:20:10 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static char	*expand_file(char *file, int type)
 	return (file);
 }
 
-t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
+void	run_redirect(t_list *redirect, t_fd fd_rd, int *fd_in, int *fd_out)
 {
 	if (!redirect)
-		return (fd_rd);
+		return ;
 	while (redirect)
 	{
 		if (redirect->type == TK_RD_OUTPUT)
@@ -78,7 +78,10 @@ t_fd	run_redirect(t_list *redirect, t_fd fd_rd)
 		ft_error(fd_rd.fd_rd, 1);
 		redirect = redirect->next->next;
 	}
-	return (fd_rd);
+	if (fd_rd.fd_rd >= 0)
+		*fd_in = fd_rd.fd_rd;
+	if (fd_rd.fd_wr >= 0)
+		*fd_out = fd_rd.fd_wr;
 }
 
 int	run_builtin(char **cmd, int fd_in, int fd_out)
