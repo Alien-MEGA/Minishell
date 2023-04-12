@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/12 01:31:06 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:43:20 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static int	prompt(t_list **lst)
 	if (check_line(line) == FALSE)
 		return (free(line), FALSE);
 	create_token_list(lst, line);
-	return (free(line), TRUE);
+	*lst = ft_filter(*lst);
+	return (free(line), check_syntax(*lst));
 }
 
 static void	init(char **argv, char **env, t_list **lst, t_tree **tree)
@@ -101,21 +102,17 @@ int	main(int argc, char **argv, char **env)
 		line_status = prompt(&lst);
 		if (line_status == FALSE)
 			continue ;
-		lst = ft_filter(lst);
-		if (check_syntax(lst) == TRUE)
+		tree = mk_tree(lst);
+		if (!tree)
 		{
-			tree = mk_tree(lst);
-			if (!tree)
-			{
-				syntax_error(g_pub.token_error);
-				continue ;
-			}
-			sig_inint(TP_SIG_HRDC);
-			run_here_doc(tree);
-			if (g_pub.is_sigset == TRUE)
-				continue ;
-			sig_inint(TP_SIG_EMPTY);
-			execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
+			syntax_error(g_pub.token_error);
+			continue ;
 		}
+		sig_inint(TP_SIG_HRDC);
+		run_here_doc(tree);
+		if (g_pub.is_sigset == TRUE)
+			continue ;
+		sig_inint(TP_SIG_EMPTY);
+		execute(tree, STDIN_FILENO, STDOUT_FILENO, TRUE);
 	}
 }

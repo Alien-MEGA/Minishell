@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
+#    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/12 00:39:49 by ebennamr         ###   ########.fr        #
+#    Updated: 2023/04/12 01:46:17 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc -g 
+CC = cc -g -fsanitize=address
 
 FLAGS = -Wall -Werror -Wextra
 
