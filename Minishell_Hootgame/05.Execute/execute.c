@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:44:28 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 01:26:22 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 02:19:46 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static void	exec_pipe(t_tree *root, int fd_in, int fd_out, int should_wait)
 
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 {
-	t_fd	fd_red;
 	pid_t	pross;
 
 	if (!root)
@@ -97,13 +96,10 @@ pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait)
 	{
 		if (expander(root) == FALSE)
 			return (-1);
-		fd_red = run_redirect(root->redirect_mode,
-				(t_fd){.fd_rd = -2, .fd_wr = -2});
-		if (fd_red.fd_rd < 0)
-			fd_red.fd_rd = fd_in;
-		if (fd_red.fd_wr < 0)
-			fd_red.fd_wr = fd_out;
-		pross = exec_cmd(root, fd_red.fd_rd, fd_red.fd_wr, should_wait);
+		run_redirect(root->redirect_mode,
+				(t_fd){.fd_rd = -2, .fd_wr = -2},
+				&fd_in, &fd_out);
+		pross = exec_cmd(root, fd_in, fd_out, should_wait);
 	}
 	return (pross);
 }

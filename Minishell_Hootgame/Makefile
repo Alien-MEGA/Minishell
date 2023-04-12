@@ -6,13 +6,13 @@
 #    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/12 01:46:17 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/04/12 02:08:29 by reben-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc -g -fsanitize=address
+CC = cc -g #-fsanitize=address
 
 FLAGS = -Wall -Werror -Wextra
 
