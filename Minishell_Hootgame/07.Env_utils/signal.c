@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:48 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/11 21:39:43 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:38:54 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	sig_child(int sig)
 
 static void	sig_herdoc(int sig)
 {
+	(void) sig;
 	g_pub.is_sigset = TRUE;
 	g_pub.exit_status = 1;
 	printf("\n");

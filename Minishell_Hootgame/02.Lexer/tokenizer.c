@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:45:14 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 02:08:45 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:38:10 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_list	**create_token_list(t_list **head, char *line)
 
 	lsit = NULL;
 	i = 0;
-	while (i < ft_strlen(line))
+	while (i < (int)ft_strlen(line))
 	{
 		bool = check_teken1(line, &i, head);
 		if (bool == FALSE)

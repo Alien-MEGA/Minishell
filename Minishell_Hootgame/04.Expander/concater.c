@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 11:29:58 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/10 01:08:07 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:38:32 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	gettype(int type, char *value, int prev_tk)
 static char	*getword(t_list **lst, int *type, int prev)
 {
 	char	*value;
-	int		bool;
 
 	value = ft_strdup((*lst)->value);
 	ft_error_str(value, 1);

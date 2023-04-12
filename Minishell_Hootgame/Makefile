@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+         #
+#    By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:30:49 by ebennamr          #+#    #+#              #
-#    Updated: 2023/04/10 05:05:50 by reben-ha         ###   ########.fr        #
+#    Updated: 2023/04/12 00:39:49 by ebennamr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = gcc -g #-fsanitize=address
+CC = cc -g 
 
-FLAGS = #-Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 SRC = ./01.Main/minishell.c \
 	./02.Lexer/checker.c \
