@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:22:05 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 00:20:45 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:11:19 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ t_tree	*bracket_handle(t_list **lst)
 	(*lst) = (*lst)->next;
 	if (*lst)
 		skip_space(lst);
-	if (*lst
-		&& (*lst)->type != TK_PIPE
-		&& (*lst)->type != TK_AND
-		&& (*lst)->type != TK_OR)
-		return (g_pub.token_error = ft_strdup(")"), NULL);
 	return (tree);
 }
 

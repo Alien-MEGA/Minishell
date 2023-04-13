@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/12 04:57:06 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:12:13 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void	init(char **argv, char **env, t_list **lst, t_tree **tree)
 	g_pub.exp_list[0] = NULL;
 	g_pub.exit_status = 0;
 	g_pub.is_sigset = FALSE;
-	g_pub.token_error = NULL;
 	g_pub.std_fd.fd_rd = dup(STDIN_FILENO);
 	ft_error(g_pub.std_fd.fd_rd, 1);
 	g_pub.std_fd.fd_wr = dup(STDOUT_FILENO);
@@ -81,8 +80,6 @@ void	reset_loop(t_list **lst, t_tree **tree)
 {
 	g_pub.is_sigset = FALSE;
 	g_pub.should_fork = FALSE;
-	free(g_pub.token_error);
-	g_pub.token_error = NULL;
 	ft_lstclear(&g_pub.fd_lst);
 	g_pub.fd_lst = NULL;
 	ft_treeclear(tree);
@@ -107,11 +104,6 @@ int	main(int argc, char **argv, char **env)
 		if (line_status == FALSE)
 			continue ;
 		tree = mk_tree(lst);
-		if (!tree)
-		{
-			syntax_error(g_pub.token_error);
-			continue ;
-		}
 		sig_inint(TP_SIG_HRDC);
 		run_here_doc(tree);
 		if (g_pub.is_sigset == TRUE)
