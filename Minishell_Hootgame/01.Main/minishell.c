@@ -6,26 +6,13 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:47:06 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/13 21:12:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:56:07 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
 t_public	g_pub;
-
-void	paddress(void *address)
-{
-	fprintf(stderr, "%p\n", address);
-}
-
-static void	syntax_error(char *token)
-{
-	g_pub.exit_status = 258;
-	return (ft_printf(2,
-			"Minishell : syntax error near unexpected `%s'\n",
-			token));
-}
 
 static int	check_line(char *line)
 {

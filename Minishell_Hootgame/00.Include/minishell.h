@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/13 21:12:25 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:55:49 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,6 @@ enum e_token
 	TK_OPEN_QUOTE
 };
 
-/*###########################################################
-#                                 LEXER                      #
-#############################################################*/
-
 typedef struct s_token
 {
 	int		type;
@@ -95,9 +91,6 @@ int		istype(int t, int type);
 int		check_op_syntax(t_list *prev, t_list *nxt);
 int		check_rd_syntax(t_list *nxt);
 int		check_br_op(t_list *lst);
-/*############################################################
-#                                 PARSER                      #
-###############################################################*/
 
 typedef struct s_tree
 {
@@ -118,20 +111,12 @@ t_tree	*ft_treenew(t_list *lst);
 void	ft_treeswap_root(t_tree **tree, t_tree *new, int option);
 void	ft_treeclear(t_tree **tree);
 
-/*###################################################################
-#                                 EXPANDER                           #
-######################################################################*/
-
 void	wildcard_cmd(t_list *list);
 int		wildcard_redir(t_list *list);
 void	exapnd_var_list(t_list *lst);
 int		expander(t_tree *node);
 t_list	*ft_filter(t_list *lst); // Note Used
 t_list	*concater(t_list *lst);
-
-/*######################################################################
-#                                 EXECUTE                              #
-#######################################################################*/
 
 pid_t	execute(t_tree *root, int fd_in, int fd_out, int should_wait);
 void	close_pipe_fd(void);
@@ -144,10 +129,6 @@ char	**get_cmd(t_list *lst);
 void	execute_x(char **cmd, char **env);
 void	reset_io(void);
 
-/*##################################################################
-#                                 BUILT-IN                          #
-####################################################################*/
-
 void	cd_cmd(char *path);
 void	echo_cmd(char **cmd);
 void	env_cmd(void);
@@ -155,10 +136,6 @@ void	exit_cmd(char **cmd);
 void	export_cmd(char **cmd);
 void	pwd_cmd(void);
 void	unset_cmd(char **cmd);
-
-/*##################################################################
-#                                 ENV_UTILS                         #
-#####################################################################*/
 
 typedef struct s_struct
 {
@@ -203,7 +180,5 @@ void	expand_cmd_helper(t_list **new_list, t_list *lst);
 int		expand_redi_helper(t_list **new_list, t_list *lst);
 void	redir_err(void);
 char	*join_free(char *s1, char *s2);
-
-void	paddress(void *address);
 
 #endif
