@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:53 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 18:39:14 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:24:39 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	echo_cmd(char **cmd)
 	while (isoption(cmd[i]))
 	{
 		flag = FALSE;
-		i ++;
+		i++;
 	}
 	while (cmd[i])
 	{

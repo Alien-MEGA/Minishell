@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:38:13 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/12 01:59:19 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:21:30 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	cd_to_home(void)
 	g_pub.exit_status = 1;
 	home = expand_env("HOME");
 	if (home == NULL)
-		ft_printf(2, "cd:HOME not set");
+		ft_printf(2, "cd : HOME not set");
 	else
 		cd_cmd(home);
 	free(home);
@@ -40,7 +40,7 @@ void	cd_cmd(char *path)
 	else if (chdir(path) == FAIL)
 	{
 		free(oldpwd);
-		perror("minishell : cd");
+		perror("Minishell : cd");
 	}
 	else
 	{

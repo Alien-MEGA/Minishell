@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:40:07 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 21:43:51 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:15:46 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ static int	find_path(char **paths)
 	i = 0;
 	while (paths[i] && access(paths[i], F_OK | X_OK) == FAIL)
 		i++;
-	if (access(paths[i], X_OK) != FAIL)
+	if (access(paths[i], F_OK | X_OK) != FAIL)
 		return (i);
 	return (FAIL);
 }
 
 static void	ft_apply_now(char *path, char **cmd, char **env)
 {
-	ft_error(access(path, F_OK), 1);
-	ft_error(access(path, X_OK), 1);
+	ft_error(access(path, F_OK), 127);
+	ft_error(access(path, X_OK), 126);
 	ft_error(execve(path, cmd, env), 1);
 }
 
