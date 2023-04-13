@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:57:50 by ebennamr          #+#    #+#             */
-/*   Updated: 2023/04/12 01:48:46 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/12 21:57:33 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	check_syntax(t_list *tokens)
 {
 	if (check_quote(tokens) == FALSE)
 	{
-		ft_printf(2, "%sminishell:lexer:%sopen quote or double quote%s\n",
-			RED, GREEN, RESET);
+		ft_printf(2, "%sminishell:lexer:%sopen quote%s\n", RED, GREEN, RESET);
 			g_pub.exit_status = 258;
 		return (FALSE);
 	}
@@ -36,7 +35,9 @@ int	check_syntax(t_list *tokens)
 		g_pub.exit_status = 258;
 		return (FALSE);
 	}
-	return (check_tokens(tokens));
+	if (check_tokens(tokens) == FALSE)
+		return (FALSE);
+	return (check_br_op(tokens));
 }
 
 int	check_quote(t_list *tokens)

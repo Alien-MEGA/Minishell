@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:51:48 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/12 21:56:24 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:20:18 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		check_tokens(t_list *tk);
 int		istype(int t, int type);
 int		check_op_syntax(t_list *prev, t_list *nxt);
 int		check_rd_syntax(t_list *nxt);
-
+int		check_br_op(t_list *lst);
 /*###############################################################################
 #                                 PARSER                                        #
 ###############################################################################*/
