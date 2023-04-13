@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:51:26 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 21:18:55 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:12:07 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ void	ft_treeswap_root(t_tree **tree, t_tree *new, int option)
 	*tree = new;
 }
 
+static void	rm_tmp_file(t_list *redirect)
+{
+	while (redirect)
+	{
+		if (redirect->type == TK_HERE_DOC
+			&& redirect->next != NULL)
+			unlink(redirect->next->value);
+		redirect = redirect->next;
+	}
+}
+
 void	ft_treeclear(t_tree **tree)
 {
 	if (!tree || !(*tree))
@@ -41,6 +52,7 @@ void	ft_treeclear(t_tree **tree)
 	ft_treeclear(&(*tree)->left);
 	ft_treeclear(&(*tree)->right);
 	ft_lstclear(&(*tree)->lst);
+	rm_tmp_file((*tree)->redirect_mode);
 	ft_lstclear(&(*tree)->redirect_mode);
 	free(*tree);
 	*tree = NULL;
