@@ -6,7 +6,7 @@
 /*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 20:56:51 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 00:01:23 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:29:26 by reben-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_lstclear(t_list **lst)
 	{
 		tmp = (*lst)->next;
 		free((*lst)->value);
+		free((*lst)->data);
 		free(*lst);
 		*lst = tmp;
 	}

@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:53 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/13 01:58:54 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:47:36 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	echo_cmd(char **cmd)
 	while (isoption(cmd[i]))
 	{
 		flag = FALSE;
-		i ++;
+		i++;
 	}
 	while (cmd[i])
 	{
