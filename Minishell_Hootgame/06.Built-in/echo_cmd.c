@@ -6,7 +6,7 @@
 /*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:16:53 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/11 18:39:14 by ebennamr         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:58:54 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	echo_cmd(char **cmd)
 	int	i;
 	int	flag;
 
+	g_pub.exit_status = 0;
 	i = 0;
 	flag = TRUE;
 	while (isoption(cmd[i]))
