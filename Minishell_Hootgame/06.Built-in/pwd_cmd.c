@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reben-ha <reben-ha@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ebennamr <ebennamr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:54:08 by reben-ha          #+#    #+#             */
-/*   Updated: 2023/04/09 01:05:13 by reben-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:37:45 by ebennamr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../00.Include/minishell.h"
 
-void pwd_cmd(void)
+void	pwd_cmd(void)
 {
-	char *str = get_pwd();
+	char	*str;
+
+	str = get_pwd();
 	printf("%s\n", str);
 	free(str);
 }
